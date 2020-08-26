@@ -18,15 +18,16 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     main.cpp \
     MainWindow.cpp \
-    modules/ClipScreen/ClipScreen.cpp
+    modules/ClipScreen/ClipScreen.cpp \
+    modules/ClipScreen/OpenGLScreen.cpp
 
 HEADERS += \
     MainWindow.h \
-    modules/ClipScreen/ClipScreen.h
+    modules/ClipScreen/ClipScreen.h \
+    modules/ClipScreen/OpenGLScreen.h
 
 FORMS += \
-    MainWindow.ui \
-    modules/ClipScreen/ClipScreen.ui
+    MainWindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

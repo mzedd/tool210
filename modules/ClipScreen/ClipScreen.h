@@ -1,13 +1,11 @@
 #ifndef CLIPSCREEN_H
 #define CLIPSCREEN_H
 
-#include <QDockWidget>
+#include <QWidget>
+#include <QBoxLayout>
+#include <QResizeEvent>
 
-namespace Ui {
-class ClipScreen;
-}
-
-class ClipScreen : public QDockWidget
+class ClipScreen : public QWidget
 {
     Q_OBJECT
 
@@ -15,8 +13,11 @@ public:
     explicit ClipScreen(QWidget *parent = nullptr);
     ~ClipScreen();
 
+protected:
+    void resizeEvent(QResizeEvent *event) override;
+
 private:
-    Ui::ClipScreen *ui;
+    QBoxLayout *layout;
 };
 
 #endif // CLIPSCREEN_H
