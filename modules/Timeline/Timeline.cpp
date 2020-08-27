@@ -10,7 +10,7 @@ Timeline::Timeline(QWidget *parent) : QWidget(parent)
     QVBoxLayout *mainLayout = new QVBoxLayout();
     QHBoxLayout *secondaryLayout = new QHBoxLayout();
     runPauseButton = new QPushButton("Play/Pause");
-    timeLabel = new QLabel("Moin");
+    zoomLabel = new QLabel("Zoom: 100 %");
     ClipListView *clipListView = new ClipListView(this);
     clipListView->setModel(new ClipListModel(this));
 
@@ -19,7 +19,14 @@ Timeline::Timeline(QWidget *parent) : QWidget(parent)
 
     secondaryLayout->addWidget(runPauseButton);
     secondaryLayout->addStretch();
-    secondaryLayout->addWidget(timeLabel);
+    secondaryLayout->addWidget(zoomLabel);
 
     setLayout(mainLayout);
+
+    connect(clipListView, SIGNAL(zoomChanged(float)), this, SLOT(setZoomLabel(float)));
+}
+
+void Timeline::setZoomLabel(float zoom)
+{
+    zoomLabel->setText(QString("Zoom: %1 %").arg(zoom*100.0f));
 }

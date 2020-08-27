@@ -1,13 +1,20 @@
 #include "ClipListView.h"
 #include <QPainter>
 
+#include <QDebug>
+
 constexpr int CLIP_HEIGHT = 50;
 constexpr int CLIP_NAME_COLUMN = 0;
 constexpr int CLIP_DURATION_COLUMN = 1;
 constexpr int TIMEAXIS_HEIGHT = 30;
+constexpr int PIXEL_PER_SECOND = 5;
+constexpr float SCROLL_SENSITIVITY = 0.01f;
+constexpr float ZOOM_MINIMUM = 0.5f;
+constexpr float ZOOM_MAXIMUM = 5.0f;
 
 ClipListView::ClipListView(QWidget *parent) :
-    QAbstractItemView(parent)
+    QAbstractItemView(parent),
+    zoom(1.0f)
 {
 
 }
@@ -17,16 +24,16 @@ QRect ClipListView::visualRect(const QModelIndex &index) const
     QModelIndex clipDurationIndex;
     float clipStartTime = 0.0f;
 
-    for(int i = 0; i < index.row()-1; i++) {
+    for(int i = 0; i < index.row(); i++) {
         clipDurationIndex = model()->index(i, CLIP_DURATION_COLUMN);
         clipStartTime += model()->data(clipDurationIndex).toFloat();
     }
 
     clipDurationIndex = model()->index(index.row(), CLIP_DURATION_COLUMN);
 
-    int xTopLeft = static_cast<int>(clipStartTime);
+    int xTopLeft = static_cast<int>(clipStartTime) * PIXEL_PER_SECOND * zoom;
     int yTopLeft = TIMEAXIS_HEIGHT;
-    int width = model()->data(clipDurationIndex).toInt();
+    int width = model()->data(clipDurationIndex).toInt() * PIXEL_PER_SECOND * zoom;
     int height = CLIP_HEIGHT;
 
     return QRect(xTopLeft, yTopLeft, width, height);
@@ -93,6 +100,15 @@ void ClipListView::setSelection(const QRect& /*rect*/, QItemSelectionModel::Sele
 
 }
 
+void ClipListView::wheelEvent(QWheelEvent *event)
+{
+    zoom += event->pixelDelta().y() * SCROLL_SENSITIVITY;
+    zoom = qBound(ZOOM_MINIMUM, zoom, ZOOM_MAXIMUM);
+
+    emit zoomChanged(zoom);
+    viewport()->update();
+}
+
 void ClipListView::paintEvent(QPaintEvent*)
 {
     QPainter painter(this->viewport());
@@ -104,24 +120,26 @@ void ClipListView::paintEvent(QPaintEvent*)
     painter.setPen(pen);
 
     // time axis
-    int maxTickCount = width();
-    QLine bigTick = QLine(0, 0, 0, TIMEAXIS_HEIGHT*0.8f);
+    int maxTickCount = (width() / (PIXEL_PER_SECOND * zoom));
+    for(int i = 0; i < maxTickCount; i++) {
+        float x = i * PIXEL_PER_SECOND * zoom;
+        QLine tick(x, 0, x, 0);
 
-    for(int x = 0; x < maxTickCount; x++) {
-        if(x % 10) {
+        if(i % 10) {
             pen.setWidth(1);
-            bigTick.setP2(QPoint(bigTick.x2(), TIMEAXIS_HEIGHT*0.6f));
+            tick.setP2(QPoint(tick.x2(), TIMEAXIS_HEIGHT*0.6f));
         } else {
             pen.setWidth(2);
-            bigTick.setP2(QPoint(bigTick.x2(), TIMEAXIS_HEIGHT*0.8f));
+            tick.setP2(QPoint(tick.x2(), TIMEAXIS_HEIGHT*0.8f));
         }
+
         painter.setPen(pen);
-        painter.drawLine(bigTick);
-        bigTick.translate(10,0);
+        painter.drawLine(tick);
     }
 
-
     // draw vertical lines
+    pen.setWidth(1);
+    painter.setPen(pen);
     float y = 0.0f;
     QVector<QLineF> lines;
     int maxLineCount = (int)(height()/CLIP_HEIGHT);

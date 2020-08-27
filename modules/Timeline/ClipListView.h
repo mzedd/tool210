@@ -2,6 +2,7 @@
 #define CLIPLISTVIEW_H
 
 #include <QAbstractItemView>
+#include <QWheelEvent>
 
 class ClipListView : public QAbstractItemView
 {
@@ -21,9 +22,17 @@ protected:
     bool isIndexHidden(const QModelIndex &index) const;
     void setSelection(const QRect &rect, QItemSelectionModel::SelectionFlags command);
 
+    void wheelEvent(QWheelEvent *event);
+
     void paintEvent(QPaintEvent *event);
 
     QRegion visualRegionForSelection(const QItemSelection &selection) const;
+
+private:
+    float zoom;
+
+signals:
+    void zoomChanged(float zoom);
 };
 
 #endif // CLIPLISTVIEW_H
