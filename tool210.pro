@@ -26,8 +26,7 @@ HEADERS += \
     modules/ClipScreen/ClipScreen.h \
     modules/ClipScreen/OpenGLScreen.h
 
-FORMS += \
-    MainWindow.ui
+FORMS +=
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
