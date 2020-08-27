@@ -19,12 +19,14 @@ SOURCES += \
     main.cpp \
     MainWindow.cpp \
     modules/ClipScreen/ClipScreen.cpp \
-    modules/ClipScreen/OpenGLScreen.cpp
+    modules/ClipScreen/OpenGLScreen.cpp \
+    modules/Timeline/Timeline.cpp
 
 HEADERS += \
     MainWindow.h \
     modules/ClipScreen/ClipScreen.h \
-    modules/ClipScreen/OpenGLScreen.h
+    modules/ClipScreen/OpenGLScreen.h \
+    modules/Timeline/Timeline.h
 
 FORMS +=
 
