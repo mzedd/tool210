@@ -2,6 +2,8 @@
 
 #include <QVBoxLayout>
 #include <QHBoxLayout>
+#include "ClipListView.h"
+#include "demo/ClipListModel.h"
 
 Timeline::Timeline(QWidget *parent) : QWidget(parent)
 {
@@ -9,10 +11,11 @@ Timeline::Timeline(QWidget *parent) : QWidget(parent)
     QHBoxLayout *secondaryLayout = new QHBoxLayout();
     runPauseButton = new QPushButton("Play/Pause");
     timeLabel = new QLabel("Moin");
-    hallo = new QLabel("tach");
+    ClipListView *clipListView = new ClipListView(this);
+    clipListView->setModel(new ClipListModel(this));
 
     mainLayout->addLayout(secondaryLayout);
-    mainLayout->addWidget(hallo);
+    mainLayout->addWidget(clipListView);
 
     secondaryLayout->addWidget(runPauseButton);
     secondaryLayout->addStretch();

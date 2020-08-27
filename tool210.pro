@@ -23,6 +23,7 @@ SOURCES += \
     MainWindow.cpp \
     modules/ClipScreen/ClipScreen.cpp \
     modules/ClipScreen/OpenGLScreen.cpp \
+    modules/Timeline/ClipListView.cpp \
     modules/Timeline/Timeline.cpp
 
 HEADERS += \
@@ -33,6 +34,7 @@ HEADERS += \
     demo/Scene.h \
     modules/ClipScreen/ClipScreen.h \
     modules/ClipScreen/OpenGLScreen.h \
+    modules/Timeline/ClipListView.h \
     modules/Timeline/Timeline.h
 
 FORMS +=
