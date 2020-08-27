@@ -39,3 +39,8 @@ QVariant ClipListModel::data(const QModelIndex &index, int role) const
 
     return QVariant();
 }
+
+bool ClipListModel::moveRows(const QModelIndex& /*sourceParent*/, int sourceRow, int /*count*/, const QModelIndex &destinationParent, int /*destinationChild*/)
+{
+    return Demo::instance().swapClips(sourceRow, destinationParent.row());
+}

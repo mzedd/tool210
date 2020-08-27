@@ -27,6 +27,7 @@ public:
     int clipCount() const;
     Clip& clipAt(int index);
     void addClip();
+    bool swapClips(int first, int second);
 };
 
 #endif // DEMO_H

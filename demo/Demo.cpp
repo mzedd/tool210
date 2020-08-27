@@ -33,3 +33,12 @@ void Demo::addClip()
 {
     clipList.push_back(Clip());
 }
+
+bool Demo::swapClips(int first, int second)
+{
+    Clip tmp = clipList.at(first);
+    clipList.at(first) = clipList.at(second);
+    clipList.at(second) = tmp;
+
+    return true;
+}

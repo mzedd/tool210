@@ -23,6 +23,8 @@ protected:
     void setSelection(const QRect &rect, QItemSelectionModel::SelectionFlags command);
 
     void mousePressEvent(QMouseEvent *event);
+    void mouseMoveEvent(QMouseEvent *event);
+    void mouseReleaseEvent(QMouseEvent *event);
     void wheelEvent(QWheelEvent *event);
 
     void paintEvent(QPaintEvent *event);
@@ -30,8 +32,17 @@ protected:
     QRegion visualRegionForSelection(const QItemSelection &selection) const;
 
 private:
+    bool isMouseFloatingOverTimeCursor(const QPoint &point) const;
+
+    enum DragState {
+        None,
+        Dragged
+    };
+
     float zoom;
     float time;
+    DragState timeCurorDragState;
+    DragState currentClipDragState;
 
 signals:
     void zoomChanged(float zoom);

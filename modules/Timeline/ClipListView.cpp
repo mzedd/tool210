@@ -17,9 +17,11 @@ constexpr float TIME_CURSOR_DEFAULT = 10.0f;
 ClipListView::ClipListView(QWidget *parent) :
     QAbstractItemView(parent),
     zoom(ZOOM_DEFAULT),
-    time(TIME_CURSOR_DEFAULT)
+    time(TIME_CURSOR_DEFAULT),
+    timeCurorDragState(DragState::None),
+    currentClipDragState(DragState::None)
 {
-
+    setMouseTracking(true);
 }
 
 QRect ClipListView::visualRect(const QModelIndex &index) const
@@ -105,14 +107,60 @@ void ClipListView::setSelection(const QRect& /*rect*/, QItemSelectionModel::Sele
 
 void ClipListView::mousePressEvent(QMouseEvent *event)
 {
-    if(event->y() <= TIMEAXIS_HEIGHT) {
-        time = event->x() / (PIXEL_PER_SECOND * zoom);
+    if(event->button() == Qt::MouseButton::LeftButton) {
+        if(isMouseFloatingOverTimeCursor(event->pos())) {
+            timeCurorDragState = DragState::Dragged;
+        } else {
+            if(event->y() <= TIMEAXIS_HEIGHT) {
+                time = event->x() / (PIXEL_PER_SECOND * zoom);
+                emit timeChanged(time);
+            } else {
+                QModelIndex index = indexAt(event->pos());
+                if(index.isValid()) {
+                    setCurrentIndex(index);
+                    currentClipDragState = DragState::Dragged;
+                } else {
+                    setCurrentIndex(QModelIndex());
+                }
+            }
+        }
     }
 
-    emit timeChanged(time);
     viewport()->update();
-
     QAbstractItemView::mousePressEvent(event);
+}
+
+void ClipListView::mouseMoveEvent(QMouseEvent *event)
+{
+    if(isMouseFloatingOverTimeCursor(event->pos())) {
+        this->setCursor(Qt::CursorShape::SizeHorCursor);
+    } else {
+        this->setCursor(Qt::CursorShape::ArrowCursor);
+    }
+
+    if(timeCurorDragState == DragState::Dragged) {
+        time = event->x() / (PIXEL_PER_SECOND * zoom);
+        emit timeChanged(time);
+        viewport()->update();
+    }
+}
+
+void ClipListView::mouseReleaseEvent(QMouseEvent *event)
+{
+    if(event->button() == Qt::MouseButton::LeftButton) {
+        if(isMouseFloatingOverTimeCursor(event->pos())) {
+            timeCurorDragState = DragState::None;
+        } else {
+            QModelIndex index = indexAt(event->pos());
+            if(index.isValid()) {
+                model()->moveRow(currentIndex(), currentIndex().row(), index, index.row());
+                setCurrentIndex(index);
+            }
+            currentClipDragState = DragState::None;
+        }
+    }
+
+    viewport()->update();
 }
 
 void ClipListView::wheelEvent(QWheelEvent *event)
@@ -168,7 +216,7 @@ void ClipListView::paintEvent(QPaintEvent*)
 
     // draw clips
     for(int i = 0; i < model()->rowCount(); i++) {
-        QModelIndex index = model()->index(i, CLIP_NAME_COLUMN);
+        QModelIndex index = model()->index(i, CLIP_DURATION_COLUMN);
 
         if(currentIndex() == index) {
             painter.setBrush(Qt::red);
@@ -191,4 +239,11 @@ void ClipListView::paintEvent(QPaintEvent*)
 QRegion ClipListView::visualRegionForSelection(const QItemSelection& /*selection*/) const
 {
     return QRegion(rect());
+}
+
+bool ClipListView::isMouseFloatingOverTimeCursor(const QPoint &point) const
+{
+    float x = time * PIXEL_PER_SECOND * zoom;
+    QRect timeCursorRect(x - 1, 0, 3, height());
+    return timeCursorRect.contains(point);
 }
