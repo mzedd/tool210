@@ -16,6 +16,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    demo/Demo.cpp \
     main.cpp \
     MainWindow.cpp \
     modules/ClipScreen/ClipScreen.cpp \
@@ -24,6 +25,7 @@ SOURCES += \
 
 HEADERS += \
     MainWindow.h \
+    demo/Demo.h \
     modules/ClipScreen/ClipScreen.h \
     modules/ClipScreen/OpenGLScreen.h \
     modules/Timeline/Timeline.h
