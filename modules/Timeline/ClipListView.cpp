@@ -11,10 +11,13 @@ constexpr int PIXEL_PER_SECOND = 5;
 constexpr float SCROLL_SENSITIVITY = 0.01f;
 constexpr float ZOOM_MINIMUM = 0.5f;
 constexpr float ZOOM_MAXIMUM = 5.0f;
+constexpr float ZOOM_DEFAULT = 1.0f;
+constexpr float TIME_CURSOR_DEFAULT = 10.0f;
 
 ClipListView::ClipListView(QWidget *parent) :
     QAbstractItemView(parent),
-    zoom(1.0f)
+    zoom(ZOOM_DEFAULT),
+    time(TIME_CURSOR_DEFAULT)
 {
 
 }
@@ -100,6 +103,18 @@ void ClipListView::setSelection(const QRect& /*rect*/, QItemSelectionModel::Sele
 
 }
 
+void ClipListView::mousePressEvent(QMouseEvent *event)
+{
+    if(event->y() <= TIMEAXIS_HEIGHT) {
+        time = event->x() / (PIXEL_PER_SECOND * zoom);
+    }
+
+    emit timeChanged(time);
+    viewport()->update();
+
+    QAbstractItemView::mousePressEvent(event);
+}
+
 void ClipListView::wheelEvent(QWheelEvent *event)
 {
     zoom += event->pixelDelta().y() * SCROLL_SENSITIVITY;
@@ -107,6 +122,8 @@ void ClipListView::wheelEvent(QWheelEvent *event)
 
     emit zoomChanged(zoom);
     viewport()->update();
+
+    QAbstractItemView::wheelEvent(event);
 }
 
 void ClipListView::paintEvent(QPaintEvent*)
@@ -161,6 +178,14 @@ void ClipListView::paintEvent(QPaintEvent*)
 
         painter.drawRect(visualRect(index));
     }
+
+    // draw time cursor
+    float x = time * PIXEL_PER_SECOND * zoom;
+    QLine timeCursorLine(x, 0, x, height());
+    pen.setColor(Qt::red);
+    pen.setWidth(2);
+    painter.setPen(pen);
+    painter.drawLine(timeCursorLine);
 }
 
 QRegion ClipListView::visualRegionForSelection(const QItemSelection& /*selection*/) const

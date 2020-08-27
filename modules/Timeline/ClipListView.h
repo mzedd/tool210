@@ -22,6 +22,7 @@ protected:
     bool isIndexHidden(const QModelIndex &index) const;
     void setSelection(const QRect &rect, QItemSelectionModel::SelectionFlags command);
 
+    void mousePressEvent(QMouseEvent *event);
     void wheelEvent(QWheelEvent *event);
 
     void paintEvent(QPaintEvent *event);
@@ -30,9 +31,11 @@ protected:
 
 private:
     float zoom;
+    float time;
 
 signals:
     void zoomChanged(float zoom);
+    void timeChanged(float time);
 };
 
 #endif // CLIPLISTVIEW_H

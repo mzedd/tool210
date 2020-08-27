@@ -14,9 +14,11 @@ public:
 private:
     QPushButton *runPauseButton;
     QLabel *zoomLabel;
+    QLabel *timeLabel;
 
 private slots:
     void setZoomLabel(float zoom);
+    void setTimeLabel(float time);
 };
 
 #endif // TIMELINE_H
