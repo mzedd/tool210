@@ -1,11 +1,20 @@
 #ifndef DEMO_H
 #define DEMO_H
 
+#include <vector>
+#include "Clip.h"
+#include "Scene.h"
 
 class Demo
 {
 private:
     Demo();
+    ~Demo();
+
+    std::vector<Clip> clipList;
+    std::vector<Scene*> sceneList;
+    // TODO: musicTrack
+    // TODO: postProcessingEffects
 
 public:
     Demo(const Demo&) = delete;
