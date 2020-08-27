@@ -103,7 +103,46 @@ void ClipListView::paintEvent(QPaintEvent*)
     pen.setWidth(1);
     painter.setPen(pen);
 
-    painter.drawRect(5, 5, 200, 200);
+    // time axis
+    int maxTickCount = width();
+    QLine bigTick = QLine(0, 0, 0, TIMEAXIS_HEIGHT*0.8f);
+
+    for(int x = 0; x < maxTickCount; x++) {
+        if(x % 10) {
+            pen.setWidth(1);
+            bigTick.setP2(QPoint(bigTick.x2(), TIMEAXIS_HEIGHT*0.6f));
+        } else {
+            pen.setWidth(2);
+            bigTick.setP2(QPoint(bigTick.x2(), TIMEAXIS_HEIGHT*0.8f));
+        }
+        painter.setPen(pen);
+        painter.drawLine(bigTick);
+        bigTick.translate(10,0);
+    }
+
+
+    // draw vertical lines
+    float y = 0.0f;
+    QVector<QLineF> lines;
+    int maxLineCount = (int)(height()/CLIP_HEIGHT);
+    for(int i = 0; i < maxLineCount; i++) {
+        y = i*CLIP_HEIGHT + TIMEAXIS_HEIGHT;
+        lines.append(QLineF(0, y, width(), y));
+    }
+    painter.drawLines(lines);
+
+    // draw clips
+    for(int i = 0; i < model()->rowCount(); i++) {
+        QModelIndex index = model()->index(i, CLIP_NAME_COLUMN);
+
+        if(currentIndex() == index) {
+            painter.setBrush(Qt::red);
+        } else {
+            painter.setBrush(Qt::blue);
+        }
+
+        painter.drawRect(visualRect(index));
+    }
 }
 
 QRegion ClipListView::visualRegionForSelection(const QItemSelection& /*selection*/) const
