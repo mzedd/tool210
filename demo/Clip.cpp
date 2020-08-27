@@ -15,3 +15,33 @@ void Clip::renderAt(float time)
 {
     scene->renderAt(time);
 }
+
+QString Clip::getName()
+{
+    return name;
+}
+
+void Clip::setName(QString name)
+{
+    this->name = name;
+}
+
+float Clip::getDuration()
+{
+    return duration;
+}
+
+void Clip::setDuration(float duration)
+{
+    this->duration = duration;
+}
+
+Scene *Clip::getScene()
+{
+    return scene;
+}
+
+void Clip::setScene(Scene *scene)
+{
+    this->scene = scene;
+}

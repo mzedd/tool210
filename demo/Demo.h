@@ -23,6 +23,10 @@ public:
     Demo& operator=(Demo&&) = delete;
 
     static Demo& instance();
+
+    int clipCount() const;
+    Clip& clipAt(int index);
+    void addClip();
 };
 
 #endif // DEMO_H
