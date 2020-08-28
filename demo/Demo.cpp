@@ -1,4 +1,5 @@
 #include "Demo.h"
+#include "ShaderOnlyScene.h"
 
 Demo::Demo()
 {
@@ -9,7 +10,8 @@ Demo::~Demo()
 {
     for(auto scene : sceneList)
     {
-        delete scene;
+        if(scene)
+            delete scene;
     }
 }
 
@@ -41,4 +43,27 @@ bool Demo::swapClips(int first, int second)
     clipList.at(second) = tmp;
 
     return true;
+}
+
+int Demo::sceneCount() const
+{
+    return sceneList.size();
+}
+
+Scene *Demo::sceneAt(int index)
+{
+    return sceneList.at(index);
+}
+
+void Demo::addScene()
+{
+    sceneList.push_back(new ShaderOnlyScene);
+}
+
+void Demo::initializeShaders(int w, int h)
+{
+    for(Scene* scene : sceneList) {
+        scene->initialize();
+        scene->setViewportResolution(w, h);
+    }
 }

@@ -2,8 +2,19 @@
 
 ShaderOnlyScene::ShaderOnlyScene()
 {
-    shaderProgram.create();
     name = QString("default shader only scene");
+}
+
+ShaderOnlyScene::~ShaderOnlyScene()
+{
+    shaderProgram.release();
+    vao.destroy();
+    vbo.destroy();
+}
+
+void ShaderOnlyScene::initialize()
+{
+    shaderProgram.create();
     setShader("shader/default.frag");
 
     float vertices[] = {
@@ -22,8 +33,8 @@ ShaderOnlyScene::ShaderOnlyScene()
     vbo.bind();
     vbo.allocate(vertices, sizeof (vertices));
 
-    shaderProgram.setAttributeArray(0, GL_FLOAT, 0, 3);
     shaderProgram.enableAttributeArray(0);
+    shaderProgram.setAttributeArray(0, GL_FLOAT, 0, 3);
 }
 
 void ShaderOnlyScene::renderAt(float time)
@@ -67,8 +78,8 @@ bool ShaderOnlyScene::setShader(const QString& filename)
     return true;
 }
 
-void ShaderOnlyScene::setViewportResolution(QVector2D resolution)
+void ShaderOnlyScene::setViewportResolution(int w, int h)
 {
     shaderProgram.bind();
-    shaderProgram.setUniformValue("iResolution", resolution);
+    shaderProgram.setUniformValue("iResolution", w, h);
 }

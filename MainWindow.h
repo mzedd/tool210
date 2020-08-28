@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 #include <QMenuBar>
+#include "modules/ClipScreen/ClipScreen.h"
+#include "modules/Timeline/Timeline.h"
 
 class MainWindow : public QMainWindow
 {
@@ -14,5 +16,9 @@ public:
 private:
     void createMenu();
     void createInitialWidgets();
+    void setupConnections();
+
+    ClipScreen *clipScreen;
+    Timeline *timeline;
 };
 #endif // MAINWINDOW_H

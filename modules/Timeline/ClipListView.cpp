@@ -150,6 +150,7 @@ void ClipListView::mouseReleaseEvent(QMouseEvent *event)
     if(event->button() == Qt::MouseButton::LeftButton) {
         if(isMouseFloatingOverTimeCursor(event->pos())) {
             timeCurorDragState = DragState::None;
+            emit clipToRenderChanged(clipUnderTimeCursor());
         } else {
             QModelIndex index = indexAt(event->pos());
             if(index.isValid()) {
@@ -246,4 +247,10 @@ bool ClipListView::isMouseFloatingOverTimeCursor(const QPoint &point) const
     float x = time * PIXEL_PER_SECOND * zoom;
     QRect timeCursorRect(x - 1, 0, 3, height());
     return timeCursorRect.contains(point);
+}
+
+int ClipListView::clipUnderTimeCursor() const
+{
+    float x = time * PIXEL_PER_SECOND * zoom;
+    return indexAt(QPoint(x, TIMEAXIS_HEIGHT + CLIP_HEIGHT * 0.5f)).row();
 }

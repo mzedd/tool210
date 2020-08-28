@@ -5,8 +5,9 @@
 #include <QOpenGLShaderProgram>
 #include <QOpenGLVertexArrayObject>
 #include <QOpenGLBuffer>
+#include <QOpenGLFunctions>
 
-class ShaderOnlyScene : public Scene
+class ShaderOnlyScene : public Scene, protected QOpenGLFunctions
 {
 private:
     QOpenGLShaderProgram shaderProgram;
@@ -14,9 +15,11 @@ private:
     QOpenGLBuffer vbo;
 public:
     ShaderOnlyScene();
+    ~ShaderOnlyScene();
+    void initialize();
     void renderAt(float time);
     bool setShader(const QString& filename);
-    void setViewportResolution(QVector2D resolution);
+    void setViewportResolution(int w, int h);
 };
 
 #endif // SHADERONLYSCENE_H

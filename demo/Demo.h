@@ -28,6 +28,11 @@ public:
     Clip& clipAt(int index);
     void addClip();
     bool swapClips(int first, int second);
+
+    int sceneCount() const;
+    Scene *sceneAt(int index);
+    void addScene();
+    void initializeShaders(int w, int h);
 };
 
 #endif // DEMO_H

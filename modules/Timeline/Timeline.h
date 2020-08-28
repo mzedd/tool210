@@ -19,6 +19,10 @@ private:
 private slots:
     void setZoomLabel(float zoom);
     void setTimeLabel(float time);
+
+signals:
+    void timeChanged(float time);
+    void clipToRenderChanged(int id);
 };
 
 #endif // TIMELINE_H

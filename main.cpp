@@ -18,6 +18,11 @@ int main(int argc, char *argv[])
     Demo::instance().clipAt(2).setName("Dritter Clip");
     Demo::instance().clipAt(2).setDuration(210.0f);
 
+    Demo::instance().addScene();
+    Demo::instance().clipAt(0).setScene(Demo::instance().sceneAt(0));
+    Demo::instance().clipAt(1).setScene(Demo::instance().sceneAt(0));
+    Demo::instance().clipAt(2).setScene(Demo::instance().sceneAt(0));
+
     w.show();
     return a.exec();
 }

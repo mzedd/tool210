@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QBoxLayout>
 #include <QResizeEvent>
+#include "OpenGLScreen.h"
 
 class ClipScreen : public QWidget
 {
@@ -12,12 +13,14 @@ class ClipScreen : public QWidget
 public:
     explicit ClipScreen(QWidget *parent = nullptr);
     ~ClipScreen();
+    OpenGLScreen* getOpenGLScreen() const;
 
 protected:
     void resizeEvent(QResizeEvent *event) override;
 
 private:
     QBoxLayout *layout;
+    OpenGLScreen *openGLScreen;
 };
 
 #endif // CLIPSCREEN_H

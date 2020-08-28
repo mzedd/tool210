@@ -3,7 +3,7 @@
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include "ClipListView.h"
-#include "demo/ClipListModel.h"
+#include "ClipListModel.h"
 
 Timeline::Timeline(QWidget *parent) : QWidget(parent)
 {
@@ -27,6 +27,8 @@ Timeline::Timeline(QWidget *parent) : QWidget(parent)
 
     connect(clipListView, SIGNAL(zoomChanged(float)), this, SLOT(setZoomLabel(float)));
     connect(clipListView, SIGNAL(timeChanged(float)), this, SLOT(setTimeLabel(float)));
+    connect(clipListView, SIGNAL(timeChanged(float)), this, SIGNAL(timeChanged(float)));
+    connect(clipListView, SIGNAL(clipToRenderChanged(int)), this, SIGNAL(clipToRenderChanged(int)));
 }
 
 void Timeline::setZoomLabel(float zoom)

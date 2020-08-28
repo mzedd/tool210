@@ -3,6 +3,7 @@
 
 #include <QAbstractItemView>
 #include <QWheelEvent>
+#include "demo/Clip.h"
 
 class ClipListView : public QAbstractItemView
 {
@@ -33,6 +34,7 @@ protected:
 
 private:
     bool isMouseFloatingOverTimeCursor(const QPoint &point) const;
+    int clipUnderTimeCursor() const;
 
     enum DragState {
         None,
@@ -47,6 +49,7 @@ private:
 signals:
     void zoomChanged(float zoom);
     void timeChanged(float time);
+    void clipToRenderChanged(int id);
 };
 
 #endif // CLIPLISTVIEW_H
