@@ -17,24 +17,24 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     demo/Clip.cpp \
-    demo/ClipListModel.cpp \
     demo/Demo.cpp \
     main.cpp \
     MainWindow.cpp \
     modules/ClipScreen/ClipScreen.cpp \
     modules/ClipScreen/OpenGLScreen.cpp \
     modules/Timeline/ClipListView.cpp \
+    modules/Timeline/ClipListModel.cpp \
     modules/Timeline/Timeline.cpp
 
 HEADERS += \
     MainWindow.h \
     demo/Clip.h \
-    demo/ClipListModel.h \
     demo/Demo.h \
     demo/Scene.h \
     modules/ClipScreen/ClipScreen.h \
     modules/ClipScreen/OpenGLScreen.h \
     modules/Timeline/ClipListView.h \
+    modules/Timeline/ClipListModel.h \
     modules/Timeline/Timeline.h
 
 FORMS +=

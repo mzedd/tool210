@@ -1,5 +1,5 @@
 #include "ClipListModel.h"
-#include "Demo.h"
+#include "demo/Demo.h"
 
 constexpr int CLIP_ATTRIBUTE_COUNT = 2;
 
