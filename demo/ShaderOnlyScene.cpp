@@ -4,7 +4,7 @@ ShaderOnlyScene::ShaderOnlyScene()
 {
     shaderProgram.create();
     name = QString("default shader only scene");
-    setShader("data/shader/voronoi.frag");
+    setShader("shader/default.frag");
 
     float vertices[] = {
         -1.0f, -1.0f, 0.0f,
@@ -22,7 +22,6 @@ ShaderOnlyScene::ShaderOnlyScene()
     vbo.bind();
     vbo.allocate(vertices, sizeof (vertices));
 
-
     shaderProgram.setAttributeArray(0, GL_FLOAT, 0, 3);
     shaderProgram.enableAttributeArray(0);
 }
@@ -39,7 +38,7 @@ bool ShaderOnlyScene::setShader(const QString& filename)
 {   
     // add and compile vertex shader
     QOpenGLShader vertShader(QOpenGLShader::Vertex);
-    vertShader.compileSourceFile("data/shader/quad.vert");
+    vertShader.compileSourceFile("shader/quad.vert");
 
     if(!vertShader.isCompiled()) {
         qDebug() << vertShader.log();
