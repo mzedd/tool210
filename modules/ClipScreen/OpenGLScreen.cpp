@@ -3,7 +3,8 @@
 
 OpenGLScreen::OpenGLScreen(QWidget* parent) :
     QOpenGLWidget(parent),
-    clipToRender(nullptr)
+    clipToRender(nullptr),
+    run(false)
 {
 
 }
@@ -38,6 +39,11 @@ void OpenGLScreen::paintGL()
         clipToRender->renderAt(time);
         glDrawArrays(GL_TRIANGLES, 0, 6);
     }
+
+    if(run) {
+        emit frameFinished();
+        update();
+    }
 }
 
 void OpenGLScreen::setTime(float time)
@@ -49,5 +55,11 @@ void OpenGLScreen::setTime(float time)
 void OpenGLScreen::setClipToRender(int id)
 {
     clipToRender = &Demo::instance().clipAt(id);
+    update();
+}
+
+void OpenGLScreen::playPauseDemo()
+{
+    run = !run;
     update();
 }

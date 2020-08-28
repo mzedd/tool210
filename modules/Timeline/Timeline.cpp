@@ -9,10 +9,10 @@ Timeline::Timeline(QWidget *parent) : QWidget(parent)
 {
     QVBoxLayout *mainLayout = new QVBoxLayout();
     QHBoxLayout *secondaryLayout = new QHBoxLayout();
+    clipListView = new ClipListView(this);
     runPauseButton = new QPushButton("Play/Pause");
     zoomLabel = new QLabel("Zoom: 100 %");
     timeLabel = new QLabel("Time: 10 s");
-    ClipListView *clipListView = new ClipListView(this);
     clipListView->setModel(new ClipListModel(this));
 
     mainLayout->addLayout(secondaryLayout);
@@ -39,4 +39,10 @@ void Timeline::setZoomLabel(float zoom)
 void Timeline::setTimeLabel(float time)
 {
     timeLabel->setText(QString("Time: %1 s").arg(time));
+}
+
+void Timeline::setTime(float time)
+{
+    setTimeLabel(time);
+    clipListView->setTime(time);
 }

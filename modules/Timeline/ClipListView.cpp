@@ -254,3 +254,9 @@ int ClipListView::clipUnderTimeCursor() const
     float x = time * PIXEL_PER_SECOND * zoom;
     return indexAt(QPoint(x, TIMEAXIS_HEIGHT + CLIP_HEIGHT * 0.5f)).row();
 }
+
+void ClipListView::setTime(float time)
+{
+    this->time = time;
+    viewport()->update();
+}

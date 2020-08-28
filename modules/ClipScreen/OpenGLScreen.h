@@ -20,13 +20,15 @@ protected:
 private:
     float time;
     Clip *clipToRender;
+    bool run;
 
 signals:
-    void timeChangend(float time);
+    void frameFinished();
 
 public slots:
     void setTime(float time);
     void setClipToRender(int id);
+    void playPauseDemo();
 };
 
 #endif // OPENGLSCREEN_H

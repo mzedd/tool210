@@ -50,6 +50,9 @@ signals:
     void zoomChanged(float zoom);
     void timeChanged(float time);
     void clipToRenderChanged(int id);
+
+public slots:
+    void setTime(float time);
 };
 
 #endif // CLIPLISTVIEW_H
