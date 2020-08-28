@@ -18,6 +18,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     demo/Clip.cpp \
     demo/Demo.cpp \
+    demo/ShaderOnlyScene.cpp \
     main.cpp \
     MainWindow.cpp \
     modules/ClipScreen/ClipScreen.cpp \
@@ -31,6 +32,7 @@ HEADERS += \
     demo/Clip.h \
     demo/Demo.h \
     demo/Scene.h \
+    demo/ShaderOnlyScene.h \
     modules/ClipScreen/ClipScreen.h \
     modules/ClipScreen/OpenGLScreen.h \
     modules/Timeline/ClipListView.h \
