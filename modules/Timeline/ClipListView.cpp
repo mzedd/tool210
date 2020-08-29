@@ -1,11 +1,10 @@
 #include "ClipListView.h"
+#include "ClipListModel.h"
 #include <QPainter>
 
 #include <QDebug>
 
 constexpr int CLIP_HEIGHT = 50;
-constexpr int CLIP_NAME_COLUMN = 0;
-constexpr int CLIP_DURATION_COLUMN = 1;
 constexpr int TIMEAXIS_HEIGHT = 30;
 constexpr int PIXEL_PER_SECOND = 5;
 constexpr float SCROLL_SENSITIVITY = 0.01f;
@@ -30,15 +29,15 @@ QRect ClipListView::visualRect(const QModelIndex &index) const
     float clipStartTime = 0.0f;
 
     for(int i = 0; i < index.row(); i++) {
-        clipDurationIndex = model()->index(i, CLIP_DURATION_COLUMN);
-        clipStartTime += model()->data(clipDurationIndex).toFloat();
+        clipDurationIndex = model()->index(i, 0);
+        clipStartTime += model()->data(clipDurationIndex, ClipListModel::ClipDuration).toFloat();
     }
 
-    clipDurationIndex = model()->index(index.row(), CLIP_DURATION_COLUMN);
+    clipDurationIndex = model()->index(index.row(), 0);
 
     int xTopLeft = static_cast<int>(clipStartTime) * PIXEL_PER_SECOND * zoom;
     int yTopLeft = TIMEAXIS_HEIGHT;
-    int width = model()->data(clipDurationIndex).toInt() * PIXEL_PER_SECOND * zoom;
+    int width = model()->data(clipDurationIndex, ClipListModel::ClipDuration).toInt() * PIXEL_PER_SECOND * zoom;
     int height = CLIP_HEIGHT;
 
     return QRect(xTopLeft, yTopLeft, width, height);
@@ -54,7 +53,7 @@ QModelIndex ClipListView::indexAt(const QPoint &point) const
     QModelIndex clipModelIndex;
 
     for(int i = 0; i < model()->rowCount(); i++) {
-        clipModelIndex = model()->index(i, CLIP_DURATION_COLUMN);
+        clipModelIndex = model()->index(i, 0);
         if(visualRect(clipModelIndex).contains(point)) {
             return  clipModelIndex;
         }
@@ -70,12 +69,12 @@ QModelIndex ClipListView::moveCursor(QAbstractItemView::CursorAction cursorActio
     switch (cursorAction) {
         case MoveLeft:
             if(current.row() > 0) {
-                return model()->index(current.row() - 1, current.column());
+                return model()->index(current.row() - 1, 0);
             }
             break;
         case MoveRight:
             if(current.row() < model()->rowCount()) {
-                return model()->index(current.row() + 1, current.column());
+                return model()->index(current.row() + 1, 0);
             }
             break;
         default:
@@ -217,7 +216,7 @@ void ClipListView::paintEvent(QPaintEvent*)
 
     // draw clips
     for(int i = 0; i < model()->rowCount(); i++) {
-        QModelIndex index = model()->index(i, CLIP_DURATION_COLUMN);
+        QModelIndex index = model()->index(i, 0);
 
         if(currentIndex() == index) {
             painter.setBrush(Qt::red);
