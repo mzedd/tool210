@@ -22,10 +22,10 @@ private:
     Clip *clipToRender;
     bool run;
 
-signals:
+Q_SIGNALS:
     void frameFinished();
 
-public slots:
+public Q_SLOTS:
     void setTime(float time);
     void setClipToRender(int id);
     void playPauseDemo();

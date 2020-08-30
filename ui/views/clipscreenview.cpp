@@ -1,9 +1,8 @@
-#include "ClipScreen.h"
-#include "OpenGLScreen.h"
+#include "clipscreenview.h"
 
 constexpr float ASPECT_RATIO = 16.0/9.0;
 
-ClipScreen::ClipScreen(QWidget *parent) :
+ClipScreenView::ClipScreenView(QWidget *parent) :
     QWidget(parent),
     layout(new QBoxLayout(QBoxLayout::LeftToRight, this)),
     openGLScreen(new OpenGLScreen(this))
@@ -13,19 +12,9 @@ ClipScreen::ClipScreen(QWidget *parent) :
     layout->addStretch();
 }
 
-ClipScreen::~ClipScreen()
-{
-
-}
-
-OpenGLScreen* ClipScreen::getOpenGLScreen() const
-{
-    return openGLScreen;
-}
-
 // inpired by https://stackoverflow.com/questions/30005540/keeping-the-aspect-ratio-of-a-sub-classed-qwidget-during-resize
 // credits to user Anthony
-void ClipScreen::resizeEvent(QResizeEvent *event)
+void ClipScreenView::resizeEvent(QResizeEvent *event)
 {
     float outerWidgetAspectRatio = static_cast<float>(event->size().width()) / static_cast<float>(event->size().height());
     int widgetStretch, spacerStretch;

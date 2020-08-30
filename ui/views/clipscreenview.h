@@ -4,16 +4,14 @@
 #include <QWidget>
 #include <QBoxLayout>
 #include <QResizeEvent>
-#include "OpenGLScreen.h"
+#include "openglscreen.h"
 
-class ClipScreen : public QWidget
+class ClipScreenView : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit ClipScreen(QWidget *parent = nullptr);
-    ~ClipScreen();
-    OpenGLScreen* getOpenGLScreen() const;
+    explicit ClipScreenView(QWidget *parent = nullptr);
 
 protected:
     void resizeEvent(QResizeEvent *event) override;

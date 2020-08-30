@@ -3,6 +3,7 @@
 #include <QMenu>
 
 #include "models/cliplistmodel.h"
+#include "views/clipscreenview.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent),
@@ -30,4 +31,10 @@ void MainWindow::createWidgets()
 {
     clipListView->setModel(new ClipListModel(this));
     setCentralWidget(clipListView);
+
+    QDockWidget *dockWidget = new QDockWidget(this);
+    ClipScreenView *clipScreenView = new ClipScreenView(this);
+    dockWidget->setWidget(clipScreenView);
+
+    addDockWidget(Qt::DockWidgetArea::TopDockWidgetArea, dockWidget);
 }

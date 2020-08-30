@@ -1,4 +1,4 @@
-#include "OpenGLScreen.h"
+#include "openglscreen.h"
 #include "demo/Demo.h"
 
 OpenGLScreen::OpenGLScreen(QWidget* parent) :
