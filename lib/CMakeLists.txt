@@ -9,9 +9,10 @@ find_package(Qt5 COMPONENTS Core Gui REQUIRED)
 # Targets
 add_library(${PROJECT_NAME} SHARED
   # source
-  source/controllers/MainController.cpp
+  source/controllers/maincontroller.cpp
 
   # public
+  public/controllers/maincontroller.h
 )
 
 target_include_directories(${PROJECT_NAME}

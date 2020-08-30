@@ -11,8 +11,8 @@ find_package(Qt5 COMPONENTS Core Gui Widgets REQUIRED)
 
 add_executable(${PROJECT_NAME}
   main.cpp
-  MainWindow.cpp
-  MainWindow.h
+  mainwindow.cpp
+  mainwindow.h
 )
 
 target_link_libraries(${PROJECT_NAME}
