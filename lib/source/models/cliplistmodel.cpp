@@ -1,4 +1,4 @@
-#include "ClipListModel.h"
+#include "cliplistmodel.h"
 #include "demo/Demo.h"
 
 ClipListModel::ClipListModel(QObject *parent) :
@@ -10,6 +10,7 @@ ClipListModel::ClipListModel(QObject *parent) :
 int ClipListModel::rowCount(const QModelIndex&) const
 {
     return Demo::instance().clipCount();
+    return 5;
 }
 
 QVariant ClipListModel::data(const QModelIndex &index, int role) const

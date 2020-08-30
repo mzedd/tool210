@@ -2,10 +2,14 @@
 #include <QDockWidget>
 #include <QMenu>
 
+#include "models/cliplistmodel.h"
+
 MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent)
+    : QMainWindow(parent),
+      clipListView(new ClipListView(this))
 {
     createMenu();
+    createWidgets();
 }
 
 void MainWindow::createMenu()
@@ -20,4 +24,10 @@ void MainWindow::createMenu()
     menuBar->addMenu(viewMenu);
 
     setMenuBar(menuBar);
+}
+
+void MainWindow::createWidgets()
+{
+    clipListView->setModel(new ClipListModel(this));
+    setCentralWidget(clipListView);
 }

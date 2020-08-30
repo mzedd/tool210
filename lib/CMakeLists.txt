@@ -9,10 +9,27 @@ find_package(Qt5 COMPONENTS Core Gui REQUIRED)
 # Targets
 add_library(${PROJECT_NAME} SHARED
   # source
+  ## controllers
   source/controllers/maincontroller.cpp
 
+  ## models
+  source/models/cliplistmodel.cpp
+
+  demo/Demo.cpp
+  demo/Clip.cpp
+  demo/ShaderOnlyScene.cpp
+
   # public
+  ## controllers
   public/controllers/maincontroller.h
+
+  ## models
+  public/models/cliplistmodel.h
+
+  demo/Demo.h
+  demo/Clip.h
+  demo/Scene.h
+  demo/ShaderOnlyScene.h
 )
 
 target_include_directories(${PROJECT_NAME}
@@ -28,9 +45,9 @@ target_include_directories(${PROJECT_NAME}
       ${CMAKE_CURRENT_SOURCE_DIR}/public/models
      >
   PRIVATE
-    ${CMAKE_CURRENT_SOURCE_DIR}/src
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/controllers
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/models
+    ${CMAKE_CURRENT_SOURCE_DIR}/source
+    ${CMAKE_CURRENT_SOURCE_DIR}/source/controllers
+    ${CMAKE_CURRENT_SOURCE_DIR}/source/models
 )
 
 target_compile_definitions(${PROJECT_NAME}

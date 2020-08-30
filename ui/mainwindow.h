@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QMenuBar>
+#include "views/cliplistview.h"
 
 class MainWindow : public QMainWindow
 {
@@ -12,7 +13,9 @@ public:
     MainWindow(QWidget *parent = nullptr);
 
 private:
-    void createMenu();
+    ClipListView *clipListView;
 
+    void createMenu();
+    void createWidgets();
 };
 #endif // MAINWINDOW_H

@@ -3,7 +3,6 @@
 
 #include <QAbstractItemView>
 #include <QWheelEvent>
-#include "demo/Clip.h"
 
 class ClipListView : public QAbstractItemView
 {
@@ -46,12 +45,12 @@ private:
     DragState timeCurorDragState;
     DragState currentClipDragState;
 
-signals:
+Q_SIGNALS:
     void zoomChanged(float zoom);
     void timeChanged(float time);
     void clipToRenderChanged(int id);
 
-public slots:
+public Q_SLOTS:
     void setTime(float time);
 };
 

@@ -13,6 +13,13 @@ add_executable(${PROJECT_NAME}
   main.cpp
   mainwindow.cpp
   mainwindow.h
+  views/cliplistview.cpp
+  views/cliplistview.h
+)
+
+target_include_directories(${PROJECT_NAME}
+  PUBLIC
+    source
 )
 
 target_link_libraries(${PROJECT_NAME}

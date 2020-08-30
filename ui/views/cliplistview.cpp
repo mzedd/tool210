@@ -1,5 +1,5 @@
-#include "ClipListView.h"
-#include "ClipListModel.h"
+#include "cliplistview.h"
+#include <models/cliplistmodel.h>
 #include <QPainter>
 
 #include <QDebug>

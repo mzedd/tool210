@@ -3,7 +3,7 @@
 
 #include <QAbstractListModel>
 
-class ClipListModel : public QAbstractListModel
+class Q_DECL_EXPORT ClipListModel : public QAbstractListModel
 {
     Q_OBJECT
 
