@@ -3,13 +3,13 @@
 
 #include <QOpenGLWidget>
 #include <QOpenGLFunctions>
-#include "demo/Clip.h"
+#include <models/openglmodel.h>
 
 class OpenGLScreen : public QOpenGLWidget, protected QOpenGLFunctions
 {
     Q_OBJECT
 public:
-    OpenGLScreen(QWidget* parent);
+    OpenGLScreen(OpenGLModel *model, QWidget* parent = nullptr);
     ~OpenGLScreen();
 
 protected:
@@ -18,17 +18,7 @@ protected:
     void paintGL() override;
 
 private:
-    float time;
-    Clip *clipToRender;
-    bool run;
-
-Q_SIGNALS:
-    void frameFinished();
-
-public Q_SLOTS:
-    void setTime(float time);
-    void setClipToRender(int id);
-    void playPauseDemo();
+    OpenGLModel *model;
 };
 
 #endif // OPENGLSCREEN_H

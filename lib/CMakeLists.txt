@@ -14,6 +14,7 @@ add_library(${PROJECT_NAME} SHARED
 
   ## models
   source/models/cliplistmodel.cpp
+  source/models/openglmodel.cpp
 
   demo/Demo.cpp
   demo/Clip.cpp
@@ -25,6 +26,8 @@ add_library(${PROJECT_NAME} SHARED
 
   ## models
   public/models/cliplistmodel.h
+  public/models/openglmodel.h
+
 
   demo/Demo.h
   demo/Clip.h
