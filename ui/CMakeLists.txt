@@ -22,6 +22,8 @@ add_executable(${PROJECT_NAME}
   # clipscreen
   views/clipscreen/clipscreenview.cpp
   views/clipscreen/clipscreenview.h
+  views/clipscreen/aspectratiowidget.cpp
+  views/clipscreen/aspectratiowidget.h
   views/clipscreen/openglscreen.cpp
   views/clipscreen/openglscreen.h
 )

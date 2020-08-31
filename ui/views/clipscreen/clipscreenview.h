@@ -2,8 +2,7 @@
 #define CLIPSCREEN_H
 
 #include <QWidget>
-#include <QBoxLayout>
-#include <QResizeEvent>
+#include "aspectratiowidget.h"
 #include "openglscreen.h"
 
 class ClipScreenView : public QWidget
@@ -13,12 +12,11 @@ class ClipScreenView : public QWidget
 public:
     explicit ClipScreenView(QWidget *parent = nullptr);
 
-protected:
-    void resizeEvent(QResizeEvent *event) override;
-
 private:
-    QBoxLayout *layout;
+    AspectRatioWidget *aspectRatioWidget;
     OpenGLScreen *openGLScreen;
+
+    // model
 };
 
 #endif // CLIPSCREEN_H
