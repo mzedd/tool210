@@ -7,6 +7,7 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
     MainWindow w;
 
+
     // TESTING
     Demo::instance().addClip();
     Demo::instance().clipAt(0).setDuration(50.f);

@@ -13,12 +13,17 @@ add_executable(${PROJECT_NAME}
   main.cpp
   mainwindow.cpp
   mainwindow.h
-  views/cliplistview.cpp
-  views/cliplistview.h
-  views/clipscreenview.cpp
-  views/clipscreenview.h
-  views/openglscreen.cpp
-  views/openglscreen.h
+
+  # views
+  ## timeline
+  views/timeline/cliplistview.cpp
+  views/timeline/cliplistview.h
+
+  # clipscreen
+  views/clipscreen/clipscreenview.cpp
+  views/clipscreen/clipscreenview.h
+  views/clipscreen/openglscreen.cpp
+  views/clipscreen/openglscreen.h
 )
 
 target_include_directories(${PROJECT_NAME}

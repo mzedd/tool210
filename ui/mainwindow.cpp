@@ -3,7 +3,7 @@
 #include <QMenu>
 
 #include "models/cliplistmodel.h"
-#include "views/clipscreenview.h"
+#include "views/clipscreen/clipscreenview.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent),

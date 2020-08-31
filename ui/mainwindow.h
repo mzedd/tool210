@@ -3,7 +3,7 @@
 
 #include <QMainWindow>
 #include <QMenuBar>
-#include "views/cliplistview.h"
+#include "views/timeline/cliplistview.h"
 
 class MainWindow : public QMainWindow
 {
