@@ -3,7 +3,8 @@
 
 #include <QMainWindow>
 #include <QMenuBar>
-#include "views/timeline/cliplistview.h"
+#include "views/timeline/timelineview.h"
+#include "views/clipscreen/clipscreenview.h"
 
 class MainWindow : public QMainWindow
 {
@@ -13,7 +14,8 @@ public:
     MainWindow(QWidget *parent = nullptr);
 
 private:
-    ClipListView *clipListView;
+    TimelineView *timelineView;
+    ClipScreenView *clipScreenView;
 
     void createMenu();
     void createWidgets();

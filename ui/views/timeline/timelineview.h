@@ -4,13 +4,14 @@
 #include <QWidget>
 #include <QPushButton>
 #include <QLabel>
-#include "ClipListView.h"
+#include "cliplistview.h"
+#include "models/cliplistmodel.h"
 
-class Timeline : public QWidget
+class TimelineView : public QWidget
 {
     Q_OBJECT
 public:
-    explicit Timeline(QWidget *parent = nullptr);
+    explicit TimelineView(ClipListModel *model, QWidget *parent = nullptr);
 
 private:
     ClipListView *clipListView;

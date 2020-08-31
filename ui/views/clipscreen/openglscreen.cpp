@@ -20,10 +20,12 @@ void OpenGLScreen::initializeGL()
 
 void OpenGLScreen::resizeGL(int w, int h)
 {
+    makeCurrent();
     model->resiszeGL(w, h);
 }
 
 void OpenGLScreen::paintGL()
 {
+    makeCurrent();
     model->paintGL();
 }

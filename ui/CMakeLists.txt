@@ -16,6 +16,8 @@ add_executable(${PROJECT_NAME}
 
   # views
   ## timeline
+  views/timeline/timelineview.cpp
+  views/timeline/timelineview.h
   views/timeline/cliplistview.cpp
   views/timeline/cliplistview.h
 

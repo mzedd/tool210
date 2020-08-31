@@ -3,12 +3,9 @@
 #include <QMenu>
 
 #include "models/cliplistmodel.h"
-#include "models/openglmodel.h"
-#include "views/clipscreen/clipscreenview.h"
 
 MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent),
-      clipListView(new ClipListView(this))
+    : QMainWindow(parent)
 {
     createMenu();
     createWidgets();
@@ -30,8 +27,8 @@ void MainWindow::createMenu()
 
 void MainWindow::createWidgets()
 {
-    clipListView->setModel(new ClipListModel(this));
-    setCentralWidget(clipListView);
+    timelineView = new TimelineView(new ClipListModel(this), this);
+    setCentralWidget(timelineView);
 
     QDockWidget *dockWidget = new QDockWidget(this);
     ClipScreenView *clipScreenView = new ClipScreenView(new OpenGLModel(this), this);
