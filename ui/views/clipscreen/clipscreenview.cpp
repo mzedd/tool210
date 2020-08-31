@@ -12,4 +12,6 @@ ClipScreenView::ClipScreenView(OpenGLModel *model, QWidget *parent) :
 
     QVBoxLayout *layout = new QVBoxLayout(this);
     layout->addWidget(aspectRatioWidget);
+
+    connect(model, SIGNAL(frameFinished()), openGLScreen, SLOT(update()));
 }

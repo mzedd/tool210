@@ -24,6 +24,7 @@ void OpenGLModel::resiszeGL(int w, int h)
 
         if(scene) {
             scene->setViewportResolution(w, h);
+            emit frameFinished();
         }
     }
 }
