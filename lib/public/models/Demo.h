@@ -2,11 +2,14 @@
 #define DEMO_H
 
 #include <vector>
+#include <QObject>
 #include "Clip.h"
 #include "Scene.h"
 
-class Q_DECL_EXPORT Demo
+class Q_DECL_EXPORT Demo : public QObject
 {
+    Q_OBJECT
+
 public:
     Demo();
     ~Demo();
@@ -16,6 +19,8 @@ public:
     Demo& operator=(Demo&&) = delete;
 
     std::vector<Clip> *clipList();
+
+    void addClip();
 
     int sceneCount() const;
     Scene *sceneAt(int index);
@@ -27,6 +32,9 @@ private:
     std::vector<Scene*> sceneList_;
     // TODO: musicTrack
     // TODO: postProcessingEffects
+
+Q_SIGNALS:
+    void clipCreated(int id);
 };
 
 #endif // DEMO_H

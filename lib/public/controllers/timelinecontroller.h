@@ -11,14 +11,16 @@ class Q_DECL_EXPORT TimelineController : public QObject
 
 public:
     explicit TimelineController(QObject *parent = nullptr);
-    void setModel(ClipListModel *clipListModel);
+    void setModel(ClipListModel *model);
 
 private:
-    // model
+    ClipListModel *model;
+    void setSelectedIndex(int id);
 
 Q_SIGNALS:
     void playPauseClicked();
     void timeChanged(float time);
+    void addClip();
     void clipClicked(int id);
     void clipsSwapped(int idA, int idB);
 };

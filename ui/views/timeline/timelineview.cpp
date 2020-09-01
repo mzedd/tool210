@@ -13,16 +13,17 @@ TimelineView::TimelineView(ClipListModel *model, QWidget *parent) :
 
     clipListView = new ClipListView(this);
     runPauseButton = new QPushButton("Play/Pause");
+    addClipButton = new QPushButton("+");
     zoomLabel = new QLabel("Zoom: 100 %");
     timeLabel = new QLabel("Time: 10 s");
 
     clipListView->setModel(model);
 
-
     mainLayout->addLayout(secondaryLayout);
     mainLayout->addWidget(clipListView);
 
     secondaryLayout->addWidget(runPauseButton);
+    secondaryLayout->addWidget(addClipButton);
     secondaryLayout->addWidget(timeLabel);
     secondaryLayout->addStretch();
     secondaryLayout->addWidget(zoomLabel);
@@ -38,6 +39,7 @@ TimelineView::TimelineView(ClipListModel *model, QWidget *parent) :
 void TimelineView::setController(TimelineController *timelineController)
 {
     connect(runPauseButton, SIGNAL(clicked()), timelineController, SIGNAL(playPauseClicked()));
+    connect(addClipButton, SIGNAL(clicked()), timelineController, SIGNAL(addClip()));
     connect(this, SIGNAL(timeChanged(float)), timelineController, SIGNAL(timeChanged(float)));
 }
 

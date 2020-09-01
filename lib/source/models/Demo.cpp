@@ -19,6 +19,14 @@ std::vector<Clip> *Demo::clipList()
     return &clipList_;
 }
 
+void Demo::addClip()
+{
+    clipList()->push_back(Clip());
+    clipList()->back().setDuration(10.0f);
+
+    emit clipCreated(clipList()->size() - 1);
+}
+
 int Demo::sceneCount() const
 {
     return sceneList_.size();

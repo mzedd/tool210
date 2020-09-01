@@ -25,6 +25,7 @@ private:
 private Q_SLOTS:
     void handlePlayPauseClicked();
     void handleTimeChanged(float time);
+    void handleAddClip();
 
 };
 

@@ -8,6 +8,7 @@ MainController::MainController(QObject *parent) :
     clipScreenController_(new ClipScreenController(this))
 {
     connect(timelineController_, SIGNAL(playPauseClicked()), this, SLOT(handlePlayPauseClicked()));
+    connect(timelineController_, SIGNAL(addClip()), this, SLOT(handleAddClip()));
     connect(timelineController_, SIGNAL(timeChanged(float)), this, SLOT(handleTimeChanged(float)));
 }
 
@@ -34,4 +35,9 @@ void MainController::handlePlayPauseClicked()
 void MainController::handleTimeChanged(float time)
 {
     qDebug() << "MainControlle::handleTimeChanged to: " << time;
+}
+
+void MainController::handleAddClip()
+{
+    demo->addClip();
 }
