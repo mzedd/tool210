@@ -3,7 +3,7 @@
 
 #include <QObject>
 #include <QOpenGLFunctions>
-#include "demo/Clip.h"
+#include "models/Clip.h"
 
 class Q_DECL_EXPORT OpenGLModel : public QObject, protected QOpenGLFunctions
 {

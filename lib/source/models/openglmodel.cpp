@@ -1,6 +1,6 @@
 #include "openglmodel.h"
-#include "demo/Demo.h"
-#include "demo/Scene.h"
+#include "models/Demo.h"
+#include "models/Scene.h"
 
 OpenGLModel::OpenGLModel(QObject *parent) :
     QObject(parent),

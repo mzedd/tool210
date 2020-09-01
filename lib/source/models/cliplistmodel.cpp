@@ -1,5 +1,5 @@
 #include "cliplistmodel.h"
-#include "demo/Demo.h"
+#include "models/Demo.h"
 
 ClipListModel::ClipListModel(QObject *parent) :
     QAbstractListModel(parent)

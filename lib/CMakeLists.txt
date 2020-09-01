@@ -16,10 +16,9 @@ add_library(${PROJECT_NAME} SHARED
   ## models
   source/models/cliplistmodel.cpp
   source/models/openglmodel.cpp
-
-  demo/Demo.cpp
-  demo/Clip.cpp
-  demo/ShaderOnlyScene.cpp
+  source/models/Demo.cpp
+  source/models/Clip.cpp
+  source/models/ShaderOnlyScene.cpp
 
   # public
   ## controllers
@@ -29,11 +28,10 @@ add_library(${PROJECT_NAME} SHARED
   ## models
   public/models/cliplistmodel.h
   public/models/openglmodel.h
-
-  demo/Demo.h
-  demo/Clip.h
-  demo/Scene.h
-  demo/ShaderOnlyScene.h
+  public/models/Demo.h
+  public/models/Clip.h
+  public/models/Scene.h
+  public/models/ShaderOnlyScene.h
 )
 
 target_include_directories(${PROJECT_NAME}
