@@ -12,6 +12,7 @@ add_library(${PROJECT_NAME} SHARED
   ## controllers
   source/controllers/maincontroller.cpp
   source/controllers/timelinecontroller.cpp
+  source/controllers/clipscreencontroller.cpp
 
   ## models
   source/models/cliplistmodel.cpp
@@ -24,6 +25,7 @@ add_library(${PROJECT_NAME} SHARED
   ## controllers
   public/controllers/maincontroller.h
   public/controllers/timelinecontroller.h
+  public/controllers/clipscreencontroller.h
 
   ## models
   public/models/cliplistmodel.h
