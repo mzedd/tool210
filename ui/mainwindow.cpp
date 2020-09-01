@@ -25,7 +25,7 @@ void MainWindow::setClipListModel(ClipListModel *clipListModel)
 void MainWindow::setOpenGLModel(OpenGLModel *openGLmodel)
 {
     clipScreenView = new ClipScreenView(openGLmodel, this);
-    //clipScreenView->setController(mainController->clipsScreenController());
+    clipScreenView->setController(mainController->clipsScreenController());
 }
 
 void MainWindow::initialize()

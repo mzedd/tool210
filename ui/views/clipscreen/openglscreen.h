@@ -4,6 +4,7 @@
 #include <QOpenGLWidget>
 #include <QOpenGLFunctions>
 #include <models/openglmodel.h>
+#include "models/ShaderOnlyScene.h"
 
 class OpenGLScreen : public QOpenGLWidget, protected QOpenGLFunctions
 {
@@ -19,6 +20,7 @@ protected:
 
 private:
     OpenGLModel *model;
+
 };
 
 #endif // OPENGLSCREEN_H

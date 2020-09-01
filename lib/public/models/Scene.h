@@ -10,6 +10,7 @@ public:
     virtual void initialize() = 0;
     virtual void renderAt(float time) = 0;
     virtual void setViewportResolution(int w, int h) = 0;
+    virtual bool isInitialized() const = 0;
 
 protected:
     QString name;

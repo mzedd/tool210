@@ -2,57 +2,38 @@
 #include "models/Demo.h"
 #include "models/Scene.h"
 
+#include "models/ShaderOnlyScene.h"
+
 OpenGLModel::OpenGLModel(QObject *parent) :
     QObject(parent),
-    time(10.0f),
-    clipToRender(nullptr),
+    time_(5.0f),
+    clipToRender_(nullptr),
     run(false)
 {
-
+    //scene = new ShaderOnlyScene;
+    //clipToRender_ = new Clip;
+    //clipToRender()->setScene(scene);
 }
-
-void OpenGLModel::initializeGL()
-{
-    initializeOpenGLFunctions();
-}
-
-void OpenGLModel::resiszeGL(int w, int h)
-{
-    glViewport(0, 0, w, h);
-    if(clipToRender) {
-        Scene* scene = clipToRender->getScene();
-
-        if(scene) {
-            scene->setViewportResolution(w, h);
-            emit frameFinished();
-        }
-    }
-}
-
-void OpenGLModel::paintGL()
-{
-    glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-    if(clipToRender) {
-        clipToRender->renderAt(time);
-        glDrawArrays(GL_TRIANGLES, 0, 6);
-    }
-
-    if(run) {
-        emit frameFinished();
-    }
-}
-
 
 void OpenGLModel::setTime(float time)
 {
-    this->time = time;
+    this->time_ = time;
 }
 
-void OpenGLModel::setClipToRender(int /*id*/)
+void OpenGLModel::setClipToRender(Clip *clip)
 {
+    clipToRender_ = clip;
+    emit clipToRenderChanged();
+}
 
+Clip *OpenGLModel::clipToRender() const
+{
+    return clipToRender_;
+}
+
+float OpenGLModel::time() const
+{
+    return time_;
 }
 
 void OpenGLModel::playPauseDemo()

@@ -14,6 +14,7 @@ ClipScreenView::ClipScreenView(OpenGLModel *model, QWidget *parent) :
     layout->addWidget(aspectRatioWidget);
 
     connect(model, SIGNAL(frameFinished()), openGLScreen, SLOT(update()));
+    connect(model, SIGNAL(clipToRenderChanged()), openGLScreen, SLOT(update()));
 }
 
 void ClipScreenView::setController(ClipScreenController *clipScreenController)

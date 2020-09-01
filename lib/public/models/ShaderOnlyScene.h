@@ -5,17 +5,19 @@
 #include <QOpenGLShaderProgram>
 #include <QOpenGLVertexArrayObject>
 #include <QOpenGLBuffer>
-#include <QOpenGLFunctions>
 
-class ShaderOnlyScene : public Scene, protected QOpenGLFunctions
+class ShaderOnlyScene : public Scene
 {
 private:
     QOpenGLShaderProgram shaderProgram;
     QOpenGLVertexArrayObject vao;
     QOpenGLBuffer vbo;
+    bool initialized;
+
 public:
     ShaderOnlyScene();
     ~ShaderOnlyScene();
+    bool isInitialized() const;
     void initialize();
     void renderAt(float time);
     bool setShader(const QString& filename);

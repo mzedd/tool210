@@ -5,7 +5,13 @@ ClipScreenController::ClipScreenController(QObject *parent) : QObject(parent)
 
 }
 
-void ClipScreenController::setModel(OpenGLModel *openGLModel)
+void ClipScreenController::setModel(OpenGLModel *model)
 {
-    openGLModel->setParent(this);
+    this->model = model;
+    model->setParent(this);
+}
+
+void ClipScreenController::setClipToRender(Clip *clip)
+{
+    model->setClipToRender(clip);
 }

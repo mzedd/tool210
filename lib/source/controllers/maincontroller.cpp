@@ -25,6 +25,7 @@ ClipScreenController *MainController::clipsScreenController() const
 void MainController::setModel(Demo *demo)
 {
     this->demo = demo;
+    connect(demo, SIGNAL(clipToRenderChanged(int)), this, SLOT(handleClipToRenderChanged(int)));
 }
 
 void MainController::handlePlayPauseClicked()
@@ -34,10 +35,18 @@ void MainController::handlePlayPauseClicked()
 
 void MainController::handleTimeChanged(float time)
 {
-    qDebug() << "MainControlle::handleTimeChanged to: " << time;
+    demo->checkClipToBeRenderdChangedAt(time);
 }
 
 void MainController::handleAddClip()
 {
     demo->addClip();
+}
+
+void MainController::handleClipToRenderChanged(int id)
+{
+    if(id < 0)
+        clipScreenController_->setClipToRender(nullptr);
+    else
+        clipScreenController_->setClipToRender(&demo->clipList()->at(id));
 }

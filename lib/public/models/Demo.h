@@ -13,14 +13,12 @@ class Q_DECL_EXPORT Demo : public QObject
 public:
     Demo();
     ~Demo();
-    Demo(const Demo&) = delete;
-    Demo(Demo&&) = delete;
-    Demo& operator=(const Demo&) = delete;
-    Demo& operator=(Demo&&) = delete;
+    Q_DISABLE_COPY_MOVE(Demo)
 
     std::vector<Clip> *clipList();
 
     void addClip();
+    void checkClipToBeRenderdChangedAt(float time);
 
     int sceneCount() const;
     Scene *sceneAt(int index);
@@ -33,8 +31,14 @@ private:
     // TODO: musicTrack
     // TODO: postProcessingEffects
 
+    int clipIdAt(float time);
+
 Q_SIGNALS:
     void clipCreated(int id);
+    void clipToRenderChanged(int id);
+
+private Q_SLOTS:
+
 };
 
 #endif // DEMO_H

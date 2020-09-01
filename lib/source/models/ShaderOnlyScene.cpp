@@ -1,15 +1,22 @@
 #include "ShaderOnlyScene.h"
 
+#include <QtDebug>
+
 ShaderOnlyScene::ShaderOnlyScene()
 {
     name = QString("default shader only scene");
+    initialized = false;
 }
 
 ShaderOnlyScene::~ShaderOnlyScene()
 {
-    shaderProgram.release();
     vao.destroy();
     vbo.destroy();
+}
+
+bool ShaderOnlyScene::isInitialized() const
+{
+    return initialized;
 }
 
 void ShaderOnlyScene::initialize()
@@ -35,6 +42,8 @@ void ShaderOnlyScene::initialize()
 
     shaderProgram.enableAttributeArray(0);
     shaderProgram.setAttributeArray(0, GL_FLOAT, 0, 3);
+
+    initialized = true;
 }
 
 void ShaderOnlyScene::renderAt(float time)
@@ -74,6 +83,8 @@ bool ShaderOnlyScene::setShader(const QString& filename)
         qDebug() << shaderProgram.log();
         return false;
     }
+
+    qDebug() << "all good";
 
     return true;
 }

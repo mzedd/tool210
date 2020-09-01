@@ -18,8 +18,6 @@ int main(int argc, char *argv[])
     mainWindow.setMainController(&mainController);
 
     Demo demo;
-    demo.clipList()->emplace_back();
-    demo.clipList()->at(0).setDuration(50.f);
     mainController.setModel(&demo);
 
     ClipListModel *clipListModel = new ClipListModel;

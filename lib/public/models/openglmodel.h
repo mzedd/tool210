@@ -2,30 +2,32 @@
 #define OPENGLMODEL_H
 
 #include <QObject>
-#include <QOpenGLFunctions>
 #include "models/Clip.h"
+#include "models/ShaderOnlyScene.h"
 
-class Q_DECL_EXPORT OpenGLModel : public QObject, protected QOpenGLFunctions
+class Q_DECL_EXPORT OpenGLModel : public QObject
 {
     Q_OBJECT
 public:
     explicit OpenGLModel(QObject *parent = nullptr);
 
-    void initializeGL();
-    void resiszeGL(int w, int h);
-    void paintGL();
+    void setClipToRender(Clip *clip);
+
+    Clip *clipToRender() const;
+    float time() const;
 
 private:
-    float time;
-    Clip *clipToRender;
+    float time_;
+    Clip *clipToRender_;
     bool run;
+    ShaderOnlyScene *scene;
 
 Q_SIGNALS:
+    void clipToRenderChanged();
     void frameFinished();
 
 public Q_SLOTS:
     void setTime(float time);
-    void setClipToRender(int id);
     void playPauseDemo();
 };
 
