@@ -11,6 +11,7 @@ add_library(${PROJECT_NAME} SHARED
   # source
   ## controllers
   source/controllers/maincontroller.cpp
+  source/controllers/timelinecontroller.cpp
 
   ## models
   source/models/cliplistmodel.cpp
@@ -23,11 +24,11 @@ add_library(${PROJECT_NAME} SHARED
   # public
   ## controllers
   public/controllers/maincontroller.h
+  public/controllers/timelinecontroller.h
 
   ## models
   public/models/cliplistmodel.h
   public/models/openglmodel.h
-
 
   demo/Demo.h
   demo/Clip.h

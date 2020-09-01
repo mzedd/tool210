@@ -3,6 +3,9 @@
 
 #include <QMainWindow>
 #include <QMenuBar>
+
+#include "controllers/maincontroller.h"
+
 #include "views/timeline/timelineview.h"
 #include "views/clipscreen/clipscreenview.h"
 
@@ -12,8 +15,11 @@ class MainWindow : public QMainWindow
 
 public:
     MainWindow(QWidget *parent = nullptr);
+    void setMainController(MainController *mainController);
+    void initialize();
 
 private:
+    MainController *mainController;
     TimelineView *timelineView;
     ClipScreenView *clipScreenView;
 

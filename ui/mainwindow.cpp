@@ -5,7 +5,18 @@
 #include "models/cliplistmodel.h"
 
 MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent)
+    : QMainWindow(parent),
+      mainController(nullptr)
+{
+
+}
+
+void MainWindow::setMainController(MainController *mainController)
+{
+    this->mainController = mainController;
+}
+
+void MainWindow::initialize()
 {
     createMenu();
     createWidgets();
@@ -28,6 +39,7 @@ void MainWindow::createMenu()
 void MainWindow::createWidgets()
 {
     timelineView = new TimelineView(new ClipListModel(this), this);
+    timelineView->setController(mainController->timelineController());
     setCentralWidget(timelineView);
 
     QDockWidget *dockWidget = new QDockWidget(this);

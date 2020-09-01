@@ -5,7 +5,8 @@
 #include "cliplistview.h"
 #include "cliplistmodel.h"
 
-TimelineView::TimelineView(ClipListModel *model, QWidget *parent) : QWidget(parent)
+TimelineView::TimelineView(ClipListModel *model, QWidget *parent) :
+    QWidget(parent)
 {
     QVBoxLayout *mainLayout = new QVBoxLayout();
     QHBoxLayout *secondaryLayout = new QHBoxLayout();
@@ -32,6 +33,12 @@ TimelineView::TimelineView(ClipListModel *model, QWidget *parent) : QWidget(pare
     connect(clipListView, SIGNAL(timeChanged(float)), this, SLOT(setTimeLabel(float)));
     connect(clipListView, SIGNAL(timeChanged(float)), this, SIGNAL(timeChanged(float)));
     connect(clipListView, SIGNAL(clipToRenderChanged(int)), this, SIGNAL(clipToRenderChanged(int)));
+}
+
+void TimelineView::setController(TimelineController *timelineController)
+{
+    connect(runPauseButton, SIGNAL(clicked()), timelineController, SIGNAL(playPauseClicked()));
+    connect(this, SIGNAL(timeChanged(float)), timelineController, SIGNAL(timeChanged(float)));
 }
 
 void TimelineView::setZoomLabel(float zoom)

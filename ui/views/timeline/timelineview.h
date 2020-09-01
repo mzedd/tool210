@@ -6,12 +6,14 @@
 #include <QLabel>
 #include "cliplistview.h"
 #include "models/cliplistmodel.h"
+#include "controllers/timelinecontroller.h"
 
 class TimelineView : public QWidget
 {
     Q_OBJECT
 public:
     explicit TimelineView(ClipListModel *model, QWidget *parent = nullptr);
+    void setController(TimelineController *timelineController);
 
 private:
     ClipListView *clipListView;

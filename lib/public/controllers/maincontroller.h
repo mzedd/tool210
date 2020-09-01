@@ -3,13 +3,22 @@
 
 #include <QObject>
 
-class MainController : public QObject
+#include "timelinecontroller.h"
+
+class Q_DECL_EXPORT MainController : public QObject
 {
     Q_OBJECT
 public:
     explicit MainController(QObject *parent = nullptr);
+    TimelineController* timelineController() const;
 
-signals:
+private:
+    TimelineController *timelineController_;
+    // Demo model
+
+private Q_SLOTS:
+    void handlePlayPauseClicked();
+    void handleTimeChanged(float time);
 
 };
 
