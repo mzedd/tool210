@@ -21,6 +21,11 @@ ClipScreenController *MainController::clipsScreenController() const
     return clipScreenController_;
 }
 
+void MainController::setModel(Demo *demo)
+{
+    this->demo = demo;
+}
+
 void MainController::handlePlayPauseClicked()
 {
     qDebug() << "MainControlle::handlePlayPauseClicked";

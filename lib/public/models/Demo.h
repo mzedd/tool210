@@ -5,34 +5,28 @@
 #include "Clip.h"
 #include "Scene.h"
 
-class Demo
+class Q_DECL_EXPORT Demo
 {
-private:
+public:
     Demo();
     ~Demo();
-
-    std::vector<Clip> clipList;
-    std::vector<Scene*> sceneList;
-    // TODO: musicTrack
-    // TODO: postProcessingEffects
-
-public:
     Demo(const Demo&) = delete;
     Demo(Demo&&) = delete;
     Demo& operator=(const Demo&) = delete;
     Demo& operator=(Demo&&) = delete;
 
-    static Demo& instance();
-
-    int clipCount() const;
-    Clip& clipAt(int index);
-    void addClip();
-    bool swapClips(int first, int second);
+    std::vector<Clip> *clipList();
 
     int sceneCount() const;
     Scene *sceneAt(int index);
     void addScene();
     void initializeShaders(int w, int h);
+
+private:
+    std::vector<Clip> clipList_;
+    std::vector<Scene*> sceneList_;
+    // TODO: musicTrack
+    // TODO: postProcessingEffects
 };
 
 #endif // DEMO_H

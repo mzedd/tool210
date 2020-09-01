@@ -1,7 +1,9 @@
 #include <QApplication>
 
 #include "mainwindow.h"
-#include "demo/Demo.h"
+#include "models/Demo.h"
+#include "models/cliplistmodel.h"
+#include "models/openglmodel.h"
 
 #include "maincontroller.h"
 
@@ -13,15 +15,24 @@ int main(int argc, char *argv[])
 
     MainWindow mainWindow;
     MainController mainController;
-
     mainWindow.setMainController(&mainController);
 
-    // TESTING
-    Demo::instance().addClip();
-    Demo::instance().clipAt(0).setDuration(50.f);
+    Demo demo;
+    demo.clipList()->emplace_back();
+    demo.clipList()->at(0).setDuration(50.f);
+    mainController.setModel(&demo);
+
+    ClipListModel *clipListModel = new ClipListModel;
+    clipListModel->setClipList(demo.clipList());
+    mainController.timelineController()->setModel(clipListModel);
+    mainWindow.setClipListModel(clipListModel);
+
+    OpenGLModel *openGLModel = new OpenGLModel;
+    mainController.clipsScreenController()->setModel(openGLModel);
+    mainWindow.setOpenGLModel(openGLModel);
 
     mainWindow.initialize();
-
     mainWindow.show();
+
     return app.exec();
 }

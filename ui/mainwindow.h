@@ -16,6 +16,8 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     void setMainController(MainController *mainController);
+    void setClipListModel(ClipListModel* clipListModel);
+    void setOpenGLModel(OpenGLModel *openGLmodel);
     void initialize();
 
 private:

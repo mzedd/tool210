@@ -16,6 +16,18 @@ void MainWindow::setMainController(MainController *mainController)
     this->mainController = mainController;
 }
 
+void MainWindow::setClipListModel(ClipListModel *clipListModel)
+{
+    timelineView = new TimelineView(clipListModel, this);
+    timelineView->setController(mainController->timelineController());
+}
+
+void MainWindow::setOpenGLModel(OpenGLModel *openGLmodel)
+{
+    clipScreenView = new ClipScreenView(openGLmodel, this);
+    //clipScreenView->setController(mainController->clipsScreenController());
+}
+
 void MainWindow::initialize()
 {
     createMenu();
@@ -38,13 +50,9 @@ void MainWindow::createMenu()
 
 void MainWindow::createWidgets()
 {
-    timelineView = new TimelineView(new ClipListModel(this), this);
-    timelineView->setController(mainController->timelineController());
     setCentralWidget(timelineView);
-
     QDockWidget *dockWidget = new QDockWidget(this);
-    ClipScreenView *clipScreenView = new ClipScreenView(new OpenGLModel(this), this);
-    dockWidget->setWidget(clipScreenView);
 
+    dockWidget->setWidget(clipScreenView);
     addDockWidget(Qt::DockWidgetArea::TopDockWidgetArea, dockWidget);
 }

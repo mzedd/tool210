@@ -14,12 +14,13 @@ public:
     explicit MainController(QObject *parent = nullptr);
     TimelineController *timelineController() const;
     ClipScreenController *clipsScreenController() const;
+    void setModel(Demo *demo);
 
 private:
     TimelineController *timelineController_;
     ClipScreenController *clipScreenController_;
 
-    // Demo model
+    Demo *demo;
 
 private Q_SLOTS:
     void handlePlayPauseClicked();

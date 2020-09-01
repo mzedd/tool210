@@ -2,6 +2,7 @@
 #define TIMELINECONTROLLER_H
 
 #include <QObject>
+#include "models/cliplistmodel.h"
 
 class Q_DECL_EXPORT TimelineController : public QObject
 {
@@ -10,7 +11,7 @@ class Q_DECL_EXPORT TimelineController : public QObject
 
 public:
     explicit TimelineController(QObject *parent = nullptr);
-    void setModel();
+    void setModel(ClipListModel *clipListModel);
 
 private:
     // model

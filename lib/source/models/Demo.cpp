@@ -8,61 +8,35 @@ Demo::Demo()
 
 Demo::~Demo()
 {
-    for(auto scene : sceneList)
-    {
+    for(auto scene : sceneList_) {
         if(scene)
             delete scene;
     }
 }
 
-Demo &Demo::instance()
+std::vector<Clip> *Demo::clipList()
 {
-    static Demo _instance;
-    return _instance;
-}
-
-int Demo::clipCount() const
-{
-    return clipList.size();
-}
-
-Clip &Demo::clipAt(int index)
-{
-    return clipList.at(index);
-}
-
-void Demo::addClip()
-{
-    clipList.push_back(Clip());
-}
-
-bool Demo::swapClips(int first, int second)
-{
-    Clip tmp = clipList.at(first);
-    clipList.at(first) = clipList.at(second);
-    clipList.at(second) = tmp;
-
-    return true;
+    return &clipList_;
 }
 
 int Demo::sceneCount() const
 {
-    return sceneList.size();
+    return sceneList_.size();
 }
 
 Scene *Demo::sceneAt(int index)
 {
-    return sceneList.at(index);
+    return sceneList_.at(index);
 }
 
 void Demo::addScene()
 {
-    sceneList.push_back(new ShaderOnlyScene);
+    sceneList_.push_back(new ShaderOnlyScene);
 }
 
 void Demo::initializeShaders(int w, int h)
 {
-    for(Scene* scene : sceneList) {
+    for(Scene* scene : sceneList_) {
         scene->initialize();
         scene->setViewportResolution(w, h);
     }

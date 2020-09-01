@@ -50,9 +50,9 @@ void OpenGLModel::setTime(float time)
     this->time = time;
 }
 
-void OpenGLModel::setClipToRender(int id)
+void OpenGLModel::setClipToRender(int /*id*/)
 {
-    clipToRender = &Demo::instance().clipAt(id);
+
 }
 
 void OpenGLModel::playPauseDemo()

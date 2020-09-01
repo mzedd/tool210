@@ -2,12 +2,14 @@
 #define CLIPSCREENCONTROLLER_H
 
 #include <QObject>
+#include "models/openglmodel.h"
 
-class ClipScreenController : public QObject
+class Q_DECL_EXPORT ClipScreenController : public QObject
 {
     Q_OBJECT
 public:
     explicit ClipScreenController(QObject *parent = nullptr);
+    void setModel(OpenGLModel *openGLModel);
 
 signals:
 

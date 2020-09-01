@@ -9,8 +9,7 @@ ClipListModel::ClipListModel(QObject *parent) :
 
 int ClipListModel::rowCount(const QModelIndex&) const
 {
-    return Demo::instance().clipCount();
-    return 5;
+    return clipList->size();
 }
 
 QVariant ClipListModel::data(const QModelIndex &index, int role) const
@@ -18,7 +17,7 @@ QVariant ClipListModel::data(const QModelIndex &index, int role) const
     if(!index.isValid())
         return  QVariant();
 
-    Clip clip = Demo::instance().clipAt(index.row());
+    Clip clip = clipList->at(index.row());
 
     switch (role) {
     case ClipName:
@@ -33,5 +32,14 @@ QVariant ClipListModel::data(const QModelIndex &index, int role) const
 
 bool ClipListModel::moveRows(const QModelIndex& /*sourceParent*/, int sourceRow, int /*count*/, const QModelIndex &destinationParent, int /*destinationChild*/)
 {
-    return Demo::instance().swapClips(sourceRow, destinationParent.row());
+    Clip tmp = clipList->at(sourceRow);
+    clipList->at(sourceRow) = clipList->at(destinationParent.row());
+    clipList->at(destinationParent.row()) = tmp;
+
+    return true;
+}
+
+void ClipListModel::setClipList(std::vector<Clip> *clipList)
+{
+    this->clipList = clipList;
 }
