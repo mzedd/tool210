@@ -13,10 +13,12 @@ add_library(${PROJECT_NAME} SHARED
   source/controllers/maincontroller.cpp
   source/controllers/timelinecontroller.cpp
   source/controllers/clipscreencontroller.cpp
+  source/controllers/clipinspectorcontroller.cpp
 
   ## models
   source/models/cliplistmodel.cpp
   source/models/openglmodel.cpp
+  source/models/clipinspectormodel.cpp
   source/models/Demo.cpp
   source/models/Clip.cpp
   source/models/ShaderOnlyScene.cpp
@@ -26,10 +28,12 @@ add_library(${PROJECT_NAME} SHARED
   public/controllers/maincontroller.h
   public/controllers/timelinecontroller.h
   public/controllers/clipscreencontroller.h
+  public/controllers/clipinspectorcontroller.h
 
   ## models
   public/models/cliplistmodel.h
   public/models/openglmodel.h
+  public/models/clipinspectormodel.h
   public/models/Demo.h
   public/models/Clip.h
   public/models/Scene.h
