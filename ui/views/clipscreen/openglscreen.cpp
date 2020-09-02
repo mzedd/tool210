@@ -16,27 +16,19 @@ OpenGLScreen::~OpenGLScreen()
 
 void OpenGLScreen::initializeGL()
 {
-    initializeOpenGLFunctions();
+    model->initializeGL();
 }
 
 void OpenGLScreen::resizeGL(int w, int h)
 {
-    glViewport(0, 0, w, h);
-    if(model->clipToRender())
-        model->clipToRender()->getScene()->setViewportResolution(w, h);
+    model->resiszeGL(w, h);
 }
 
 void OpenGLScreen::paintGL()
 {
-    glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    model->paintGL();
 
-    if(model->clipToRender()) {
-        if(!model->clipToRender()->getScene()->isInitialized()) {
-            model->clipToRender()->getScene()->initialize();
-        }
-
-        model->clipToRender()->renderAt(model->time());
-        glDrawArrays(GL_TRIANGLES, 0, 6);
-    }
+    if(model->run())
+        emit frameFinishedAt(model->deltaTime());
+        update();
 }

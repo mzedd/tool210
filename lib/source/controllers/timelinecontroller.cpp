@@ -11,6 +11,11 @@ void TimelineController::setModel(ClipListModel *model)
     model->setParent(this);
 }
 
+void TimelineController::setTime(float time)
+{
+    emit timeChanged(time);
+}
+
 void TimelineController::setSelectedIndex(int id)
 {
     model;

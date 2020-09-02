@@ -7,9 +7,13 @@ MainController::MainController(QObject *parent) :
     timelineController_(new TimelineController(this)),
     clipScreenController_(new ClipScreenController(this))
 {
+    // TimelineController signals
     connect(timelineController_, SIGNAL(playPauseClicked()), this, SLOT(handlePlayPauseClicked()));
     connect(timelineController_, SIGNAL(addClip()), this, SLOT(handleAddClip()));
     connect(timelineController_, SIGNAL(timeChanged(float)), this, SLOT(handleTimeChanged(float)));
+
+    // ClipScreenControllet signals
+    connect(clipScreenController_, SIGNAL(frameFinishedAt(float)), this, SLOT(handleFrameFinishedAt(float)));
 }
 
 TimelineController *MainController::timelineController() const
@@ -30,7 +34,7 @@ void MainController::setModel(Demo *demo)
 
 void MainController::handlePlayPauseClicked()
 {
-    qDebug() << "MainControlle::handlePlayPauseClicked";
+    clipsScreenController()->toggleRun();
 }
 
 void MainController::handleTimeChanged(float time)
@@ -50,4 +54,10 @@ void MainController::handleClipToRenderChanged(int id)
         clipScreenController_->setClipToRender(nullptr);
     else
         clipScreenController_->setClipToRender(&demo->clipList()->at(id));
+}
+
+void MainController::handleFrameFinishedAt(float time)
+{
+    demo->checkClipToBeRenderdChangedAt(time);
+    timelineController()->setTime(time);
 }

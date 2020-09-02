@@ -12,6 +12,7 @@ class Q_DECL_EXPORT TimelineController : public QObject
 public:
     explicit TimelineController(QObject *parent = nullptr);
     void setModel(ClipListModel *model);
+    void setTime(float time);
 
 private:
     ClipListModel *model;

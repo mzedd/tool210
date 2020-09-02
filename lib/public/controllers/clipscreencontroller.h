@@ -10,11 +10,16 @@ class Q_DECL_EXPORT ClipScreenController : public QObject
 public:
     explicit ClipScreenController(QObject *parent = nullptr);
     void setModel(OpenGLModel *openGLModel);
-    void setClipToRender(Clip *clip);
     void setTime(float time);
+    void setClipToRender(Clip *clip);
+    void toggleRun();
+
 
 private:
     OpenGLModel *model;
+
+Q_SIGNALS:
+    void frameFinishedAt(float time);
 
 };
 

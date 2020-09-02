@@ -41,6 +41,7 @@ void TimelineView::setController(TimelineController *timelineController)
     connect(runPauseButton, SIGNAL(clicked()), timelineController, SIGNAL(playPauseClicked()));
     connect(addClipButton, SIGNAL(clicked()), timelineController, SIGNAL(addClip()));
     connect(this, SIGNAL(timeChanged(float)), timelineController, SIGNAL(timeChanged(float)));
+    connect(timelineController, SIGNAL(timeChanged(float)), clipListView, SLOT(setTime(float)));
 }
 
 void TimelineView::setZoomLabel(float zoom)

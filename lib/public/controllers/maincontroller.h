@@ -27,6 +27,7 @@ private Q_SLOTS:
     void handleTimeChanged(float time);
     void handleAddClip();
     void handleClipToRenderChanged(int id);
+    void handleFrameFinishedAt(float time);
 
 };
 

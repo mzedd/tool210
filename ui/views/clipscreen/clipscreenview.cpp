@@ -13,12 +13,13 @@ ClipScreenView::ClipScreenView(OpenGLModel *model, QWidget *parent) :
     QVBoxLayout *layout = new QVBoxLayout(this);
     layout->addWidget(aspectRatioWidget);
 
-    connect(model, SIGNAL(frameFinished()), openGLScreen, SLOT(update()));
     connect(model, SIGNAL(clipToRenderChanged()), openGLScreen, SLOT(update()));
     connect(model, SIGNAL(timeChanged()), openGLScreen, SLOT(update()));
+    connect(model, SIGNAL(runChanged()), openGLScreen, SLOT(update()));
 }
 
 void ClipScreenView::setController(ClipScreenController *clipScreenController)
 {
     this->clipScreenController = clipScreenController;
+    connect(openGLScreen, SIGNAL(frameFinishedAt(float)), clipScreenController, SIGNAL(frameFinishedAt(float)));
 }

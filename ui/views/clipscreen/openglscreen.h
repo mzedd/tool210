@@ -2,11 +2,9 @@
 #define OPENGLSCREEN_H
 
 #include <QOpenGLWidget>
-#include <QOpenGLFunctions>
 #include <models/openglmodel.h>
-#include "models/ShaderOnlyScene.h"
 
-class OpenGLScreen : public QOpenGLWidget, protected QOpenGLFunctions
+class OpenGLScreen : public QOpenGLWidget
 {
     Q_OBJECT
 public:
@@ -20,6 +18,9 @@ protected:
 
 private:
     OpenGLModel *model;
+
+Q_SIGNALS:
+    void frameFinishedAt(float time);
 
 };
 
