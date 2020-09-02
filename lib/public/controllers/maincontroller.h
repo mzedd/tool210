@@ -26,6 +26,7 @@ private:
 
 private Q_SLOTS:
     void handleClipSelected(int id);
+    void handleSelectedClipNameEdited(const QString &name);
     void handlePlayPauseClicked();
     void handleTimeChanged(float time);
     void handleAddClip();

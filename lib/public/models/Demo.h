@@ -26,9 +26,14 @@ public:
     void addScene();
     void initializeShaders(int w, int h);
 
+    int selectedClip();
+    void setSelectedClip(int id);
+
 private:
     std::vector<Clip> clipList_;
     std::vector<Scene*> sceneList_;
+
+    int selectedClip_;
     // TODO: musicTrack
     // TODO: postProcessingEffects
 

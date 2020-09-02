@@ -16,6 +16,9 @@ MainController::MainController(QObject *parent) :
 
     // ClipScreenController signals
     connect(clipScreenController_, SIGNAL(frameFinishedAt(float)), this, SLOT(handleFrameFinishedAt(float)));
+
+    // ClipInspectorController
+    connect(clipInspectorController_, &ClipInspectorController::selectedClipNameEdited, this, &MainController::handleSelectedClipNameEdited);
 }
 
 TimelineController *MainController::timelineController() const
@@ -37,13 +40,18 @@ void MainController::setModel(Demo *demo)
 {
     this->demo = demo;
     connect(demo, &Demo::clipToRenderChanged, this, &MainController::handleClipToRenderChanged);
-    connect(demo, &Demo::selectedClipChanged, this, &MainController::handleClipSelected);
 }
 
 void MainController::handleClipSelected(int id)
 {
+    demo->setSelectedClip(id);
     timelineController()->setSelectedClip(id);
     clipInspectorController()->setSelectedClip(&demo->clipList()->at(id));
+}
+
+void MainController::handleSelectedClipNameEdited(const QString &name)
+{
+    demo->clipList()->at(demo->selectedClip()).setName(name);
 }
 
 void MainController::handlePlayPauseClicked()
@@ -60,6 +68,8 @@ void MainController::handleTimeChanged(float time)
 void MainController::handleAddClip()
 {
     demo->addClip();
+    timelineController()->setSelectedClip(demo->selectedClip());
+    clipInspectorController()->setSelectedClip(&demo->clipList()->at(demo->selectedClip()));
 }
 
 void MainController::handleClipToRenderChanged(int id)

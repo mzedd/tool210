@@ -3,7 +3,7 @@
 
 #include <QWidget>
 #include <QVBoxLayout>
-#include <QLabel>
+#include <QLineEdit>
 #include <QComboBox>
 #include "models/clipinspectormodel.h"
 #include "controllers/clipinspectorcontroller.h"
@@ -17,7 +17,7 @@ public:
     void setController(ClipInspectorController *controller);
 
 private:
-    QLabel *clipNameLabel;
+    QLineEdit *clipNameLineEdit;
     QComboBox *sceneComboBox;
 
     ClipInspectorModel *model;

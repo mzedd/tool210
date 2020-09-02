@@ -1,5 +1,6 @@
 #include "clipinspectorview.h"
 #include <QHBoxLayout>
+#include <QLabel>
 
 ClipInspectorView::ClipInspectorView(QWidget *parent) :
     QWidget(parent)
@@ -18,9 +19,9 @@ ClipInspectorView::ClipInspectorView(QWidget *parent) :
     mainLayout->addWidget(line);
 
     // clip name
-    clipNameLabel = new QLabel("name");
+    clipNameLineEdit = new QLineEdit;
     clipNameLayout->addWidget(new QLabel("Clip name"));
-    clipNameLayout->addWidget(clipNameLabel);
+    clipNameLayout->addWidget(clipNameLineEdit);
     mainLayout->addLayout(clipNameLayout);
 
     // scene list
@@ -45,11 +46,13 @@ void ClipInspectorView::setModel(ClipInspectorModel *model)
 void ClipInspectorView::setController(ClipInspectorController *controller)
 {
     this->controller = controller;
+
+    connect(clipNameLineEdit, &QLineEdit::textEdited, controller, &ClipInspectorController::selectedClipNameEdited);
 }
 
 void ClipInspectorView::selectedClipChanged()
 {
-    clipNameLabel->setText(model->selectedClip()->getName());
+    clipNameLineEdit->setText(model->selectedClip()->getName());
     update();
 }
 
