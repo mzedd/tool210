@@ -16,6 +16,8 @@ public:
     explicit ClipScreenView(OpenGLModel *model, QWidget *parent = nullptr);
     void setController(ClipScreenController *clipScreenController);
 
+    QSize sizeHint() const;
+
 private:
     AspectRatioWidget *aspectRatioWidget;
     OpenGLScreen *openGLScreen;

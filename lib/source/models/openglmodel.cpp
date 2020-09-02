@@ -58,6 +58,9 @@ void OpenGLModel::resiszeGL(int w, int h)
     for(unsigned int i = 0; i < sceneList->size(); i++) {
         sceneList->at(i)->setViewportResolution(w, h);
     }
+
+    width = w;
+    height = h;
 }
 
 void OpenGLModel::paintGL()
@@ -68,6 +71,7 @@ void OpenGLModel::paintGL()
     if(clipToRender()) {
         if(!clipToRender()->getScene()->isInitialized()) {
             clipToRender()->getScene()->initialize();
+            clipToRender()->getScene()->setViewportResolution(width, height);
         }
 
         clipToRender()->renderAt(time());

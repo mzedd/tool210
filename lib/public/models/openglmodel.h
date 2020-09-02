@@ -42,6 +42,8 @@ private:
     float timeAtRunChanged;
 
     std::vector<Scene*> *sceneList;
+    int width;
+    int height;
 
 Q_SIGNALS:
     void timeChanged();
