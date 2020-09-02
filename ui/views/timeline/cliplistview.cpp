@@ -165,7 +165,14 @@ void ClipListView::mouseReleaseEvent(QMouseEvent *event)
 
 void ClipListView::wheelEvent(QWheelEvent *event)
 {
-    zoom += event->pixelDelta().y() * SCROLL_SENSITIVITY;
+    QPoint pixelDelta = event->pixelDelta();
+
+    if(pixelDelta.isNull()) {
+        zoom += event->angleDelta().y() / 8 * SCROLL_SENSITIVITY;
+    } else {
+        zoom += event->pixelDelta().y() * SCROLL_SENSITIVITY;
+    }
+
     zoom = qBound(ZOOM_MINIMUM, zoom, ZOOM_MAXIMUM);
 
     emit zoomChanged(zoom);
