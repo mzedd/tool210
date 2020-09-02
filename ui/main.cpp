@@ -4,6 +4,7 @@
 #include "models/Demo.h"
 #include "models/cliplistmodel.h"
 #include "models/openglmodel.h"
+#include "models/clipinspectormodel.h"
 
 #include "maincontroller.h"
 
@@ -30,7 +31,9 @@ int main(int argc, char *argv[])
     mainController.clipsScreenController()->setModel(openGLModel);
     mainWindow.setOpenGLModel(openGLModel);
 
-    mainWindow.setClipInspectorModel();
+    ClipInspectorModel *clipInspectorModel = new ClipInspectorModel;
+    mainController.clipInspectorController()->setModel(clipInspectorModel);
+    mainWindow.setClipInspectorModel(clipInspectorModel);
 
     mainWindow.initialize();
     mainWindow.show();

@@ -28,9 +28,11 @@ void MainWindow::setOpenGLModel(OpenGLModel *openGLmodel)
     clipScreenView->setController(mainController->clipsScreenController());
 }
 
-void MainWindow::setClipInspectorModel()
+void MainWindow::setClipInspectorModel(ClipInspectorModel *model)
 {
     clipInspectorView = new ClipInspectorView(this);
+    clipInspectorView->setModel(model);
+    clipInspectorView->setController(mainController->clipInspectorController());
 }
 
 void MainWindow::initialize()

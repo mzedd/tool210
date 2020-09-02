@@ -19,7 +19,7 @@ public:
     void setMainController(MainController *mainController);
     void setClipListModel(ClipListModel* clipListModel);
     void setOpenGLModel(OpenGLModel *openGLmodel);
-    void setClipInspectorModel();
+    void setClipInspectorModel(ClipInspectorModel* model);
     void initialize();
 
 private:

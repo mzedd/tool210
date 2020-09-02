@@ -34,3 +34,13 @@ ClipInspectorView::ClipInspectorView(QWidget *parent) :
 
     setLayout(mainLayout);
 }
+
+void ClipInspectorView::setModel(ClipInspectorModel *model)
+{
+    this->model = model;
+}
+
+void ClipInspectorView::setController(ClipInspectorController *controller)
+{
+    this->controller = controller;
+}

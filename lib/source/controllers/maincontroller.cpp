@@ -5,7 +5,8 @@
 MainController::MainController(QObject *parent) :
     QObject(parent),
     timelineController_(new TimelineController(this)),
-    clipScreenController_(new ClipScreenController(this))
+    clipScreenController_(new ClipScreenController(this)),
+    clipInspectorController_(new ClipInspectorController(this))
 {
     // TimelineController signals
     connect(timelineController_, SIGNAL(playPauseClicked()), this, SLOT(handlePlayPauseClicked()));
@@ -24,6 +25,11 @@ TimelineController *MainController::timelineController() const
 ClipScreenController *MainController::clipsScreenController() const
 {
     return clipScreenController_;
+}
+
+ClipInspectorController *MainController::clipInspectorController() const
+{
+    return  clipInspectorController_;
 }
 
 void MainController::setModel(Demo *demo)
