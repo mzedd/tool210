@@ -28,7 +28,8 @@ void OpenGLScreen::paintGL()
 {
     model->paintGL();
 
-    if(model->run())
+    if(model->run()) {
         emit frameFinishedAt(model->deltaTime());
         update();
+    }
 }

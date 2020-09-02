@@ -45,6 +45,7 @@ void OpenGLModel::setRun(bool run)
 {
     run_ = run;
     timeAtRunChanged = timer.elapsed() * MSEC_PER_SECS - time_;
+    emit runChanged();
 }
 
 void OpenGLModel::initializeGL()
