@@ -15,6 +15,7 @@ ClipScreenView::ClipScreenView(OpenGLModel *model, QWidget *parent) :
 
     connect(model, SIGNAL(frameFinished()), openGLScreen, SLOT(update()));
     connect(model, SIGNAL(clipToRenderChanged()), openGLScreen, SLOT(update()));
+    connect(model, SIGNAL(timeChanged()), openGLScreen, SLOT(update()));
 }
 
 void ClipScreenView::setController(ClipScreenController *clipScreenController)

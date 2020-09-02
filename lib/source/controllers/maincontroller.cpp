@@ -36,6 +36,7 @@ void MainController::handlePlayPauseClicked()
 void MainController::handleTimeChanged(float time)
 {
     demo->checkClipToBeRenderdChangedAt(time);
+    clipsScreenController()->setTime(time);
 }
 
 void MainController::handleAddClip()

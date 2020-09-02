@@ -27,8 +27,6 @@ void Demo::addClip()
     addScene();
     clipList()->at(clipList()->size()-1).setScene(sceneList_.at(sceneList_.size()-1));
 
-    qDebug() << clipList()->size() << sceneList_.size();
-
     emit clipCreated(clipList()->size() - 1);
 }
 

@@ -11,6 +11,7 @@ public:
     explicit ClipScreenController(QObject *parent = nullptr);
     void setModel(OpenGLModel *openGLModel);
     void setClipToRender(Clip *clip);
+    void setTime(float time);
 
 private:
     OpenGLModel *model;

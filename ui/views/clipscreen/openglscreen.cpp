@@ -28,7 +28,7 @@ void OpenGLScreen::resizeGL(int w, int h)
 
 void OpenGLScreen::paintGL()
 {
-    glClearColor(0.0f, 1.0f, 0.0f, 1.0f);
+    glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     if(model->clipToRender()) {
@@ -36,7 +36,7 @@ void OpenGLScreen::paintGL()
             model->clipToRender()->getScene()->initialize();
         }
 
-        model->clipToRender()->renderAt(10.0f);
+        model->clipToRender()->renderAt(model->time());
         glDrawArrays(GL_TRIANGLES, 0, 6);
     }
 }

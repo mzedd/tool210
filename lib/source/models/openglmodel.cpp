@@ -2,17 +2,13 @@
 #include "models/Demo.h"
 #include "models/Scene.h"
 
-#include "models/ShaderOnlyScene.h"
-
 OpenGLModel::OpenGLModel(QObject *parent) :
     QObject(parent),
     time_(5.0f),
     clipToRender_(nullptr),
     run(false)
 {
-    //scene = new ShaderOnlyScene;
-    //clipToRender_ = new Clip;
-    //clipToRender()->setScene(scene);
+
 }
 
 void OpenGLModel::setTime(float time)

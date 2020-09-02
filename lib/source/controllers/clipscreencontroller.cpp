@@ -15,3 +15,8 @@ void ClipScreenController::setClipToRender(Clip *clip)
 {
     model->setClipToRender(clip);
 }
+
+void ClipScreenController::setTime(float time)
+{
+    model->setTime(time);
+}

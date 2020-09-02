@@ -8,6 +8,9 @@
 class Q_DECL_EXPORT OpenGLModel : public QObject
 {
     Q_OBJECT
+
+    Q_PROPERTY(float time READ time WRITE setTime NOTIFY timeChanged)
+
 public:
     explicit OpenGLModel(QObject *parent = nullptr);
 
@@ -23,6 +26,7 @@ private:
     ShaderOnlyScene *scene;
 
 Q_SIGNALS:
+    void timeChanged();
     void clipToRenderChanged();
     void frameFinished();
 
