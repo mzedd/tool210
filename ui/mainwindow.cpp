@@ -28,6 +28,11 @@ void MainWindow::setOpenGLModel(OpenGLModel *openGLmodel)
     clipScreenView->setController(mainController->clipsScreenController());
 }
 
+void MainWindow::setClipInspectorModel()
+{
+    clipInspectorView = new ClipInspectorView(this);
+}
+
 void MainWindow::initialize()
 {
     createMenu();
@@ -50,9 +55,15 @@ void MainWindow::createMenu()
 
 void MainWindow::createWidgets()
 {
-    setCentralWidget(timelineView);
-    QDockWidget *dockWidget = new QDockWidget(this);
+    setCentralWidget(clipScreenView);
 
-    dockWidget->setWidget(clipScreenView);
-    addDockWidget(Qt::DockWidgetArea::TopDockWidgetArea, dockWidget);
+    QDockWidget *dockWidget = new QDockWidget(this);
+    dockWidget->setFeatures(QDockWidget::DockWidgetMovable);
+    dockWidget->setWidget(timelineView);
+    addDockWidget(Qt::DockWidgetArea::BottomDockWidgetArea, dockWidget);
+
+    dockWidget = new QDockWidget(this);
+    dockWidget->setFeatures(QDockWidget::DockWidgetMovable);
+    dockWidget->setWidget(clipInspectorView);
+    addDockWidget(Qt::DockWidgetArea::RightDockWidgetArea, dockWidget);
 }

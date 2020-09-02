@@ -30,6 +30,8 @@ int main(int argc, char *argv[])
     mainController.clipsScreenController()->setModel(openGLModel);
     mainWindow.setOpenGLModel(openGLModel);
 
+    mainWindow.setClipInspectorModel();
+
     mainWindow.initialize();
     mainWindow.show();
 

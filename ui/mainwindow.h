@@ -8,6 +8,7 @@
 
 #include "views/timeline/timelineview.h"
 #include "views/clipscreen/clipscreenview.h"
+#include "views/clipinspector/clipinspectorview.h"
 
 class MainWindow : public QMainWindow
 {
@@ -18,12 +19,14 @@ public:
     void setMainController(MainController *mainController);
     void setClipListModel(ClipListModel* clipListModel);
     void setOpenGLModel(OpenGLModel *openGLmodel);
+    void setClipInspectorModel();
     void initialize();
 
 private:
     MainController *mainController;
     TimelineView *timelineView;
     ClipScreenView *clipScreenView;
+    ClipInspectorView *clipInspectorView;
 
     void createMenu();
     void createWidgets();

@@ -28,6 +28,10 @@ add_executable(${PROJECT_NAME}
   views/clipscreen/aspectratiowidget.h
   views/clipscreen/openglscreen.cpp
   views/clipscreen/openglscreen.h
+
+  # clipinspector
+  views/clipinspector/clipinspectorview.cpp
+  views/clipinspector/clipinspectorview.h
 )
 
 target_include_directories(${PROJECT_NAME}
