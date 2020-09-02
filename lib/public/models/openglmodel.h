@@ -4,6 +4,7 @@
 #include <QObject>
 #include <QElapsedTimer>
 #include <QOpenGLFunctions>
+#include <vector>
 #include "models/Clip.h"
 
 class Q_DECL_EXPORT OpenGLModel : public QObject, protected QOpenGLFunctions
@@ -30,7 +31,8 @@ public:
     void paintGL();
 
     float deltaTime();
-    
+    void setSceneList(std::vector<Scene*> *sceneList);
+
 private:
     float time_;
     Clip *clipToRender_;
@@ -38,6 +40,8 @@ private:
 
     QElapsedTimer timer;
     float timeAtRunChanged;
+
+    std::vector<Scene*> *sceneList;
 
 Q_SIGNALS:
     void timeChanged();

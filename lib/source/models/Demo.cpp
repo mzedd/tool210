@@ -19,6 +19,11 @@ std::vector<Clip> *Demo::clipList()
     return &clipList_;
 }
 
+std::vector<Scene *> *Demo::sceneList()
+{
+    return &sceneList_;
+}
+
 void Demo::addClip()
 {
     clipList()->push_back(Clip());

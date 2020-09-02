@@ -55,8 +55,9 @@ void OpenGLModel::initializeGL()
 void OpenGLModel::resiszeGL(int w, int h)
 {
     glViewport(0, 0, w, h);
-    if(clipToRender())
-        clipToRender()->getScene()->setViewportResolution(w, h);
+    for(unsigned int i = 0; i < sceneList->size(); i++) {
+        sceneList->at(i)->setViewportResolution(w, h);
+    }
 }
 
 void OpenGLModel::paintGL()
@@ -78,4 +79,9 @@ float OpenGLModel::deltaTime()
 {
     time_ = timer.elapsed() * MSEC_PER_SECS - timeAtRunChanged;
     return time_;
+}
+
+void OpenGLModel::setSceneList(std::vector<Scene *> *sceneList)
+{
+    this->sceneList = sceneList;
 }

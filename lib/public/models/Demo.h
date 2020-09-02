@@ -16,6 +16,7 @@ public:
     Q_DISABLE_COPY_MOVE(Demo)
 
     std::vector<Clip> *clipList();
+    std::vector<Scene*> *sceneList();
 
     void addClip();
     void checkClipToBeRenderdChangedAt(float time);

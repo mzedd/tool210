@@ -26,6 +26,7 @@ int main(int argc, char *argv[])
     mainWindow.setClipListModel(clipListModel);
 
     OpenGLModel *openGLModel = new OpenGLModel;
+    openGLModel->setSceneList(demo.sceneList());
     mainController.clipsScreenController()->setModel(openGLModel);
     mainWindow.setOpenGLModel(openGLModel);
 
