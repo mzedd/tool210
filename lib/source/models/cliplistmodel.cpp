@@ -39,6 +39,11 @@ bool ClipListModel::moveRows(const QModelIndex& /*sourceParent*/, int sourceRow,
     return true;
 }
 
+void ClipListModel::setSelectedClip(int id)
+{
+    emit selectedClipChanged(index(id, 0));
+}
+
 void ClipListModel::setClipList(std::vector<Clip> *clipList)
 {
     this->clipList = clipList;

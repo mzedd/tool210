@@ -19,10 +19,10 @@ public:
 private:
     TimelineController *timelineController_;
     ClipScreenController *clipScreenController_;
-
     Demo *demo;
 
 private Q_SLOTS:
+    void setSelectedClip(int id);
     void handlePlayPauseClicked();
     void handleTimeChanged(float time);
     void handleAddClip();

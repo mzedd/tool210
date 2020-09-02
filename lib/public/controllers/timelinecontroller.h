@@ -13,10 +13,10 @@ public:
     explicit TimelineController(QObject *parent = nullptr);
     void setModel(ClipListModel *model);
     void setTime(float time);
+    void setSelectedClip(int id);
 
 private:
     ClipListModel *model;
-    void setSelectedIndex(int id);
 
 Q_SIGNALS:
     void playPauseClicked();

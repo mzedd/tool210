@@ -259,3 +259,9 @@ void ClipListView::setTime(float time)
     this->time = time;
     viewport()->update();
 }
+
+void ClipListView::selectedClipChanged(QModelIndex index)
+{
+    setCurrentIndex(index);
+    viewport()->update();
+}

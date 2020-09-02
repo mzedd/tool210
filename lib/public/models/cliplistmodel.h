@@ -16,6 +16,8 @@ public:
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
     bool moveRows(const QModelIndex &sourceParent, int sourceRow, int count, const QModelIndex &destinationParent, int destinationChild) override;
 
+    void setSelectedClip(int id);
+
     void setClipList(std::vector<Clip> *clipList);
 
     enum ClipRoles {
@@ -25,6 +27,9 @@ public:
 
 private:
     std::vector<Clip> *clipList;
+
+Q_SIGNALS:
+    void selectedClipChanged(QModelIndex index);
 };
 
 #endif // CLIPLISTMODEL_H

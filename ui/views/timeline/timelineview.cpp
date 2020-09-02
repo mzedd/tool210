@@ -34,6 +34,7 @@ TimelineView::TimelineView(ClipListModel *model, QWidget *parent) :
     connect(clipListView, SIGNAL(timeChanged(float)), this, SLOT(setTimeLabel(float)));
     connect(clipListView, SIGNAL(timeChanged(float)), this, SIGNAL(timeChanged(float)));
     connect(clipListView, SIGNAL(clipToRenderChanged(int)), this, SIGNAL(clipToRenderChanged(int)));
+    connect(model, &ClipListModel::selectedClipChanged, clipListView, &ClipListView::selectedClipChanged);
 }
 
 void TimelineView::setController(TimelineController *timelineController)

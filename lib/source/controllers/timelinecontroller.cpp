@@ -16,7 +16,7 @@ void TimelineController::setTime(float time)
     emit timeChanged(time);
 }
 
-void TimelineController::setSelectedIndex(int id)
+void TimelineController::setSelectedClip(int id)
 {
-    model;
+    model->setSelectedClip(id);
 }

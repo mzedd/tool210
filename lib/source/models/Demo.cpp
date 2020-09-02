@@ -31,8 +31,7 @@ void Demo::addClip()
 
     addScene();
     clipList()->at(clipList()->size()-1).setScene(sceneList_.at(sceneList_.size()-1));
-
-    emit clipCreated(clipList()->size() - 1);
+    emit selectedClipChanged(clipList()->size() - 1);
 }
 
 void Demo::checkClipToBeRenderdChangedAt(float time)

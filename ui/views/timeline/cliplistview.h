@@ -52,6 +52,7 @@ Q_SIGNALS:
 
 public Q_SLOTS:
     void setTime(float time);
+    void selectedClipChanged(QModelIndex index);
 };
 
 #endif // CLIPLISTVIEW_H

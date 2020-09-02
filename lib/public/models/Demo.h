@@ -35,8 +35,8 @@ private:
     int clipIdAt(float time);
 
 Q_SIGNALS:
-    void clipCreated(int id);
     void clipToRenderChanged(int id);
+    void selectedClipChanged(int id);
 
 private Q_SLOTS:
 

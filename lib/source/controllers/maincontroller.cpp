@@ -29,7 +29,13 @@ ClipScreenController *MainController::clipsScreenController() const
 void MainController::setModel(Demo *demo)
 {
     this->demo = demo;
-    connect(demo, SIGNAL(clipToRenderChanged(int)), this, SLOT(handleClipToRenderChanged(int)));
+    connect(demo, &Demo::clipToRenderChanged, this, &MainController::handleClipToRenderChanged);
+    connect(demo, &Demo::selectedClipChanged, this, &MainController::setSelectedClip);
+}
+
+void MainController::setSelectedClip(int id)
+{
+    timelineController()->setSelectedClip(id);
 }
 
 void MainController::handlePlayPauseClicked()
