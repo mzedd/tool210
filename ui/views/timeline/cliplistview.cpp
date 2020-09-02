@@ -154,7 +154,7 @@ void ClipListView::mouseReleaseEvent(QMouseEvent *event)
             QModelIndex index = indexAt(event->pos());
             if(index.isValid()) {
                 model()->moveRow(currentIndex(), currentIndex().row(), index, index.row());
-                setCurrentIndex(index);
+                emit clipSelected(index.row());
             }
             currentClipDragState = DragState::None;
         }

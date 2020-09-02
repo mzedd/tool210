@@ -10,6 +10,7 @@ class Q_DECL_EXPORT ClipInspectorController : public QObject
 public:
     explicit ClipInspectorController(QObject *parent = nullptr);
     void setModel(ClipInspectorModel *model);
+    void setSelectedClip(Clip *clip);
 
 private:
     ClipInspectorModel *model;

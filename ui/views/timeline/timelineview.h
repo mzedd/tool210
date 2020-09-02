@@ -31,6 +31,7 @@ signals:
     void timeChanged(float time);
     void addClipClicked();
     void clipToRenderChanged(int id);
+    void clipSelected(int id);
 };
 
 #endif // TIMELINE_H

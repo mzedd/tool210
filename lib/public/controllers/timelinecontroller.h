@@ -22,8 +22,8 @@ Q_SIGNALS:
     void playPauseClicked();
     void timeChanged(float time);
     void addClip();
-    void clipClicked(int id);
     void clipsSwapped(int idA, int idB);
+    void clipSelected(int id);
 };
 
 #endif // TIMELINECONTROLLER_H

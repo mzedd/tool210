@@ -12,8 +12,9 @@ MainController::MainController(QObject *parent) :
     connect(timelineController_, SIGNAL(playPauseClicked()), this, SLOT(handlePlayPauseClicked()));
     connect(timelineController_, SIGNAL(addClip()), this, SLOT(handleAddClip()));
     connect(timelineController_, SIGNAL(timeChanged(float)), this, SLOT(handleTimeChanged(float)));
+    connect(timelineController_, &TimelineController::clipSelected, this, &MainController::handleClipSelected);
 
-    // ClipScreenControllet signals
+    // ClipScreenController signals
     connect(clipScreenController_, SIGNAL(frameFinishedAt(float)), this, SLOT(handleFrameFinishedAt(float)));
 }
 
@@ -36,12 +37,13 @@ void MainController::setModel(Demo *demo)
 {
     this->demo = demo;
     connect(demo, &Demo::clipToRenderChanged, this, &MainController::handleClipToRenderChanged);
-    connect(demo, &Demo::selectedClipChanged, this, &MainController::setSelectedClip);
+    connect(demo, &Demo::selectedClipChanged, this, &MainController::handleClipSelected);
 }
 
-void MainController::setSelectedClip(int id)
+void MainController::handleClipSelected(int id)
 {
     timelineController()->setSelectedClip(id);
+    clipInspectorController()->setSelectedClip(&demo->clipList()->at(id));
 }
 
 void MainController::handlePlayPauseClicked()

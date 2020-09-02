@@ -32,8 +32,8 @@ TimelineView::TimelineView(ClipListModel *model, QWidget *parent) :
 
     connect(clipListView, SIGNAL(zoomChanged(float)), this, SLOT(setZoomLabel(float)));
     connect(clipListView, SIGNAL(timeChanged(float)), this, SLOT(setTimeLabel(float)));
-    connect(clipListView, SIGNAL(timeChanged(float)), this, SIGNAL(timeChanged(float)));
     connect(clipListView, SIGNAL(clipToRenderChanged(int)), this, SIGNAL(clipToRenderChanged(int)));
+    connect(clipListView, &ClipListView::clipSelected, this, &TimelineView::clipSelected);
     connect(model, &ClipListModel::selectedClipChanged, clipListView, &ClipListView::selectedClipChanged);
 }
 
@@ -41,7 +41,8 @@ void TimelineView::setController(TimelineController *timelineController)
 {
     connect(runPauseButton, SIGNAL(clicked()), timelineController, SIGNAL(playPauseClicked()));
     connect(addClipButton, SIGNAL(clicked()), timelineController, SIGNAL(addClip()));
-    connect(this, SIGNAL(timeChanged(float)), timelineController, SIGNAL(timeChanged(float)));
+    connect(clipListView, &ClipListView::timeChanged, timelineController, &TimelineController::timeChanged);
+    connect(clipListView, &ClipListView::clipSelected, timelineController, &TimelineController::clipSelected);
     connect(timelineController, SIGNAL(timeChanged(float)), clipListView, SLOT(setTime(float)));
 }
 

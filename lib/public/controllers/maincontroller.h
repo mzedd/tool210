@@ -25,7 +25,7 @@ private:
     Demo *demo;
 
 private Q_SLOTS:
-    void setSelectedClip(int id);
+    void handleClipSelected(int id);
     void handlePlayPauseClicked();
     void handleTimeChanged(float time);
     void handleAddClip();

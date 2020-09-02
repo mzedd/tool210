@@ -18,7 +18,7 @@ ClipInspectorView::ClipInspectorView(QWidget *parent) :
     mainLayout->addWidget(line);
 
     // clip name
-    clipNameLabel = new QLabel("default");
+    clipNameLabel = new QLabel("name");
     clipNameLayout->addWidget(new QLabel("Clip name"));
     clipNameLayout->addWidget(clipNameLabel);
     mainLayout->addLayout(clipNameLayout);
@@ -38,9 +38,23 @@ ClipInspectorView::ClipInspectorView(QWidget *parent) :
 void ClipInspectorView::setModel(ClipInspectorModel *model)
 {
     this->model = model;
+
+    connect(model, &ClipInspectorModel::selectedClipChanged, this, &ClipInspectorView::selectedClipChanged);
 }
 
 void ClipInspectorView::setController(ClipInspectorController *controller)
 {
     this->controller = controller;
+}
+
+void ClipInspectorView::selectedClipChanged()
+{
+    clipNameLabel->setText(model->selectedClip()->getName());
+    update();
+}
+
+void ClipInspectorView::sceneListChanged()
+{
+    // set combobox text entrieo
+    update();
 }

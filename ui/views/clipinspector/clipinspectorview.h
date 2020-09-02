@@ -22,6 +22,11 @@ private:
 
     ClipInspectorModel *model;
     ClipInspectorController *controller;
+
+private Q_SLOTS:
+    void selectedClipChanged();
+    void sceneListChanged();
+
 };
 
 #endif // CLIPINSPECTORVIEW_H
