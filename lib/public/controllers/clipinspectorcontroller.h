@@ -15,9 +15,9 @@ public:
 private:
     ClipInspectorModel *model;
 
-Q_SIGNALS:
-    void selectedClipNameEdited(const QString&);
-    void selectedClipDurationEdited(const QString&);
+public Q_SLOTS:
+    void selectedClipNameEdited(const QString &name);
+    void selectedClipDurationEdited(const QString &name);
 
 };
 

@@ -20,12 +20,5 @@ Clip *ClipInspectorModel::selectedClip() const
 void ClipInspectorModel::setSelectedClip(Clip *clip)
 {
     selectedClip_ = clip;
-    emit selectedClipNameChanged();
-    emit selectedClipDurationChanged();
-}
-
-void ClipInspectorModel::setSelectedClipName(const QString& name)
-{
-    selectedClip()->setName(name);
-    emit selectedClipNameChanged();
+    emit selectedClipChanged();
 }

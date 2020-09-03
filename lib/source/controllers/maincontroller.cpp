@@ -16,10 +16,6 @@ MainController::MainController(QObject *parent) :
 
     // ClipScreenController signals
     connect(clipScreenController_, SIGNAL(frameFinishedAt(float)), this, SLOT(handleFrameFinishedAt(float)));
-
-    // ClipInspectorController
-    connect(clipInspectorController_, &ClipInspectorController::selectedClipNameEdited, this, &MainController::handleSelectedClipNameEdited);
-    connect(clipInspectorController_, &ClipInspectorController::selectedClipDurationEdited, this, &MainController::handleSelectedClipDurationEdited);
 }
 
 TimelineController *MainController::timelineController() const
@@ -48,16 +44,6 @@ void MainController::handleClipSelected(int id)
     demo->setSelectedClip(id);
     timelineController()->setSelectedClip(id);
     clipInspectorController()->setSelectedClip(demo->clipList()->at(id));
-}
-
-void MainController::handleSelectedClipNameEdited(const QString &name)
-{
-    demo->clipList()->at(demo->selectedClip())->setName(name);
-}
-
-void MainController::handleSelectedClipDurationEdited(const QString &duration)
-{
-    demo->clipList()->at(demo->selectedClip())->setDuration(duration.toFloat());
 }
 
 void MainController::handlePlayPauseClicked()

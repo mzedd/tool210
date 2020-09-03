@@ -32,9 +32,6 @@ private Q_SLOTS:
     void handleClipToRenderChanged(int id);
 
     void handleFrameFinishedAt(float time);
-
-    void handleSelectedClipNameEdited(const QString &name);
-    void handleSelectedClipDurationEdited(const QString &duration);
 };
 
 #endif // MAINCONTROLLER_H
