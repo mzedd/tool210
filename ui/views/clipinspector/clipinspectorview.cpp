@@ -47,6 +47,11 @@ void ClipInspectorView::setController(ClipInspectorController *controller)
     connect(clipDurationLineEdit, &QLineEdit::textEdited, controller, &ClipInspectorController::selectedClipDurationEdited);
 }
 
+QSize ClipInspectorView::sizeHint() const
+{
+    return QSize(500, 200);
+}
+
 void ClipInspectorView::selectedClipChanged()
 {
     clipNameLineEdit->setText(model->selectedClip()->name());

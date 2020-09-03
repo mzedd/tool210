@@ -16,6 +16,8 @@ public:
     void setModel(ClipInspectorModel *model);
     void setController(ClipInspectorController *controller);
 
+    QSize sizeHint() const;
+
 private:
     QLineEdit *clipNameLineEdit;
     QLineEdit *clipDurationLineEdit;
