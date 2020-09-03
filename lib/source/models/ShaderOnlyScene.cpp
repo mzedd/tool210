@@ -4,7 +4,7 @@
 
 ShaderOnlyScene::ShaderOnlyScene()
 {
-    name = QString("default shader only scene");
+    name_ = QString("default shader only scene");
     initialized = false;
 }
 

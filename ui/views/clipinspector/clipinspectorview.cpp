@@ -34,6 +34,7 @@ ClipInspectorView::ClipInspectorView(QWidget *parent) :
 void ClipInspectorView::setModel(ClipInspectorModel *model)
 {
     this->model = model;
+    sceneComboBox->setModel(model->sceneList());
 
     connect(model, &ClipInspectorModel::selectedClipChanged, this, &ClipInspectorView::selectedClipChanged);
 }

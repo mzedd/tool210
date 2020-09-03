@@ -4,6 +4,7 @@
 #include <vector>
 #include <QObject>
 #include "models/Clip.h"
+#include "models/scenelistmodel.h"
 
 class Q_DECL_EXPORT ClipInspectorModel : public QObject
 {
@@ -18,9 +19,12 @@ public:
     Clip *selectedClip() const;
     void setSelectedClip(Clip *clip);
 
+    SceneListModel *sceneList() const;
+    void setSceneListModel(SceneListModel *model);
+
 private:
     Clip *selectedClip_;
-    std::vector<Scene*> *sceneList;
+    SceneListModel *sceneList_;
 
 Q_SIGNALS:
     void selectedClipChanged();

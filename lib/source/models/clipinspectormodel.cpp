@@ -7,11 +7,6 @@ ClipInspectorModel::ClipInspectorModel(QObject *parent) :
 
 }
 
-void ClipInspectorModel::setSceneList(std::vector<Scene *> *sceneList)
-{
-    this->sceneList = sceneList;
-}
-
 Clip *ClipInspectorModel::selectedClip() const
 {
     return selectedClip_;
@@ -21,4 +16,15 @@ void ClipInspectorModel::setSelectedClip(Clip *clip)
 {
     selectedClip_ = clip;
     emit selectedClipChanged();
+}
+
+SceneListModel *ClipInspectorModel::sceneList() const
+{
+    return sceneList_;
+}
+
+void ClipInspectorModel::setSceneListModel(SceneListModel *model)
+{
+    sceneList_ = model;
+    sceneList_->setParent(this);
 }
