@@ -17,6 +17,7 @@ add_library(${PROJECT_NAME} SHARED
 
   ## models
   source/models/cliplistmodel.cpp
+  source/models/scenelistmodel.cpp
   source/models/openglmodel.cpp
   source/models/clipinspectormodel.cpp
   source/models/Demo.cpp
@@ -32,6 +33,7 @@ add_library(${PROJECT_NAME} SHARED
 
   ## models
   public/models/cliplistmodel.h
+  public/models/scenelistmodel.h
   public/models/openglmodel.h
   public/models/clipinspectormodel.h
   public/models/Demo.h

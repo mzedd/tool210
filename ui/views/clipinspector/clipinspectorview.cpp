@@ -54,6 +54,4 @@ void ClipInspectorView::selectedClipChanged()
 
 void ClipInspectorView::sceneListChanged()
 {
-    // set combobox text entrieo
-    update();
 }

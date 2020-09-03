@@ -24,6 +24,7 @@ private:
 
 Q_SIGNALS:
     void selectedClipChanged();
+    void sceneListChanged();
 
 };
 

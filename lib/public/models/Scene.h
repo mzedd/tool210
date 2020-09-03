@@ -12,8 +12,11 @@ public:
     virtual void setViewportResolution(int w, int h) = 0;
     virtual bool isInitialized() const = 0;
 
+    QString name() const { return name_; };
+    void setName(QString name) { name_ = name; };
+
 protected:
-    QString name;
+    QString name_;
 };
 
 #endif // SCENE_H
