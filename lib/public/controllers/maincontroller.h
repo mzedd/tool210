@@ -26,13 +26,15 @@ private:
 
 private Q_SLOTS:
     void handleClipSelected(int id);
-    void handleSelectedClipNameEdited(const QString &name);
     void handlePlayPauseClicked();
     void handleTimeChanged(float time);
     void handleAddClip();
     void handleClipToRenderChanged(int id);
+
     void handleFrameFinishedAt(float time);
 
+    void handleSelectedClipNameEdited(const QString &name);
+    void handleSelectedClipDurationEdited(const QString &duration);
 };
 
 #endif // MAINCONTROLLER_H

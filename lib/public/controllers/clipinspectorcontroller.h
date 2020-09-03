@@ -17,6 +17,7 @@ private:
 
 Q_SIGNALS:
     void selectedClipNameEdited(const QString&);
+    void selectedClipDurationEdited(const QString&);
 
 };
 

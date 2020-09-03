@@ -43,11 +43,13 @@ void ClipInspectorView::setController(ClipInspectorController *controller)
     this->controller = controller;
 
     connect(clipNameLineEdit, &QLineEdit::textEdited, controller, &ClipInspectorController::selectedClipNameEdited);
+    connect(clipDurationLineEdit, &QLineEdit::textEdited, controller, &ClipInspectorController::selectedClipDurationEdited);
 }
 
 void ClipInspectorView::selectedClipChanged()
 {
     clipNameLineEdit->setText(model->selectedClip()->getName());
+    clipDurationLineEdit->setText(QString::number(model->selectedClip()->getDuration(), 'f', 1));
     update();
 }
 
