@@ -8,6 +8,7 @@
 class Q_DECL_EXPORT ClipInspectorModel : public QObject
 {
     Q_OBJECT
+
 public:
     explicit ClipInspectorModel(QObject *parent = nullptr);
     void setSceneList(std::vector<Scene*> *sceneList);
@@ -20,7 +21,11 @@ private:
     std::vector<Scene*> *sceneList;
 
 Q_SIGNALS:
-    void selectedClipChanged();
+    void selectedClipNameChanged();
+    void selectedClipDurationChanged();
+
+private Q_SLOTS:
+    void setSelectedClipName(const QString& name);
 
 };
 

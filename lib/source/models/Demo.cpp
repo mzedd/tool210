@@ -14,7 +14,7 @@ Demo::~Demo()
     }
 }
 
-std::vector<Clip> *Demo::clipList()
+std::vector<Clip *> *Demo::clipList()
 {
     return &clipList_;
 }
@@ -26,11 +26,11 @@ std::vector<Scene *> *Demo::sceneList()
 
 void Demo::addClip()
 {
-    clipList()->push_back(Clip());
-    clipList()->back().setDuration(20.0f);
+    clipList()->push_back(new Clip());
+    clipList()->back()->setDuration(20.0f);
 
     addScene();
-    clipList()->at(clipList()->size()-1).setScene(sceneList_.at(sceneList_.size()-1));
+    clipList()->at(clipList()->size()-1)->setScene(sceneList_.at(sceneList_.size()-1));
     setSelectedClip(clipList()->size() - 1);
 }
 
@@ -78,7 +78,7 @@ int Demo::clipIdAt(float time)
     float clipEndTime = 0.0f;
 
     for(unsigned int id = 0; id < clipList_.size(); id++) {
-        clipEndTime += clipList_.at(id).getDuration();
+        clipEndTime += clipList_.at(id)->getDuration();
         if(time <= clipEndTime)
             return static_cast<int>(id);
     }

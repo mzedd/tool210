@@ -15,7 +15,7 @@ public:
     ~Demo();
     Q_DISABLE_COPY_MOVE(Demo)
 
-    std::vector<Clip> *clipList();
+    std::vector<Clip*> *clipList();
     std::vector<Scene*> *sceneList();
 
     void addClip();
@@ -30,8 +30,8 @@ public:
     void setSelectedClip(int id);
 
 private:
-    std::vector<Clip> clipList_;
-    std::vector<Scene*> sceneList_;
+    std::vector<Clip *> clipList_;
+    std::vector<Scene *> sceneList_;
 
     int selectedClip_;
     // TODO: musicTrack

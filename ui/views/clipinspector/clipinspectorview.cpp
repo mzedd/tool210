@@ -35,7 +35,8 @@ void ClipInspectorView::setModel(ClipInspectorModel *model)
 {
     this->model = model;
 
-    connect(model, &ClipInspectorModel::selectedClipChanged, this, &ClipInspectorView::selectedClipChanged);
+    connect(model, &ClipInspectorModel::selectedClipNameChanged, this, &ClipInspectorView::selectedClipNameChanged);
+    connect(model, &ClipInspectorModel::selectedClipDurationChanged, this, &ClipInspectorView::selectedClipDurationChanged);
 }
 
 void ClipInspectorView::setController(ClipInspectorController *controller)
@@ -46,9 +47,14 @@ void ClipInspectorView::setController(ClipInspectorController *controller)
     connect(clipDurationLineEdit, &QLineEdit::textEdited, controller, &ClipInspectorController::selectedClipDurationEdited);
 }
 
-void ClipInspectorView::selectedClipChanged()
+void ClipInspectorView::selectedClipNameChanged()
 {
-    clipNameLineEdit->setText(model->selectedClip()->getName());
+    clipNameLineEdit->setText(model->selectedClip()->name());
+    update();
+}
+
+void ClipInspectorView::selectedClipDurationChanged()
+{
     clipDurationLineEdit->setText(QString::number(model->selectedClip()->getDuration(), 'f', 1));
     update();
 }

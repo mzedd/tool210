@@ -2,14 +2,17 @@
 #define CLIP_H
 
 #include <QString>
+#include <QObject>
 #include "Scene.h"
 
-class Clip
+class Clip : public QObject
 {
+    Q_OBJECT
+
 public:
     Clip();
     void renderAt(float time);
-    QString getName();
+    QString name() const;
     void setName(QString name);
     float getDuration();
     void setDuration(float duration);
@@ -17,7 +20,7 @@ public:
     void setScene(Scene *scene);
 
 private:
-    QString name;
+    QString name_;
     float duration;
     Scene *scene;
 };

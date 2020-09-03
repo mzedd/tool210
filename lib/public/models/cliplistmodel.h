@@ -18,7 +18,7 @@ public:
 
     void setSelectedClip(int id);
 
-    void setClipList(std::vector<Clip> *clipList);
+    void setClipList(std::vector<Clip *> *clipList);
 
     enum ClipRoles {
         ClipName = Qt::UserRole + 1,
@@ -26,7 +26,7 @@ public:
     };
 
 private:
-    std::vector<Clip> *clipList;
+    std::vector<Clip *> *clipList;
 
 Q_SIGNALS:
     void selectedClipChanged(QModelIndex index);

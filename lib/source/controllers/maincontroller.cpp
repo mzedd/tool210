@@ -47,17 +47,17 @@ void MainController::handleClipSelected(int id)
 {
     demo->setSelectedClip(id);
     timelineController()->setSelectedClip(id);
-    clipInspectorController()->setSelectedClip(&demo->clipList()->at(id));
+    clipInspectorController()->setSelectedClip(demo->clipList()->at(id));
 }
 
 void MainController::handleSelectedClipNameEdited(const QString &name)
 {
-    demo->clipList()->at(demo->selectedClip()).setName(name);
+    demo->clipList()->at(demo->selectedClip())->setName(name);
 }
 
 void MainController::handleSelectedClipDurationEdited(const QString &duration)
 {
-    demo->clipList()->at(demo->selectedClip()).setDuration(duration.toFloat());
+    demo->clipList()->at(demo->selectedClip())->setDuration(duration.toFloat());
 }
 
 void MainController::handlePlayPauseClicked()
@@ -75,7 +75,7 @@ void MainController::handleAddClip()
 {
     demo->addClip();
     timelineController()->setSelectedClip(demo->selectedClip());
-    clipInspectorController()->setSelectedClip(&demo->clipList()->at(demo->selectedClip()));
+    clipInspectorController()->setSelectedClip(demo->clipList()->at(demo->selectedClip()));
 }
 
 void MainController::handleClipToRenderChanged(int id)
@@ -83,7 +83,7 @@ void MainController::handleClipToRenderChanged(int id)
     if(id < 0)
         clipScreenController_->setClipToRender(nullptr);
     else
-        clipScreenController_->setClipToRender(&demo->clipList()->at(id));
+        clipScreenController_->setClipToRender(demo->clipList()->at(id));
 }
 
 void MainController::handleFrameFinishedAt(float time)

@@ -25,7 +25,8 @@ private:
     ClipInspectorController *controller;
 
 private Q_SLOTS:
-    void selectedClipChanged();
+    void selectedClipNameChanged();
+    void selectedClipDurationChanged();
     void sceneListChanged();
 
 };

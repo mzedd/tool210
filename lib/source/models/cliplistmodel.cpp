@@ -17,14 +17,14 @@ QVariant ClipListModel::data(const QModelIndex &index, int role) const
     if(!index.isValid())
         return  QVariant();
 
-    Clip clip = clipList->at(index.row());
+    Clip *clip = clipList->at(index.row());
 
     switch (role) {
     case ClipName:
-        return QVariant(clip.getName());
+        return QVariant(clip->name());
         break;
     case ClipDuration:
-        return QVariant(clip.getDuration());
+        return QVariant(clip->getDuration());
     }
 
     return QVariant();
@@ -32,7 +32,7 @@ QVariant ClipListModel::data(const QModelIndex &index, int role) const
 
 bool ClipListModel::moveRows(const QModelIndex& /*sourceParent*/, int sourceRow, int /*count*/, const QModelIndex &destinationParent, int /*destinationChild*/)
 {
-    Clip tmp = clipList->at(sourceRow);
+    Clip *tmp = clipList->at(sourceRow);
     clipList->at(sourceRow) = clipList->at(destinationParent.row());
     clipList->at(destinationParent.row()) = tmp;
 
@@ -44,7 +44,7 @@ void ClipListModel::setSelectedClip(int id)
     emit selectedClipChanged(index(id, 0));
 }
 
-void ClipListModel::setClipList(std::vector<Clip> *clipList)
+void ClipListModel::setClipList(std::vector<Clip *> *clipList)
 {
     this->clipList = clipList;
 }
