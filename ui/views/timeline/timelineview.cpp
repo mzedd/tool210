@@ -35,6 +35,7 @@ TimelineView::TimelineView(ClipListModel *model, QWidget *parent) :
     connect(clipListView, SIGNAL(clipToRenderChanged(int)), this, SIGNAL(clipToRenderChanged(int)));
     connect(clipListView, &ClipListView::clipSelected, this, &TimelineView::clipSelected);
     connect(model, &ClipListModel::selectedClipChanged, clipListView, &ClipListView::selectedClipChanged);
+    connect(model, &ClipListModel::selectedClipDurationChanged, clipListView, &ClipListView::selectedClipDurationChanged);
 }
 
 void TimelineView::setController(TimelineController *timelineController)

@@ -43,7 +43,6 @@ private:
     float zoom;
     float time;
     DragState timeCurorDragState;
-    DragState currentClipDragState;
 
 Q_SIGNALS:
     void zoomChanged(float zoom);
@@ -54,6 +53,7 @@ Q_SIGNALS:
 public Q_SLOTS:
     void setTime(float time);
     void selectedClipChanged(QModelIndex index);
+    void selectedClipDurationChanged();
 };
 
 #endif // CLIPLISTVIEW_H

@@ -37,11 +37,11 @@ void MainController::setModel(Demo *demo)
 {
     this->demo = demo;
     connect(demo, &Demo::clipToRenderChanged, this, &MainController::handleClipToRenderChanged);
+    connect(demo, &Demo::clipAdded, this, &MainController::handleClipSelected);
 }
 
 void MainController::handleClipSelected(int id)
 {
-    demo->setSelectedClip(id);
     timelineController()->setSelectedClip(id);
     clipInspectorController()->setSelectedClip(demo->clipList()->at(id));
 }
@@ -60,8 +60,6 @@ void MainController::handleTimeChanged(float time)
 void MainController::handleAddClip()
 {
     demo->addClip();
-    timelineController()->setSelectedClip(demo->selectedClip());
-    clipInspectorController()->setSelectedClip(demo->clipList()->at(demo->selectedClip()));
 }
 
 void MainController::handleClipToRenderChanged(int id)

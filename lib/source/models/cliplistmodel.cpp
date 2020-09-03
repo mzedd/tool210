@@ -2,7 +2,8 @@
 #include "models/Demo.h"
 
 ClipListModel::ClipListModel(QObject *parent) :
-    QAbstractListModel(parent)
+    QAbstractListModel(parent),
+    selectedClip_(nullptr)
 {
 
 }
@@ -39,8 +40,24 @@ bool ClipListModel::moveRows(const QModelIndex& /*sourceParent*/, int sourceRow,
     return true;
 }
 
+Clip *ClipListModel::selectedClip() const
+{
+    return selectedClip_;
+}
+
 void ClipListModel::setSelectedClip(int id)
 {
+    Clip *clip = clipList->at(id);
+
+    if(selectedClip_)
+        disconnect(selectedClip_, &Clip::durationChanged, this, &ClipListModel::selectedClipDurationChanged);
+
+    selectedClip_ = clip;
+    if(selectedClip_ == nullptr)
+        return;
+
+    connect(selectedClip_, &Clip::durationChanged, this, &ClipListModel::selectedClipDurationChanged);
+
     emit selectedClipChanged(index(id, 0));
 }
 

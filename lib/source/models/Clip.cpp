@@ -17,6 +17,17 @@ void Clip::renderAt(float time)
     scene_->renderAt(time);
 }
 
+int Clip::id() const
+{
+    return id_;
+}
+
+void Clip::setId(int id)
+{
+    id_ = id;
+    emit idChanged();
+}
+
 QString Clip::name() const
 {
     return name_;

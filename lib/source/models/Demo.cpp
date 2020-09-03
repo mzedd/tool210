@@ -28,10 +28,11 @@ void Demo::addClip()
 {
     clipList()->push_back(new Clip());
     clipList()->back()->setDuration(20.0f);
+    clipList()->back()->setId(clipList()->size() - 1);
 
     addScene();
-    clipList()->at(clipList()->size()-1)->setScene(sceneList_.at(sceneList_.size()-1));
-    setSelectedClip(clipList()->size() - 1);
+    clipList()->back()->setScene(sceneList_.back());
+    emit clipAdded(clipList()->back()->id());
 }
 
 void Demo::checkClipToBeRenderdChangedAt(float time)
@@ -60,17 +61,6 @@ void Demo::initializeShaders(int w, int h)
         scene->initialize();
         scene->setViewportResolution(w, h);
     }
-}
-
-int Demo::selectedClip()
-{
-    return selectedClip_;
-}
-
-void Demo::setSelectedClip(int id)
-{
-    selectedClip_ = id;
-    emit selectedClipChanged(selectedClip_);
 }
 
 int Demo::clipIdAt(float time)

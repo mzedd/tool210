@@ -17,8 +17,7 @@ ClipListView::ClipListView(QWidget *parent) :
     QAbstractItemView(parent),
     zoom(ZOOM_DEFAULT),
     time(TIME_CURSOR_DEFAULT),
-    timeCurorDragState(DragState::None),
-    currentClipDragState(DragState::None)
+    timeCurorDragState(DragState::None)
 {
     setMouseTracking(true);
 }
@@ -116,8 +115,7 @@ void ClipListView::mousePressEvent(QMouseEvent *event)
             } else {
                 QModelIndex index = indexAt(event->pos());
                 if(index.isValid()) {
-                    setCurrentIndex(index);
-                    currentClipDragState = DragState::Dragged;
+                    emit clipSelected(index.row());
                 } else {
                     setCurrentIndex(QModelIndex());
                 }
@@ -153,10 +151,11 @@ void ClipListView::mouseReleaseEvent(QMouseEvent *event)
         } else {
             QModelIndex index = indexAt(event->pos());
             if(index.isValid()) {
-                model()->moveRow(currentIndex(), currentIndex().row(), index, index.row());
-                emit clipSelected(index.row());
+                if(index != currentIndex()) {
+                    model()->moveRow(currentIndex(), currentIndex().row(), index, index.row());
+                    emit clipSelected(index.row());
+                }
             }
-            currentClipDragState = DragState::None;
         }
     }
 
@@ -270,5 +269,10 @@ void ClipListView::setTime(float time)
 void ClipListView::selectedClipChanged(QModelIndex index)
 {
     setCurrentIndex(index);
+    viewport()->update();
+}
+
+void ClipListView::selectedClipDurationChanged()
+{
     viewport()->update();
 }
