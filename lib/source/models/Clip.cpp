@@ -3,17 +3,18 @@
 const QString DEFAULT_CLIP_NAME = "default";
 constexpr float DEFAULT_CLIP_DURATION = 10.0f;
 
-Clip::Clip() :
+Clip::Clip(QObject *parent) :
+    QObject(parent),
     name_(DEFAULT_CLIP_NAME),
-    duration(DEFAULT_CLIP_DURATION),
-    scene(nullptr)
+    duration_(DEFAULT_CLIP_DURATION),
+    scene_(nullptr)
 {
 
 }
 
 void Clip::renderAt(float time)
 {
-    scene->renderAt(time);
+    scene_->renderAt(time);
 }
 
 QString Clip::name() const
@@ -24,24 +25,27 @@ QString Clip::name() const
 void Clip::setName(QString name)
 {
     this->name_ = name;
+    emit nameChanged();
 }
 
-float Clip::getDuration()
+float Clip::duration() const
 {
-    return duration;
+    return duration_;
 }
 
 void Clip::setDuration(float duration)
 {
-    this->duration = duration;
+    this->duration_ = duration;
+    emit durationChanged();
 }
 
-Scene *Clip::getScene()
+Scene *Clip::scene() const
 {
-    return scene;
+    return scene_;
 }
 
 void Clip::setScene(Scene *scene)
 {
-    this->scene = scene;
+    this->scene_ = scene;
+    emit sceneChanged();
 }

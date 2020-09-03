@@ -24,7 +24,7 @@ QVariant ClipListModel::data(const QModelIndex &index, int role) const
         return QVariant(clip->name());
         break;
     case ClipDuration:
-        return QVariant(clip->getDuration());
+        return QVariant(clip->duration());
     }
 
     return QVariant();

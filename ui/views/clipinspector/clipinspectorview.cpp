@@ -55,7 +55,7 @@ void ClipInspectorView::selectedClipNameChanged()
 
 void ClipInspectorView::selectedClipDurationChanged()
 {
-    clipDurationLineEdit->setText(QString::number(model->selectedClip()->getDuration(), 'f', 1));
+    clipDurationLineEdit->setText(QString::number(model->selectedClip()->duration(), 'f', 1));
     update();
 }
 

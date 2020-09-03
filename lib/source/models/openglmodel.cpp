@@ -70,9 +70,9 @@ void OpenGLModel::paintGL()
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     if(clipToRender()) {
-        if(!clipToRender()->getScene()->isInitialized()) {
-            clipToRender()->getScene()->initialize();
-            clipToRender()->getScene()->setViewportResolution(width, height);
+        if(!clipToRender()->scene()->isInitialized()) {
+            clipToRender()->scene()->initialize();
+            clipToRender()->scene()->setViewportResolution(width, height);
         }
 
         clipToRender()->renderAt(time());
