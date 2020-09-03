@@ -34,6 +34,7 @@ protected:
 private:
     bool isMouseFloatingOverTimeCursor(const QPoint &point) const;
     int clipUnderTimeCursor() const;
+    void setTimeFromCursorPosition(int x);
 
     enum DragState {
         None,

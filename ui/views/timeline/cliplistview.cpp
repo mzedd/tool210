@@ -136,7 +136,7 @@ void ClipListView::mouseMoveEvent(QMouseEvent *event)
     }
 
     if(timeCurorDragState == DragState::Dragged) {
-        time = event->x() / (PIXEL_PER_SECOND * zoom);
+        setTimeFromCursorPosition(event->x());
         emit timeChanged(time);
         viewport()->update();
     }
@@ -147,6 +147,9 @@ void ClipListView::mouseReleaseEvent(QMouseEvent *event)
     if(event->button() == Qt::MouseButton::LeftButton) {
         if(isMouseFloatingOverTimeCursor(event->pos())) {
             timeCurorDragState = DragState::None;
+            setTimeFromCursorPosition(event->x());
+            emit timeChanged(time);
+
             emit clipToRenderChanged(clipUnderTimeCursor());
         } else {
             QModelIndex index = indexAt(event->pos());
@@ -258,6 +261,12 @@ int ClipListView::clipUnderTimeCursor() const
 {
     float x = time * PIXEL_PER_SECOND * zoom;
     return indexAt(QPoint(x, TIMEAXIS_HEIGHT + CLIP_HEIGHT * 0.5f)).row();
+}
+
+void ClipListView::setTimeFromCursorPosition(int x)
+{
+    time = x / (PIXEL_PER_SECOND * zoom);
+    time = qMax(0.0f, time);
 }
 
 void ClipListView::setTime(float time)

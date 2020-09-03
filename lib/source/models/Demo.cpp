@@ -69,7 +69,7 @@ int Demo::clipIdAt(float time)
 
     for(unsigned int id = 0; id < clipList_.size(); id++) {
         clipEndTime += clipList_.at(id)->duration();
-        if(time <= clipEndTime)
+        if(time < clipEndTime)
             return static_cast<int>(id);
     }
 

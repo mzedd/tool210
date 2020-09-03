@@ -13,5 +13,8 @@ void main(void)
     float r = 0.25;
     color *= smoothstep(r-0.01, r+0.01, length(p));
 
+    if(uv.x < iTime * 0.1)
+        color = vec3(0.0);
+
     gl_FragColor = vec4(color, 1.0);
 }
