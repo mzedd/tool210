@@ -1,13 +1,13 @@
 #include "clipinspectorview.h"
 #include <QHBoxLayout>
+#include <QFormLayout>
 #include <QLabel>
 
 ClipInspectorView::ClipInspectorView(QWidget *parent) :
     QWidget(parent)
 {
     QVBoxLayout *mainLayout = new QVBoxLayout;
-    QHBoxLayout *clipNameLayout = new QHBoxLayout;
-    QHBoxLayout *sceneListLayout = new QHBoxLayout;
+    QFormLayout *clipDataLayout = new QFormLayout;
 
     // heading
     mainLayout->addWidget(new QLabel("Clip Inspector"));
@@ -18,21 +18,16 @@ ClipInspectorView::ClipInspectorView(QWidget *parent) :
     line->setFrameShadow(QFrame::Sunken);
     mainLayout->addWidget(line);
 
-    // clip name
-    clipNameLineEdit = new QLineEdit;
-    clipNameLayout->addWidget(new QLabel("Clip name"));
-    clipNameLayout->addWidget(clipNameLineEdit);
-    mainLayout->addLayout(clipNameLayout);
-
-    // scene list
+    // clip data form
     sceneComboBox = new QComboBox;
-    sceneListLayout->addWidget(new QLabel("Scene:"));
-    sceneListLayout->addWidget(sceneComboBox);
-    mainLayout->addLayout(sceneListLayout);
+    clipNameLineEdit = new QLineEdit;
+    clipDurationLineEdit = new QLineEdit("0");
+    clipDataLayout->addRow(new QLabel("Name:"), clipNameLineEdit);
+    clipDataLayout->addRow(new QLabel("Duration:"), clipDurationLineEdit);
+    clipDataLayout->addRow(new QLabel("Scene:"), sceneComboBox);
+    mainLayout->addLayout(clipDataLayout);
 
-    // stretcher
     mainLayout->addStretch();
-
     setLayout(mainLayout);
 }
 

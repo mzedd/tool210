@@ -18,6 +18,7 @@ public:
 
 private:
     QLineEdit *clipNameLineEdit;
+    QLineEdit *clipDurationLineEdit;
     QComboBox *sceneComboBox;
 
     ClipInspectorModel *model;
