@@ -37,6 +37,7 @@ private:
 
 Q_SIGNALS:
     void clipAdded(int id);
+    void sceneAdded();
     void clipToRenderChanged(int id);
 
 };

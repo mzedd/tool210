@@ -53,6 +53,7 @@ Scene *Demo::sceneAt(int index)
 void Demo::addScene()
 {
     sceneList_.push_back(new ShaderOnlyScene);
+    emit sceneAdded();
 }
 
 void Demo::initializeShaders(int w, int h)

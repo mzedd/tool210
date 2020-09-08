@@ -32,6 +32,10 @@ add_executable(${PROJECT_NAME}
   # clipinspector
   views/clipinspector/clipinspectorview.cpp
   views/clipinspector/clipinspectorview.h
+
+  # sceneeditor
+  views/sceneeditor/sceneeditorview.cpp
+  views/sceneeditor/sceneeditorview.h
 )
 
 target_include_directories(${PROJECT_NAME}

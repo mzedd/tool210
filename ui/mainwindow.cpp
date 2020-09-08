@@ -33,6 +33,9 @@ void MainWindow::setClipInspectorModel(ClipInspectorModel *model)
     clipInspectorView = new ClipInspectorView(this);
     clipInspectorView->setModel(model);
     clipInspectorView->setController(mainController->clipInspectorController());
+
+    sceneEditorView = new SceneEditorView(this);
+    sceneEditorView->setModel(model->sceneList());
 }
 
 void MainWindow::initialize()
@@ -67,5 +70,10 @@ void MainWindow::createWidgets()
     dockWidget = new QDockWidget(this);
     dockWidget->setFeatures(QDockWidget::DockWidgetMovable);
     dockWidget->setWidget(clipInspectorView);
+    addDockWidget(Qt::DockWidgetArea::RightDockWidgetArea, dockWidget);
+
+    dockWidget = new QDockWidget(this);
+    dockWidget->setFeatures(QDockWidget::DockWidgetMovable);
+    dockWidget->setWidget(sceneEditorView);
     addDockWidget(Qt::DockWidgetArea::RightDockWidgetArea, dockWidget);
 }

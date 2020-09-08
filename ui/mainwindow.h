@@ -9,6 +9,7 @@
 #include "views/timeline/timelineview.h"
 #include "views/clipscreen/clipscreenview.h"
 #include "views/clipinspector/clipinspectorview.h"
+#include "views/sceneeditor/sceneeditorview.h"
 
 class MainWindow : public QMainWindow
 {
@@ -27,6 +28,7 @@ private:
     TimelineView *timelineView;
     ClipScreenView *clipScreenView;
     ClipInspectorView *clipInspectorView;
+    SceneEditorView *sceneEditorView;
 
     void createMenu();
     void createWidgets();
