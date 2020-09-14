@@ -12,11 +12,15 @@ class Q_DECL_EXPORT Demo : public QObject
 
 public:
     Demo();
+    Demo(std::vector<Clip *> clipList, std::vector<Scene *> sceneList);
     ~Demo();
     Q_DISABLE_COPY_MOVE(Demo)
 
-    std::vector<Clip*> *clipList();
-    std::vector<Scene*> *sceneList();
+    QString name() const;
+    void setName(QString name);
+
+    std::vector<Clip *> &clipList();
+    std::vector<Scene *> &sceneList();
 
     void addClip();
     void checkClipToBeRenderdChangedAt(float time);
@@ -27,6 +31,7 @@ public:
     void initializeShaders(int w, int h);
 
 private:
+    QString name_;
     std::vector<Clip *> clipList_;
     std::vector<Scene *> sceneList_;
 

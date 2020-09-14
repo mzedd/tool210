@@ -8,12 +8,13 @@ class DemoJsonFileAccess : public DemoFileAccessInterface
 {
 public:
     DemoJsonFileAccess(QString filename);
-    QString getDemoName();
-    std::vector<Clip *> getClipList();
-    std::vector<Scene *> getSceneList();
+    Demo *getDemo();
 
 private:
     void loadFile(QString filename);
+    QString getDemoName();
+    std::vector<Clip *> getClipList();
+    std::vector<Scene *> getSceneList();
 
     QJsonObject jsonObject;
 };

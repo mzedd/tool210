@@ -2,8 +2,7 @@
 #include "demojsonfileaccess.h"
 
 #include <vector>
-#include "models/Clip.h"
-#include "models/Scene.h"
+#include "models/Demo.h"
 
 #include <QTextStream>
 
@@ -11,10 +10,11 @@ int main()
 {
     DemoFileAccessInterface *demoFileAccess = new DemoJsonFileAccess("resources/demo.json");
 
+    Demo *demo = demoFileAccess->getDemo();
 
-    assert(!demoFileAccess->getDemoName().compare("Test Demo"));
+    assert(!demo->name().compare("Test Demo"));
 
-    std::vector<Clip *> clipList = demoFileAccess->getClipList();
+    std::vector<Clip *> clipList = demo->clipList();
     for(Clip *clip : clipList) {
         QTextStream(stdout) << clip->name() << Qt::endl;
     }
@@ -22,7 +22,7 @@ int main()
     assert(!clipList.at(0)->name().compare("first clip"));
     assert(clipList.at(0)->name().compare("wrong clip name"));
 
-    std::vector<Scene *> sceneList = demoFileAccess->getSceneList();
+    std::vector<Scene *> sceneList = demo->sceneList();
     for(Scene *scene : sceneList) {
         QTextStream(stdout) << scene->name() << Qt::endl;
     }

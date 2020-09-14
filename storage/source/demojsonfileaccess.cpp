@@ -1,6 +1,7 @@
 #include "demojsonfileaccess.h"
 
 #include "models/ShaderOnlyScene.h"
+#include "models/Demo.h"
 
 #include <QFile>
 #include <QJsonDocument>
@@ -11,6 +12,29 @@
 DemoJsonFileAccess::DemoJsonFileAccess(QString filename)
 {
     loadFile(filename);
+}
+
+Demo *DemoJsonFileAccess::getDemo()
+{
+    Demo *demo = new Demo(getClipList(), getSceneList());
+    demo->setName(getDemoName());
+
+    return demo;
+}
+
+void DemoJsonFileAccess::loadFile(QString filename)
+{
+    QFile file(filename);
+
+    if(!file.open(QIODevice::ReadOnly)) {
+        qWarning("Couldn't open demo file.");
+    }
+
+    QByteArray fileContent = file.readAll();
+
+    QJsonDocument document(QJsonDocument::fromJson(fileContent));
+
+    jsonObject = document.object();
 }
 
 QString DemoJsonFileAccess::getDemoName()
@@ -74,19 +98,4 @@ std::vector<Scene *> DemoJsonFileAccess::getSceneList()
     }
 
     return sceneList;
-}
-
-void DemoJsonFileAccess::loadFile(QString filename)
-{
-    QFile file(filename);
-
-    if(!file.open(QIODevice::ReadOnly)) {
-        qWarning("Couldn't open demo file.");
-    }
-
-    QByteArray fileContent = file.readAll();
-
-    QJsonDocument document(QJsonDocument::fromJson(fileContent));
-
-    jsonObject = document.object();
 }

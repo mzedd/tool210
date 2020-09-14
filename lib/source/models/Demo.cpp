@@ -6,6 +6,12 @@ Demo::Demo()
 
 }
 
+Demo::Demo(std::vector<Clip *> clipList, std::vector<Scene *> sceneList)
+{
+    clipList_ = clipList;
+    sceneList_ = sceneList;
+}
+
 Demo::~Demo()
 {
     for(auto scene : sceneList_) {
@@ -14,25 +20,35 @@ Demo::~Demo()
     }
 }
 
-std::vector<Clip *> *Demo::clipList()
+QString Demo::name() const
 {
-    return &clipList_;
+    return name_;
 }
 
-std::vector<Scene *> *Demo::sceneList()
+void Demo::setName(QString name)
 {
-    return &sceneList_;
+    name_ = name;
+}
+
+std::vector<Clip *> &Demo::clipList()
+{
+    return clipList_;
+}
+
+std::vector<Scene *> &Demo::sceneList()
+{
+    return sceneList_;
 }
 
 void Demo::addClip()
 {
-    clipList()->push_back(new Clip());
-    clipList()->back()->setDuration(20.0f);
-    clipList()->back()->setId(clipList()->size() - 1);
+    clipList().push_back(new Clip());
+    clipList().back()->setDuration(20.0f);
+    clipList().back()->setId(clipList().size() - 1);
 
     addScene();
-    clipList()->back()->setScene(sceneList_.back());
-    emit clipAdded(clipList()->back()->id());
+    clipList().back()->setScene(sceneList_.back());
+    emit clipAdded(clipList().back()->id());
 }
 
 void Demo::checkClipToBeRenderdChangedAt(float time)

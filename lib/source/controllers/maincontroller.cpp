@@ -43,7 +43,7 @@ void MainController::setModel(Demo *demo)
 void MainController::handleClipSelected(int id)
 {
     timelineController()->setSelectedClip(id);
-    clipInspectorController()->setSelectedClip(demo->clipList()->at(id));
+    clipInspectorController()->setSelectedClip(demo->clipList().at(id));
 }
 
 void MainController::handlePlayPauseClicked()
@@ -67,7 +67,7 @@ void MainController::handleClipToRenderChanged(int id)
     if(id < 0)
         clipScreenController_->setClipToRender(nullptr);
     else
-        clipScreenController_->setClipToRender(demo->clipList()->at(id));
+        clipScreenController_->setClipToRender(demo->clipList().at(id));
 }
 
 void MainController::handleFrameFinishedAt(float time)

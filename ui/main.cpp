@@ -23,18 +23,18 @@ int main(int argc, char *argv[])
     mainController.setModel(&demo);
 
     ClipListModel *clipListModel = new ClipListModel;
-    clipListModel->setClipList(demo.clipList());
+    clipListModel->setClipList(&demo.clipList());
     mainController.timelineController()->setModel(clipListModel);
     mainWindow.setClipListModel(clipListModel);
 
     OpenGLModel *openGLModel = new OpenGLModel;
-    openGLModel->setSceneList(demo.sceneList());
+    openGLModel->setSceneList(&demo.sceneList());
     mainController.clipsScreenController()->setModel(openGLModel);
     mainWindow.setOpenGLModel(openGLModel);
 
     ClipInspectorModel *clipInspectorModel = new ClipInspectorModel;
     SceneListModel *sceneListModel = new SceneListModel;
-    sceneListModel->setSceneList(demo.sceneList());
+    sceneListModel->setSceneList(&demo.sceneList());
     clipInspectorModel->setSceneListModel(sceneListModel);
     mainController.clipInspectorController()->setModel(clipInspectorModel);
     mainWindow.setClipInspectorModel(clipInspectorModel);
