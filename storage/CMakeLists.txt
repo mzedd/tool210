@@ -10,11 +10,23 @@ find_package(Qt5 COMPONENTS Core REQUIRED)
 # Target
 
 add_executable(${PROJECT_NAME}
+    source/demofileaccess.cpp
+    tests/main.cpp
+
+    public/demofileaccessinterface.h
+    public/demofileaccess.h
 )
 
 target_include_directories(${PROJECT_NAME}
   PUBLIC
-    source
+    $<INSTALL_INTERFACE:
+      public
+     >
+    $<BUILD_INTERFACE:
+      ${CMAKE_CURRENT_SOURCE_DIR}/public
+     >
+  PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}/source
 )
 
 target_link_libraries(${PROJECT_NAME}
