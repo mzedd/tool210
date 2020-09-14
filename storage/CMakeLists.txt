@@ -10,11 +10,11 @@ find_package(Qt5 COMPONENTS Core REQUIRED)
 # Target
 
 add_executable(${PROJECT_NAME}
-    source/demofileaccess.cpp
+    source/demojsonfileaccess.cpp
     tests/main.cpp
 
     public/demofileaccessinterface.h
-    public/demofileaccess.h
+    public/demojsonfileaccess.h
 )
 
 target_include_directories(${PROJECT_NAME}

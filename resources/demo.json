@@ -3,20 +3,22 @@
     "scene list": [
         {
             "name": "FirstScene",
-            "shader name": "shader1"
+            "shader file name": "shader1"
         },
         {
             "name": "SecondScene",
-            "shader name" : "shader2"
+            "shader file name" : "shader2"
         }
     ],
     "clip list": [
         {
             "name": "first clip",
+            "duration": 42.0,
             "scene id": 0
         },
         {
             "name": "second clip",
+            "duration": 210.0,
             "scene id": 1
         }
     ]
