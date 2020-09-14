@@ -1,0 +1,23 @@
+{
+    "name": "Test Demo",
+    "scene list": [
+        {
+            "name": "FirstScene",
+            "shader name": "shader1"
+        },
+        {
+            "name": "SecondScene",
+            "shader name" : "shader2"
+        }
+    ],
+    "clip list": [
+        {
+            "name": "first clip",
+            "scene id": 0
+        },
+        {
+            "name": "second clip",
+            "scene id": 1
+        }
+    ]
+}
