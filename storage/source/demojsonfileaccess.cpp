@@ -22,6 +22,11 @@ Demo *DemoJsonFileAccess::getDemo()
     return demo;
 }
 
+void DemoJsonFileAccess::storeDemo(Demo* /*demo*/)
+{
+
+}
+
 void DemoJsonFileAccess::loadFile(QString filename)
 {
     QFile file(filename);
