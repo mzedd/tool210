@@ -2,6 +2,7 @@
 #define SHADERONLYSCENE_H
 
 #include "Scene.h"
+#include <string>
 #include <QOpenGLShaderProgram>
 #include <QOpenGLVertexArrayObject>
 #include <QOpenGLBuffer>
@@ -14,6 +15,8 @@ private:
     QOpenGLBuffer vbo;
     bool initialized;
 
+    std::string shaderFileName_;
+
 public:
     ShaderOnlyScene();
     ~ShaderOnlyScene();
@@ -21,6 +24,7 @@ public:
     void initialize();
     void renderAt(float time);
     bool setShader(const QString& filename);
+    std::string shaderFileName() const;
     void setViewportResolution(int w, int h);
 };
 

@@ -56,6 +56,8 @@ void ShaderOnlyScene::renderAt(float time)
 
 bool ShaderOnlyScene::setShader(const QString& filename)
 {   
+    shaderFileName_ = filename.toStdString();
+
     // add and compile vertex shader
     QOpenGLShader vertShader(QOpenGLShader::Vertex);
     vertShader.compileSourceFile("shader/quad.vert");
@@ -87,6 +89,11 @@ bool ShaderOnlyScene::setShader(const QString& filename)
     qDebug() << "all good";
 
     return true;
+}
+
+std::string ShaderOnlyScene::shaderFileName() const
+{
+    return shaderFileName_;
 }
 
 void ShaderOnlyScene::setViewportResolution(int w, int h)

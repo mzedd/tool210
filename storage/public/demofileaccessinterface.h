@@ -7,7 +7,7 @@
 class DemoFileAccessInterface {
 public:
     virtual Demo *getDemo() = 0;
-    virtual void storeDemo(Demo *demo) = 0;
+    virtual void storeDemo(QString filepath, Demo *demo) = 0;
 };
 
 #endif // DEMOFILEACCESSINTERFACE_H

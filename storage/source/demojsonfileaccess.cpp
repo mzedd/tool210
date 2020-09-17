@@ -28,20 +28,40 @@ Demo *DemoJsonFileAccess::getDemo()
     return demo;
 }
 
-void DemoJsonFileAccess::storeDemo(Demo* demo)
+void DemoJsonFileAccess::storeDemo(QString filepath, Demo* demo)
 {
-    QFile file("resources/outfile"); // TODO: replace outfile properly
+    QFile file(filepath);
 
     if(!file.open(QIODevice::WriteOnly)) {
         qWarning("Couldn't open demo file.");
+        return;
     }
 
-    QByteArray array;
-    QJsonDocument document(jsonObject);
+    // construct demo json object
+    QJsonObject demoJsonObject;
+    demoJsonObject.insert(QString("name"), demo->name());
 
+    QJsonArray clipArray;
+    for(Clip *clip : demo->clipList()) {
+        QJsonObject clipJsonObject;
+        clipJsonObject.insert("name", clip->name());
+        clipJsonObject.insert("duration", clip->duration());
+        clipJsonObject.insert("scene id", getSceneIdFrom(clip->scene(), demo->sceneList()));
+        clipArray.append(clipJsonObject);
+    }
+    demoJsonObject.insert("clip list", clipArray);
+
+    QJsonArray sceneArray;
+    for(Scene *scene : demo->sceneList()) {
+        QJsonObject sceneJsonObject;
+        sceneJsonObject.insert("name", scene->name());
+        sceneJsonObject.insert("shader file name", QString::fromStdString(static_cast<ShaderOnlyScene *>(scene)->shaderFileName()));
+        sceneArray.append(sceneJsonObject);
+    }
+    demoJsonObject.insert("scene list", sceneArray);
+
+    QJsonDocument document(demoJsonObject);
     file.write(document.toJson());
-
-    demo->name();
 }
 
 void DemoJsonFileAccess::loadFile(QString filename)
@@ -115,5 +135,14 @@ std::vector<Clip *> *DemoJsonFileAccess::getClipList(std::vector<Scene *> *scene
     }
 
     return clipList;
+}
+
+int DemoJsonFileAccess::getSceneIdFrom(Scene *scene, std::vector<Scene *> &sceneList) const
+{
+    for(size_t i = 0; i < sceneList.size(); i++) {
+        if(sceneList.at(i) == scene)
+            return static_cast<int>(i);
+    }
+    return -1;
 }
 

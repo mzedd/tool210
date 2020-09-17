@@ -30,5 +30,7 @@ int main()
     assert(!clipList.at(0)->scene()->name().compare("FirstScene"));
     assert(clipList.at(0)->scene()->name().compare("Wrong Scene"));
 
+    demoFileAccess->storeDemo("resources/demo1.json", demo);
+
     return 0;
 }
