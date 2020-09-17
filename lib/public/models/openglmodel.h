@@ -5,7 +5,7 @@
 #include <QElapsedTimer>
 #include <QOpenGLFunctions>
 #include <vector>
-#include "models/Clip.h"
+#include "Clip.h"
 
 class Q_DECL_EXPORT OpenGLModel : public QObject, protected QOpenGLFunctions
 {

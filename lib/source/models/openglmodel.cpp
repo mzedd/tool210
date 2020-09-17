@@ -1,6 +1,6 @@
 #include "openglmodel.h"
-#include "models/Demo.h"
-#include "models/Scene.h"
+#include "Demo.h"
+#include "Scene.h"
 
 constexpr float MSEC_PER_SECS = 0.001f;
 

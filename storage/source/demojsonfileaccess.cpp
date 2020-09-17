@@ -1,7 +1,7 @@
 #include "demojsonfileaccess.h"
 
-#include "models/ShaderOnlyScene.h"
-#include "models/Demo.h"
+#include "ShaderOnlyScene.h"
+#include "Demo.h"
 
 #include <QFile>
 #include <QJsonDocument>

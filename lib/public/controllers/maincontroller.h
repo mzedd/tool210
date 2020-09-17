@@ -6,7 +6,7 @@
 #include "timelinecontroller.h"
 #include "clipscreencontroller.h"
 #include "clipinspectorcontroller.h"
-#include "models/Demo.h"
+#include "Demo.h"
 
 class Q_DECL_EXPORT MainController : public QObject
 {

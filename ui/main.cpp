@@ -1,7 +1,7 @@
 #include <QApplication>
 
 #include "mainwindow.h"
-#include "models/Demo.h"
+#include "Demo.h"
 #include "models/cliplistmodel.h"
 #include "models/openglmodel.h"
 #include "models/clipinspectormodel.h"

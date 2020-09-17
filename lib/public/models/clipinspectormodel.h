@@ -3,7 +3,7 @@
 
 #include <vector>
 #include <QObject>
-#include "models/Clip.h"
+#include "Clip.h"
 #include "models/scenelistmodel.h"
 
 class Q_DECL_EXPORT ClipInspectorModel : public QObject

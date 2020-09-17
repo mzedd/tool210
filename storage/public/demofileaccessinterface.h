@@ -2,7 +2,7 @@
 #define DEMOFILEACCESSINTERFACE_H
 
 #include <vector>
-#include "models/Demo.h"
+#include "Demo.h"
 
 class DemoFileAccessInterface {
 public:

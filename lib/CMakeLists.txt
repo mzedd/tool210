@@ -20,9 +20,6 @@ add_library(${PROJECT_NAME} SHARED
   source/models/scenelistmodel.cpp
   source/models/openglmodel.cpp
   source/models/clipinspectormodel.cpp
-  source/models/Demo.cpp
-  source/models/Clip.cpp
-  source/models/ShaderOnlyScene.cpp
 
   # public
   ## controllers
@@ -36,10 +33,6 @@ add_library(${PROJECT_NAME} SHARED
   public/models/scenelistmodel.h
   public/models/openglmodel.h
   public/models/clipinspectormodel.h
-  public/models/Demo.h
-  public/models/Clip.h
-  public/models/Scene.h
-  public/models/ShaderOnlyScene.h
 )
 
 target_include_directories(${PROJECT_NAME}
@@ -69,6 +62,7 @@ target_link_libraries(${PROJECT_NAME}
   PUBLIC
     Qt5::Core
     Qt5::Gui
+    tool210-entities
 )
 
 target_compile_features(${PROJECT_NAME}

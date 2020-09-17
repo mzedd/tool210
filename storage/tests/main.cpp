@@ -2,7 +2,7 @@
 #include "demojsonfileaccess.h"
 
 #include <vector>
-#include "models/Demo.h"
+#include "Demo.h"
 
 #include <iostream>
 

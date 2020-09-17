@@ -1,19 +1,23 @@
 cmake_minimum_required(VERSION 3.7.2)
-project(tool210-storage LANGUAGES CXX)
+project(tool210-entities LANGUAGES CXX)
 
 ###########################
 # Dependencies
-
-find_package(Qt5 COMPONENTS Core REQUIRED)
+find_package(Qt5 COMPONENTS Core Gui REQUIRED)
 
 ###########################
-# Target
-
+# Targets
 add_library(${PROJECT_NAME} STATIC
-    source/demojsonfileaccess.cpp
+  # source
+  source/Demo.cpp
+  source/Clip.cpp
+  source/ShaderOnlyScene.cpp
 
-    public/demofileaccessinterface.h
-    public/demojsonfileaccess.h
+  # public
+  public/Demo.h
+  public/Clip.h
+  public/Scene.h
+  public/ShaderOnlyScene.h
 )
 
 target_include_directories(${PROJECT_NAME}
@@ -28,10 +32,15 @@ target_include_directories(${PROJECT_NAME}
     ${CMAKE_CURRENT_SOURCE_DIR}/source
 )
 
+target_compile_definitions(${PROJECT_NAME}
+  PRIVATE
+    TOOL210_ENTITIES
+)
+
 target_link_libraries(${PROJECT_NAME}
   PUBLIC
-  Qt5::Core
-  tool210-entities
+    Qt5::Core
+    Qt5::Gui
 )
 
 target_compile_features(${PROJECT_NAME}
@@ -42,11 +51,7 @@ target_compile_features(${PROJECT_NAME}
 set_target_properties(${PROJECT_NAME}
   PROPERTIES
     AUTOMOC ON
-    AUTORCC ON
+    ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin"
+    LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin"
     RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin"
 )
-
-###########################
-# Include tests
-
-add_subdirectory(tests)

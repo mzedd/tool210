@@ -3,7 +3,7 @@
 
 #include <vector>
 #include <QAbstractListModel>
-#include "models/Scene.h"
+#include "Scene.h"
 
 class Q_DECL_EXPORT SceneListModel : public QAbstractListModel
 {

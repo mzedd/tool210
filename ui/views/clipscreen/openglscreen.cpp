@@ -1,6 +1,6 @@
 #include "openglscreen.h"
 #include <QtDebug>
-#include "models/ShaderOnlyScene.h"
+#include "ShaderOnlyScene.h"
 
 OpenGLScreen::OpenGLScreen(OpenGLModel *model, QWidget* parent) :
     QOpenGLWidget(parent),
