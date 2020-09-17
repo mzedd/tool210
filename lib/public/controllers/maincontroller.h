@@ -24,6 +24,9 @@ private:
     ClipInspectorController *clipInspectorController_;
     Demo *demo;
 
+public Q_SLOTS:
+    void handleLoadDemo(QString filename);
+
 private Q_SLOTS:
     void handleClipSelected(int id);
     void handlePlayPauseClicked();

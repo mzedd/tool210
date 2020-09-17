@@ -40,6 +40,11 @@ void MainController::setModel(Demo *demo)
     connect(demo, &Demo::clipAdded, this, &MainController::handleClipSelected);
 }
 
+void MainController::handleLoadDemo(QString filename)
+{
+
+}
+
 void MainController::handleClipSelected(int id)
 {
     timelineController()->setSelectedClip(id);

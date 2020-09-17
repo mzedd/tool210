@@ -32,5 +32,12 @@ private:
 
     void createMenu();
     void createWidgets();
+
+Q_SIGNALS:
+    void loadDemo(QString filepath);
+
+private Q_SLOTS:
+    void openDemoFile();
+
 };
 #endif // MAINWINDOW_H

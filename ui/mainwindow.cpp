@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include <QDockWidget>
 #include <QMenu>
+#include <QFileDialog>
 
 #include "models/cliplistmodel.h"
 
@@ -55,6 +56,10 @@ void MainWindow::createMenu()
     menuBar->addMenu(editMenu);
     menuBar->addMenu(viewMenu);
 
+    QAction *loadDemo = new QAction("Open", menuBar);
+    connect(loadDemo, &QAction::triggered, this, &MainWindow::openDemoFile);
+    connect(this, &MainWindow::loadDemo, mainController, &MainController::handleLoadDemo);
+
     setMenuBar(menuBar);
 }
 
@@ -76,4 +81,10 @@ void MainWindow::createWidgets()
     dockWidget->setFeatures(QDockWidget::DockWidgetMovable);
     dockWidget->setWidget(sceneEditorView);
     addDockWidget(Qt::DockWidgetArea::RightDockWidgetArea, dockWidget);
+}
+
+void MainWindow::openDemoFile()
+{
+    QString filename = QFileDialog::getOpenFileName(this);
+    emit loadDemo(filename);
 }
