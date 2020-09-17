@@ -24,8 +24,11 @@ public:
     void initialize();
     void renderAt(float time);
     bool setShader(const QString& filename);
-    std::string shaderFileName() const;
+
     void setViewportResolution(int w, int h);
+
+    std::string shaderFileName() const;
+    void setShaderFileName(std::string filename);
 };
 
 #endif // SHADERONLYSCENE_H

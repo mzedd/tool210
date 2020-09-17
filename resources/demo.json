@@ -3,11 +3,11 @@
     "scene list": [
         {
             "name": "FirstScene",
-            "shader file name": "shader1"
+            "shader file name": "resources/default.frag"
         },
         {
             "name": "SecondScene",
-            "shader file name" : "shader2"
+            "shader file name" : "resources/default.frag"
         }
     ],
     "clip list": [

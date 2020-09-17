@@ -1,7 +1,5 @@
 #include "ShaderOnlyScene.h"
 
-#include <QtDebug>
-
 ShaderOnlyScene::ShaderOnlyScene()
 {
     name_ = QString("default shader only scene");
@@ -22,7 +20,7 @@ bool ShaderOnlyScene::isInitialized() const
 void ShaderOnlyScene::initialize()
 {
     shaderProgram.create();
-    setShader("shader/default.frag");
+    initialized = setShader(QString::fromStdString(shaderFileName_));
 
     float vertices[] = {
         -1.0f, -1.0f, 0.0f,
@@ -42,8 +40,6 @@ void ShaderOnlyScene::initialize()
 
     shaderProgram.enableAttributeArray(0);
     shaderProgram.setAttributeArray(0, GL_FLOAT, 0, 3);
-
-    initialized = true;
 }
 
 void ShaderOnlyScene::renderAt(float time)
@@ -55,15 +51,13 @@ void ShaderOnlyScene::renderAt(float time)
 }
 
 bool ShaderOnlyScene::setShader(const QString& filename)
-{   
-    shaderFileName_ = filename.toStdString();
-
+{
     // add and compile vertex shader
     QOpenGLShader vertShader(QOpenGLShader::Vertex);
-    vertShader.compileSourceFile("shader/quad.vert");
+    vertShader.compileSourceFile("resources/quad.vert");
 
     if(!vertShader.isCompiled()) {
-        qDebug() << vertShader.log();
+        qWarning() << vertShader.log();
         return false;
     }
 
@@ -72,7 +66,7 @@ bool ShaderOnlyScene::setShader(const QString& filename)
     fragShader.compileSourceFile(filename);
 
     if(!fragShader.isCompiled()) {
-        qDebug() << fragShader.log();
+        qWarning() << fragShader.log();
         return false;
     }
 
@@ -82,11 +76,9 @@ bool ShaderOnlyScene::setShader(const QString& filename)
     shaderProgram.link();
 
     if(!shaderProgram.isLinked()) {
-        qDebug() << shaderProgram.log();
+        qWarning() << shaderProgram.log();
         return false;
     }
-
-    qDebug() << "all good";
 
     return true;
 }
@@ -94,6 +86,11 @@ bool ShaderOnlyScene::setShader(const QString& filename)
 std::string ShaderOnlyScene::shaderFileName() const
 {
     return shaderFileName_;
+}
+
+void ShaderOnlyScene::setShaderFileName(std::string filename)
+{
+    shaderFileName_ = filename;
 }
 
 void ShaderOnlyScene::setViewportResolution(int w, int h)

@@ -68,6 +68,7 @@ void DemoJsonFileAccess::loadFile(QString filename)
 {
     QFile file(filename);
 
+
     if(!file.open(QIODevice::ReadOnly)) {
         qWarning("Couldn't open demo file.");
     }
@@ -103,7 +104,7 @@ std::vector<Scene *> *DemoJsonFileAccess::getSceneList()
 
             scene = new ShaderOnlyScene;
             scene->setName(sceneJsonObject["name"].toString());
-            scene->setShader(sceneJsonObject["shader file name"].toString());
+            scene->setShaderFileName(sceneJsonObject["shader file name"].toString().toStdString());
 
             sceneList->push_back(scene);
         }
