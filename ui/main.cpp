@@ -9,6 +9,9 @@
 
 #include "maincontroller.h"
 
+#include "demofileaccessinterface.h"
+#include "demojsonfileaccess.h"
+
 int main(int argc, char *argv[])
 {
     QApplication::setApplicationName("tool210");
@@ -19,22 +22,24 @@ int main(int argc, char *argv[])
     MainController mainController;
     mainWindow.setMainController(&mainController);
 
-    Demo demo;
-    mainController.setModel(&demo);
+    DemoFileAccessInterface *demoFileAcessor = new  DemoJsonFileAccess("resources/demo.json");
+
+    Demo *demo = demoFileAcessor->getDemo();
+    mainController.setModel(demo);
 
     ClipListModel *clipListModel = new ClipListModel;
-    clipListModel->setClipList(demo.clipList());
+    clipListModel->setClipList(&demo->clipList());
     mainController.timelineController()->setModel(clipListModel);
     mainWindow.setClipListModel(clipListModel);
 
     OpenGLModel *openGLModel = new OpenGLModel;
-    openGLModel->setSceneList(demo.sceneList());
+    openGLModel->setSceneList(&demo->sceneList());
     mainController.clipsScreenController()->setModel(openGLModel);
     mainWindow.setOpenGLModel(openGLModel);
 
     ClipInspectorModel *clipInspectorModel = new ClipInspectorModel;
     SceneListModel *sceneListModel = new SceneListModel;
-    sceneListModel->setSceneList(demo.sceneList());
+    sceneListModel->setSceneList(&demo->sceneList());
     clipInspectorModel->setSceneListModel(sceneListModel);
     mainController.clipInspectorController()->setModel(clipInspectorModel);
     mainWindow.setClipInspectorModel(clipInspectorModel);

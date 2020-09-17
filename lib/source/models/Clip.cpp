@@ -60,3 +60,13 @@ void Clip::setScene(Scene *scene)
     this->scene_ = scene;
     emit sceneChanged();
 }
+
+int Clip::sceneId() const
+{
+    return sceneId_;
+}
+
+void Clip::setSceneId(int id)
+{
+    this->sceneId_ = id;
+}

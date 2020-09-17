@@ -30,11 +30,15 @@ public:
     Scene *scene() const;
     void setScene(Scene *scene);
 
+    int sceneId() const;
+    void setSceneId(int id);
+
 private:
     int id_;
     QString name_;
     float duration_;
     Scene *scene_;
+    int sceneId_;
 
 Q_SIGNALS:
     void idChanged();

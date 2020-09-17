@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.7.2)
 project(tool210-ui LANGUAGES CXX)
 
 ###########################
@@ -49,6 +49,7 @@ target_link_libraries(${PROJECT_NAME}
   Qt5::Widgets
   Qt5::Gui
   tool210-lib
+  tool210-storage
 )
 
 target_compile_features(${PROJECT_NAME}

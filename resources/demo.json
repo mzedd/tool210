@@ -1,0 +1,25 @@
+{
+    "name": "Test Demo",
+    "scene list": [
+        {
+            "name": "FirstScene",
+            "shader file name": "resources/default.frag"
+        },
+        {
+            "name": "SecondScene",
+            "shader file name" : "resources/default.frag"
+        }
+    ],
+    "clip list": [
+        {
+            "name": "first clip",
+            "duration": 42.0,
+            "scene id": 0
+        },
+        {
+            "name": "second clip",
+            "duration": 210.0,
+            "scene id": 1
+        }
+    ]
+}
