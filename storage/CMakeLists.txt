@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.7.2)
 project(tool210-storage LANGUAGES CXX)
 
 ###########################
@@ -9,9 +9,8 @@ find_package(Qt5 COMPONENTS Core REQUIRED)
 ###########################
 # Target
 
-add_executable(${PROJECT_NAME}
+add_library(${PROJECT_NAME} STATIC
     source/demojsonfileaccess.cpp
-    tests/main.cpp
 
     public/demofileaccessinterface.h
     public/demojsonfileaccess.h
@@ -46,3 +45,8 @@ set_target_properties(${PROJECT_NAME}
     AUTORCC ON
     RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin"
 )
+
+###########################
+# Include tests
+
+add_subdirectory(tests)

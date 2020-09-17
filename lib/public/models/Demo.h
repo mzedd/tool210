@@ -11,8 +11,7 @@ class Q_DECL_EXPORT Demo : public QObject
     Q_OBJECT
 
 public:
-    Demo();
-    Demo(std::vector<Clip *> clipList, std::vector<Scene *> sceneList);
+    Demo(std::vector<Clip *> *clipList, std::vector<Scene *> *sceneList);
     ~Demo();
     Q_DISABLE_COPY_MOVE(Demo)
 
@@ -32,8 +31,8 @@ public:
 
 private:
     QString name_;
-    std::vector<Clip *> clipList_;
-    std::vector<Scene *> sceneList_;
+    std::vector<Clip *> &clipList_;
+    std::vector<Scene *> &sceneList_;
 
     // TODO: musicTrack
     // TODO: postProcessingEffects

@@ -4,7 +4,7 @@
 #include <vector>
 #include "models/Demo.h"
 
-#include <QTextStream>
+#include <iostream>
 
 int main()
 {
@@ -16,7 +16,7 @@ int main()
 
     std::vector<Clip *> clipList = demo->clipList();
     for(Clip *clip : clipList) {
-        QTextStream(stdout) << clip->name() << Qt::endl;
+        std::cout << clip->name().toStdString() << std::endl;
     }
 
     assert(!clipList.at(0)->name().compare("first clip"));
@@ -24,8 +24,11 @@ int main()
 
     std::vector<Scene *> sceneList = demo->sceneList();
     for(Scene *scene : sceneList) {
-        QTextStream(stdout) << scene->name() << Qt::endl;
+        std::cout << scene->name().toStdString() << std::endl;
     }
+
+    assert(!clipList.at(0)->scene()->name().compare("FirstScene"));
+    assert(clipList.at(0)->scene()->name().compare("Wrong Scene"));
 
     return 0;
 }

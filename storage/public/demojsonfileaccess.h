@@ -14,8 +14,8 @@ public:
 private:
     void loadFile(QString filename);
     QString getDemoName();
-    std::vector<Clip *> getClipList();
-    std::vector<Scene *> getSceneList();
+    std::vector<Scene *> *getSceneList();
+    std::vector<Clip *> *getClipList(std::vector<Scene *> *sceneList);
 
     QJsonObject jsonObject;
 };
