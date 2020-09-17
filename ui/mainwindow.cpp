@@ -57,6 +57,7 @@ void MainWindow::createMenu()
     menuBar->addMenu(viewMenu);
 
     QAction *loadDemo = new QAction("Open", menuBar);
+    fileMenu->addAction(loadDemo);
     connect(loadDemo, &QAction::triggered, this, &MainWindow::openDemoFile);
     connect(this, &MainWindow::loadDemo, mainController, &MainController::handleLoadDemo);
 
@@ -85,6 +86,7 @@ void MainWindow::createWidgets()
 
 void MainWindow::openDemoFile()
 {
-    QString filename = QFileDialog::getOpenFileName(this);
+    QString filename = QFileDialog::getOpenFileName(this, tr("Open Demo"), tr("(*.json)"));
+
     emit loadDemo(filename);
 }
