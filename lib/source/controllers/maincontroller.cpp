@@ -2,6 +2,9 @@
 
 #include <QDebug>
 
+#include "demofileaccessinterface.h"
+#include "demojsonfileaccess.h"
+
 MainController::MainController(QObject *parent) :
     QObject(parent),
     timelineController_(new TimelineController(this)),
@@ -42,7 +45,9 @@ void MainController::setModel(Demo *demo)
 
 void MainController::handleLoadDemo(QString filename)
 {
-
+    DemoFileAccessInterface *demoLoader = new DemoJsonFileAccess(filename);
+    setModel(demoLoader->getDemo());
+    delete demoLoader;
 }
 
 void MainController::handleClipSelected(int id)

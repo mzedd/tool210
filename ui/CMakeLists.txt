@@ -49,7 +49,6 @@ target_link_libraries(${PROJECT_NAME}
   Qt5::Widgets
   Qt5::Gui
   tool210-lib
-  tool210-storage
 )
 
 target_compile_features(${PROJECT_NAME}

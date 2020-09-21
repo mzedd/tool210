@@ -86,7 +86,7 @@ void MainWindow::createWidgets()
 
 void MainWindow::openDemoFile()
 {
-    QString filename = QFileDialog::getOpenFileName(this, tr("Open Demo"), tr("(*.json)"));
+    QString filename = QFileDialog::getOpenFileName(this, tr("Open Demo"), ".", tr("JSON files (*.json)"));
 
     emit loadDemo(filename);
 }

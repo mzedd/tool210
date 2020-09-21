@@ -63,6 +63,7 @@ target_link_libraries(${PROJECT_NAME}
     Qt5::Core
     Qt5::Gui
     tool210-entities
+    tool210-storage
 )
 
 target_compile_features(${PROJECT_NAME}
