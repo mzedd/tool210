@@ -2,14 +2,13 @@
 
 #include <QDebug>
 
-#include "demofileaccessinterface.h"
-#include "demojsonfileaccess.h"
-
 MainController::MainController(QObject *parent) :
     QObject(parent),
     timelineController_(new TimelineController(this)),
     clipScreenController_(new ClipScreenController(this)),
-    clipInspectorController_(new ClipInspectorController(this))
+    clipInspectorController_(new ClipInspectorController(this)),
+    demo(nullptr),
+    demoFileAccessor(nullptr)
 {
     // TimelineController signals
     connect(timelineController_, SIGNAL(playPauseClicked()), this, SLOT(handlePlayPauseClicked()));
@@ -43,11 +42,14 @@ void MainController::setModel(Demo *demo)
     connect(demo, &Demo::clipAdded, this, &MainController::handleClipSelected);
 }
 
+void MainController::setDemoFileAccessor(DemoFileAccessInterface *demoFileAccessor)
+{
+    this->demoFileAccessor = demoFileAccessor;
+}
+
 void MainController::handleLoadDemo(QString filename)
 {
-    DemoFileAccessInterface *demoLoader = new DemoJsonFileAccess(filename);
-    setModel(demoLoader->getDemo());
-    delete demoLoader;
+    setModel(demoFileAccessor->getDemo());
 }
 
 void MainController::handleClipSelected(int id)

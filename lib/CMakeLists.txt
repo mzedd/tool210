@@ -33,6 +33,9 @@ add_library(${PROJECT_NAME} SHARED
   public/models/scenelistmodel.h
   public/models/openglmodel.h
   public/models/clipinspectormodel.h
+
+  ## file accessor
+  public/demofileaccessinterface.h
 )
 
 target_include_directories(${PROJECT_NAME}
@@ -63,7 +66,6 @@ target_link_libraries(${PROJECT_NAME}
     Qt5::Core
     Qt5::Gui
     tool210-entities
-    tool210-storage
 )
 
 target_compile_features(${PROJECT_NAME}

@@ -11,8 +11,6 @@ find_package(Qt5 COMPONENTS Core REQUIRED)
 
 add_library(${PROJECT_NAME} STATIC
     source/demojsonfileaccess.cpp
-
-    public/demofileaccessinterface.h
     public/demojsonfileaccess.h
 )
 
@@ -31,6 +29,7 @@ target_include_directories(${PROJECT_NAME}
 target_link_libraries(${PROJECT_NAME}
   PUBLIC
   Qt5::Core
+  tool210-lib
   tool210-entities
 )
 
