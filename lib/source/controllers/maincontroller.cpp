@@ -7,7 +7,7 @@ MainController::MainController(QObject *parent) :
     timelineController_(new TimelineController(this)),
     clipScreenController_(new ClipScreenController(this)),
     clipInspectorController_(new ClipInspectorController(this)),
-    demo(nullptr),
+    model(nullptr),
     demoFileAccessor(nullptr)
 {
     // TimelineController signals
@@ -35,11 +35,12 @@ ClipInspectorController *MainController::clipInspectorController() const
     return  clipInspectorController_;
 }
 
-void MainController::setModel(Demo *demo)
+void MainController::setModel(DemoModel *model)
 {
-    this->demo = demo;
-    connect(demo, &Demo::clipToRenderChanged, this, &MainController::handleClipToRenderChanged);
-    connect(demo, &Demo::clipAdded, this, &MainController::handleClipSelected);
+    this->model = model;
+    model->setParent(this);
+    connect(model, &DemoModel::clipToRenderChanged, this, &MainController::handleClipToRenderChanged);
+    connect(model, &DemoModel::clipAdded, this, &MainController::handleClipSelected);
 }
 
 void MainController::setDemoFileAccessor(DemoFileAccessInterface *demoFileAccessor)
@@ -49,13 +50,13 @@ void MainController::setDemoFileAccessor(DemoFileAccessInterface *demoFileAccess
 
 void MainController::handleLoadDemo(QString filename)
 {
-    setModel(demoFileAccessor->getDemo(filename));
+    model->setDemo(demoFileAccessor->getDemo(filename));
 }
 
 void MainController::handleClipSelected(int id)
 {
     timelineController()->setSelectedClip(id);
-    clipInspectorController()->setSelectedClip(demo->clipList().at(id));
+    //clipInspectorController()->setSelectedClip(demo->clipList().at(id));
 }
 
 void MainController::handlePlayPauseClicked()
@@ -65,25 +66,25 @@ void MainController::handlePlayPauseClicked()
 
 void MainController::handleTimeChanged(float time)
 {
-    demo->checkClipToBeRenderdChangedAt(time);
+    model->checkClipToBeRenderdChangedAt(time);
     clipsScreenController()->setTime(time);
 }
 
 void MainController::handleAddClip()
 {
-    demo->addClip();
+    model->addClip();
 }
 
 void MainController::handleClipToRenderChanged(int id)
 {
     if(id < 0)
         clipScreenController_->setClipToRender(nullptr);
-    else
-        clipScreenController_->setClipToRender(demo->clipList().at(id));
+    //else
+        //clipScreenController_->setClipToRender(demo->clipList().at(id));
 }
 
 void MainController::handleFrameFinishedAt(float time)
 {
-    demo->checkClipToBeRenderdChangedAt(time);
+    model->checkClipToBeRenderdChangedAt(time);
     timelineController()->setTime(time);
 }

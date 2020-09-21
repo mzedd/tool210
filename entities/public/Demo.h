@@ -2,27 +2,24 @@
 #define DEMO_H
 
 #include <vector>
-#include <QObject>
+#include <string>
 #include "Clip.h"
 #include "Scene.h"
 
-class Q_DECL_EXPORT Demo : public QObject
+class Demo
 {
-    Q_OBJECT
-
 public:
     Demo(std::vector<Clip *> *clipList, std::vector<Scene *> *sceneList);
     ~Demo();
-    Q_DISABLE_COPY_MOVE(Demo)
 
-    QString name() const;
-    void setName(QString name);
+    std::string name() const;
+    void setName(std::string name);
 
     std::vector<Clip *> &clipList();
     std::vector<Scene *> &sceneList();
 
     void addClip();
-    void checkClipToBeRenderdChangedAt(float time);
+    int clipIdAt(float time);
 
     int sceneCount() const;
     Scene *sceneAt(int index);
@@ -30,20 +27,12 @@ public:
     void initializeShaders(int w, int h);
 
 private:
-    QString name_;
+    std::string name_;
     std::vector<Clip *> &clipList_;
     std::vector<Scene *> &sceneList_;
 
     // TODO: musicTrack
     // TODO: postProcessingEffects
-
-    int clipIdAt(float time);
-
-Q_SIGNALS:
-    void clipAdded(int id);
-    void sceneAdded();
-    void clipToRenderChanged(int id);
-
 };
 
 #endif // DEMO_H

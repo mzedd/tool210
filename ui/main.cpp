@@ -2,6 +2,7 @@
 
 #include "mainwindow.h"
 #include "Demo.h"
+#include "models/demomodel.h"
 #include "models/cliplistmodel.h"
 #include "models/openglmodel.h"
 #include "models/clipinspectormodel.h"
@@ -23,8 +24,10 @@ int main(int argc, char *argv[])
 
     DemoJsonFileAccess *demoFileAccessor = new DemoJsonFileAccess;
 
+    DemoModel *demoModel = new DemoModel;
+
     Demo *demo = demoFileAccessor->getDemo("resources/demo.json");
-    mainController.setModel(demo);
+    mainController.setModel(demoModel);
     mainController.setDemoFileAccessor(demoFileAccessor);
 
     ClipListModel *clipListModel = new ClipListModel;

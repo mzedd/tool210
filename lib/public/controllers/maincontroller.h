@@ -3,10 +3,10 @@
 
 #include <QObject>
 
+#include "models/demomodel.h"
 #include "timelinecontroller.h"
 #include "clipscreencontroller.h"
 #include "clipinspectorcontroller.h"
-#include "Demo.h"
 #include "demofileaccessinterface.h"
 
 class Q_DECL_EXPORT MainController : public QObject
@@ -17,14 +17,14 @@ public:
     TimelineController *timelineController() const;
     ClipScreenController *clipsScreenController() const;
     ClipInspectorController *clipInspectorController() const;
-    void setModel(Demo *demo);
+    void setModel(DemoModel *model);
     void setDemoFileAccessor(DemoFileAccessInterface *demoFileAccessor);
 
 private:
     TimelineController *timelineController_;
     ClipScreenController *clipScreenController_;
     ClipInspectorController *clipInspectorController_;
-    Demo *demo;
+    DemoModel *model;
 
     DemoFileAccessInterface *demoFileAccessor;
 

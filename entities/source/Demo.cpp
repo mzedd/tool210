@@ -16,12 +16,12 @@ Demo::~Demo()
     }
 }
 
-QString Demo::name() const
+std::string Demo::name() const
 {
     return name_;
 }
 
-void Demo::setName(QString name)
+void Demo::setName(std::string name)
 {
     name_ = name;
 }
@@ -44,12 +44,6 @@ void Demo::addClip()
 
     addScene();
     clipList().back()->setScene(sceneList_.back());
-    emit clipAdded(clipList().back()->id());
-}
-
-void Demo::checkClipToBeRenderdChangedAt(float time)
-{
-    emit clipToRenderChanged(clipIdAt(time));
 }
 
 int Demo::sceneCount() const
@@ -65,7 +59,6 @@ Scene *Demo::sceneAt(int index)
 void Demo::addScene()
 {
     sceneList_.push_back(new ShaderOnlyScene);
-    emit sceneAdded();
 }
 
 void Demo::initializeShaders(int w, int h)

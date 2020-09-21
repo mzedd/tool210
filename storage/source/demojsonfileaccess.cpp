@@ -20,7 +20,7 @@ Demo *DemoJsonFileAccess::getDemo(QString filepath)
     clipList = getClipList(sceneList);
 
     Demo *demo = new Demo(clipList, sceneList);
-    demo->setName(getDemoName());
+    demo->setName(getDemoName().toStdString());
 
     return demo;
 }
@@ -36,7 +36,7 @@ void DemoJsonFileAccess::storeDemo(QString filepath, Demo* demo)
 
     // construct demo json object
     QJsonObject demoJsonObject;
-    demoJsonObject.insert(QString("name"), demo->name());
+    demoJsonObject.insert(QString("name"), QString::fromStdString(demo->name()));
 
     QJsonArray clipArray;
     for(Clip *clip : demo->clipList()) {
