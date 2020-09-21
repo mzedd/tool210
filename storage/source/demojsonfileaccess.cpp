@@ -9,13 +9,10 @@
 #include <QJsonArray>
 #include <QString>
 
-DemoJsonFileAccess::DemoJsonFileAccess(QString filename)
+Demo *DemoJsonFileAccess::getDemo(QString filepath)
 {
-    loadFile(filename);
-}
+    loadFile(filepath);
 
-Demo *DemoJsonFileAccess::getDemo()
-{
     std::vector<Scene *> *sceneList;
     std::vector<Clip *> *clipList;
 

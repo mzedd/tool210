@@ -7,8 +7,7 @@
 class DemoJsonFileAccess : public DemoFileAccessInterface
 {
 public:
-    DemoJsonFileAccess(QString filename);
-    Demo *getDemo();
+    Demo *getDemo(QString filepath);
     void storeDemo(QString filepath, Demo* demo);
 
 private:

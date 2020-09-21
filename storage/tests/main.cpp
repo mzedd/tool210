@@ -8,9 +8,9 @@
 
 int main()
 {
-    DemoFileAccessInterface *demoFileAccess = new DemoJsonFileAccess("resources/demo.json");
+    DemoFileAccessInterface *demoFileAccess = new DemoJsonFileAccess();
 
-    Demo *demo = demoFileAccess->getDemo();
+    Demo *demo = demoFileAccess->getDemo("resources/demo.json");
 
     assert(!demo->name().compare("Test Demo"));
 

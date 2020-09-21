@@ -49,7 +49,7 @@ void MainController::setDemoFileAccessor(DemoFileAccessInterface *demoFileAccess
 
 void MainController::handleLoadDemo(QString filename)
 {
-    setModel(demoFileAccessor->getDemo());
+    setModel(demoFileAccessor->getDemo(filename));
 }
 
 void MainController::handleClipSelected(int id)

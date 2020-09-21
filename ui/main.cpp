@@ -9,7 +9,6 @@
 
 #include "maincontroller.h"
 
-#include "demofileaccessinterface.h"
 #include "demojsonfileaccess.h"
 
 int main(int argc, char *argv[])
@@ -22,10 +21,11 @@ int main(int argc, char *argv[])
     MainController mainController;
     mainWindow.setMainController(&mainController);
 
-    DemoFileAccessInterface *demoFileAcessor = new  DemoJsonFileAccess("resources/demo.json");
+    DemoJsonFileAccess *demoFileAccessor = new DemoJsonFileAccess;
 
-    Demo *demo = demoFileAcessor->getDemo();
+    Demo *demo = demoFileAccessor->getDemo("resources/demo.json");
     mainController.setModel(demo);
+    mainController.setDemoFileAccessor(demoFileAccessor);
 
     ClipListModel *clipListModel = new ClipListModel;
     clipListModel->setClipList(&demo->clipList());
