@@ -1,4 +1,6 @@
 #include "Demo.h"
+#include "Clip.h"
+#include "Scene.h"
 #include "ShaderOnlyScene.h"
 
 Demo::Demo(std::vector<Clip *> *clipList, std::vector<Scene *> *sceneList) :
@@ -39,8 +41,6 @@ std::vector<Scene *> &Demo::sceneList()
 void Demo::addClip()
 {
     clipList().push_back(new Clip());
-    clipList().back()->setDuration(20.0f);
-    clipList().back()->setId(clipList().size() - 1);
 
     addScene();
     clipList().back()->setScene(sceneList_.back());
@@ -59,14 +59,6 @@ Scene *Demo::sceneAt(int index)
 void Demo::addScene()
 {
     sceneList_.push_back(new ShaderOnlyScene);
-}
-
-void Demo::initializeShaders(int w, int h)
-{
-    for(Scene* scene : sceneList_) {
-        scene->initialize();
-        scene->setViewportResolution(w, h);
-    }
 }
 
 int Demo::clipIdAt(float time)

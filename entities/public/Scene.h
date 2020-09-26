@@ -1,22 +1,18 @@
 #ifndef SCENE_H
 #define SCENE_H
 
-#include <QString>
+#include <string>
 
 class Scene
 {
 public:
     virtual ~Scene() { };
-    virtual void initialize() = 0;
-    virtual void renderAt(float time) = 0;
-    virtual void setViewportResolution(int w, int h) = 0;
-    virtual bool isInitialized() const = 0;
 
-    QString name() const { return name_; };
-    void setName(QString name) { name_ = name; };
+    std::string name() const { return name_; };
+    void setName(std::string name) { name_ = name; };
 
 protected:
-    QString name_;
+    std::string name_;
 };
 
 #endif // SCENE_H

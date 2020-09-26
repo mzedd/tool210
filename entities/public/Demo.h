@@ -3,8 +3,9 @@
 
 #include <vector>
 #include <string>
-#include "Clip.h"
-#include "Scene.h"
+
+class Clip;
+class Scene;
 
 class Demo
 {
@@ -24,7 +25,6 @@ public:
     int sceneCount() const;
     Scene *sceneAt(int index);
     void addScene();
-    void initializeShaders(int w, int h);
 
 private:
     std::string name_;
