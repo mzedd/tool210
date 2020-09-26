@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.7.2)
-project(tool210-lib LANGUAGES CXX)
+project(tool210-control LANGUAGES CXX)
 
 ###########################
 # Dependencies
