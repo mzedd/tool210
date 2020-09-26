@@ -60,7 +60,7 @@ target_include_directories(${PROJECT_NAME}
 
 target_compile_definitions(${PROJECT_NAME}
   PRIVATE
-    TOOL210_LIBRARY
+    TOOL210_CONTROL
 )
 
 target_link_libraries(${PROJECT_NAME}

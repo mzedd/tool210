@@ -29,7 +29,7 @@ target_include_directories(${PROJECT_NAME}
 target_link_libraries(${PROJECT_NAME}
   PUBLIC
   Qt5::Core
-  tool210-lib
+  tool210-control
   tool210-entities
 )
 
