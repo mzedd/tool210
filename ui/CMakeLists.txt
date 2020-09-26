@@ -48,7 +48,7 @@ target_link_libraries(${PROJECT_NAME}
   Qt5::Core
   Qt5::Widgets
   Qt5::Gui
-  tool210-lib
+  tool210-control
   tool210-storage
 )
 

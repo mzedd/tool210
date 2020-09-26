@@ -3,5 +3,3 @@ project(tool210 LANGUAGES CXX)
 
 add_subdirectory(lib)
 add_subdirectory(ui)
-add_subdirectory(entities)
-add_subdirectory(storage)

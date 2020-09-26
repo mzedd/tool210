@@ -29,6 +29,7 @@ QVariant ClipListModel::data(const QModelIndex &index, int role) const
 
     switch (role) {
     case Qt::DisplayRole:
+    case Qt::EditRole:
         switch (index.column()) {
             case 0:
             return QVariant(QString::fromStdString(clip->name()));
