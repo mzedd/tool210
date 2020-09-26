@@ -15,8 +15,3 @@ void TimelineController::setTime(float time)
 {
     emit timeChanged(time);
 }
-
-void TimelineController::setSelectedClip(int id)
-{
-    model->setSelectedClip(id);
-}

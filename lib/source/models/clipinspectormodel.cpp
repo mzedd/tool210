@@ -2,7 +2,9 @@
 
 ClipInspectorModel::ClipInspectorModel(QObject *parent) :
     QObject(parent),
-    selectedClip_(nullptr)
+    selectedClip_(nullptr),
+    clipList_(nullptr),
+    sceneList_(nullptr)
 {
 
 }
@@ -16,6 +18,16 @@ void ClipInspectorModel::setSelectedClip(Clip *clip)
 {
     selectedClip_ = clip;
     emit selectedClipChanged();
+}
+
+ClipListModel *ClipInspectorModel::clipList() const
+{
+    return clipList_;
+}
+
+void ClipInspectorModel::setClipListModel(ClipListModel *model)
+{
+    clipList_ = model;
 }
 
 SceneListModel *ClipInspectorModel::sceneList() const

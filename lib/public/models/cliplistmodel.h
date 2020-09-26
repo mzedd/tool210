@@ -2,24 +2,23 @@
 #define CLIPLISTMODEL_H
 
 #include <vector>
-#include <QAbstractListModel>
+#include <QAbstractTableModel>
 
 class Clip;
 
-class Q_DECL_EXPORT ClipListModel : public QAbstractListModel
+class Q_DECL_EXPORT ClipListModel : public QAbstractTableModel
 {
     Q_OBJECT
 
-    Q_PROPERTY(Clip* selectedClip READ selectedClip NOTIFY selectedClipChanged)
-
 public:
     ClipListModel(QObject *parent  = nullptr);
-    int rowCount(const QModelIndex &parent = QModelIndex()) const override;
-    QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
-    bool moveRows(const QModelIndex &sourceParent, int sourceRow, int count, const QModelIndex &destinationParent, int destinationChild) override;
 
-    Clip *selectedClip() const;
-    void setSelectedClip(int id);
+    // QAbstractItemModel interface
+    int rowCount(const QModelIndex &parent = QModelIndex()) const override;
+    int columnCount(const QModelIndex &parent = QModelIndex()) const override;
+    QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
+    bool setData(const QModelIndex &index, const QVariant &value, int role) override;
+    bool moveRows(const QModelIndex &sourceParent, int sourceRow, int count, const QModelIndex &destinationParent, int destinationChild) override;
 
     void setClipList(std::vector<Clip *> *clipList);
 
@@ -30,11 +29,7 @@ public:
 
 private:
     std::vector<Clip *> *clipList;
-    Clip *selectedClip_;
 
-Q_SIGNALS:
-    void selectedClipChanged(QModelIndex index);
-    void selectedClipDurationChanged();
 };
 
 #endif // CLIPLISTMODEL_H

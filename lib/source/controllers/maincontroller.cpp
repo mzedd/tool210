@@ -14,7 +14,6 @@ MainController::MainController(QObject *parent) :
     connect(timelineController_, SIGNAL(playPauseClicked()), this, SLOT(handlePlayPauseClicked()));
     connect(timelineController_, SIGNAL(addClip()), this, SLOT(handleAddClip()));
     connect(timelineController_, SIGNAL(timeChanged(float)), this, SLOT(handleTimeChanged(float)));
-    connect(timelineController_, &TimelineController::clipSelected, this, &MainController::handleClipSelected);
 
     // ClipScreenController signals
     connect(clipScreenController_, SIGNAL(frameFinishedAt(float)), this, SLOT(handleFrameFinishedAt(float)));
@@ -40,7 +39,6 @@ void MainController::setModel(DemoModel *model)
     this->model = model;
     model->setParent(this);
     connect(model, &DemoModel::clipToRenderChanged, this, &MainController::handleClipToRenderChanged);
-    connect(model, &DemoModel::clipAdded, this, &MainController::handleClipSelected);
 }
 
 void MainController::setDemoFileAccessor(DemoFileAccessInterface *demoFileAccessor)
@@ -51,12 +49,6 @@ void MainController::setDemoFileAccessor(DemoFileAccessInterface *demoFileAccess
 void MainController::handleLoadDemo(QString filename)
 {
     model->setDemo(demoFileAccessor->getDemo(filename));
-}
-
-void MainController::handleClipSelected(int id)
-{
-    timelineController()->setSelectedClip(id);
-    //clipInspectorController()->setSelectedClip(demo->clipList().at(id));
 }
 
 void MainController::handlePlayPauseClicked()

@@ -15,8 +15,10 @@ public:
     explicit TimelineView(ClipListModel *model, QWidget *parent = nullptr);
     void setController(TimelineController *timelineController);
 
-private:
     ClipListView *clipListView;
+
+private:
+
     QPushButton *runPauseButton;
     QPushButton *addClipButton;
     QLabel *zoomLabel;
@@ -32,6 +34,7 @@ signals:
     void addClipClicked();
     void clipToRenderChanged(int id);
     void clipSelected(int id);
+    void setCurrent(QModelIndex index);
 };
 
 #endif // TIMELINE_H

@@ -5,6 +5,8 @@
 #include <QVBoxLayout>
 #include <QLineEdit>
 #include <QComboBox>
+#include <QDataWidgetMapper>
+#include <QTableView>
 #include "models/clipinspectormodel.h"
 #include "controllers/clipinspectorcontroller.h"
 
@@ -18,6 +20,9 @@ public:
 
     QSize sizeHint() const;
 
+    QDataWidgetMapper *dataMapper;
+    QTableView *tableView;
+
 private:
     QLineEdit *clipNameLineEdit;
     QLineEdit *clipDurationLineEdit;
@@ -25,11 +30,6 @@ private:
 
     ClipInspectorModel *model;
     ClipInspectorController *controller;
-
-private Q_SLOTS:
-    void selectedClipChanged();
-    void sceneListChanged();
-
 };
 
 #endif // CLIPINSPECTORVIEW_H

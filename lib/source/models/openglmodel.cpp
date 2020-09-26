@@ -57,7 +57,7 @@ void OpenGLModel::resiszeGL(int w, int h)
 {
     glViewport(0, 0, w, h);
     for(unsigned int i = 0; i < sceneList->size(); i++) {
-        sceneList->at(i)->setViewportResolution(w, h);
+        //sceneList->at(i)->setViewportResolution(w, h);
     }
 
     width = w;
@@ -70,12 +70,12 @@ void OpenGLModel::paintGL()
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     if(clipToRender()) {
-        if(!clipToRender()->scene()->isInitialized()) {
+        /*if(!clipToRender()->scene()->isInitialized()) {
             clipToRender()->scene()->initialize();
             clipToRender()->scene()->setViewportResolution(width, height);
         }
 
-        clipToRender()->renderAt(time());
+        clipToRender()->renderAt(time());*/
         glDrawArrays(GL_TRIANGLES, 0, 6);
     }
 }

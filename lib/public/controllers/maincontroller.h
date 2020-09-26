@@ -32,7 +32,6 @@ public Q_SLOTS:
     void handleLoadDemo(QString filename);
 
 private Q_SLOTS:
-    void handleClipSelected(int id);
     void handlePlayPauseClicked();
     void handleTimeChanged(float time);
     void handleAddClip();

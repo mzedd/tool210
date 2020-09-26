@@ -21,7 +21,7 @@ QVariant SceneListModel::data(const QModelIndex &index, int role) const
     switch (role) {
         case Qt::DisplayRole:
         case SceneName:
-            data.setValue(scene->name());
+            data.setValue(QString::fromStdString(scene->name()));
             break;
         default:
             return data;

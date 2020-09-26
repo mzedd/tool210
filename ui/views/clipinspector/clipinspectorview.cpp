@@ -3,6 +3,7 @@
 #include <QFormLayout>
 #include <QLabel>
 
+
 ClipInspectorView::ClipInspectorView(QWidget *parent) :
     QWidget(parent)
 {
@@ -27,6 +28,11 @@ ClipInspectorView::ClipInspectorView(QWidget *parent) :
     clipDataLayout->addRow(new QLabel("Scene:"), sceneComboBox);
     mainLayout->addLayout(clipDataLayout);
 
+    dataMapper = new QDataWidgetMapper;
+    tableView = new QTableView;
+
+    mainLayout->addWidget(tableView);
+
     mainLayout->addStretch();
     setLayout(mainLayout);
 }
@@ -35,29 +41,23 @@ void ClipInspectorView::setModel(ClipInspectorModel *model)
 {
     this->model = model;
     sceneComboBox->setModel(model->sceneList());
+    dataMapper->setModel(model->clipList());
+    tableView->setModel(model->clipList());
 
-    connect(model, &ClipInspectorModel::selectedClipChanged, this, &ClipInspectorView::selectedClipChanged);
+    dataMapper->addMapping(clipNameLineEdit, 0);
+    dataMapper->addMapping(clipDurationLineEdit, 1);
+    dataMapper->toFirst();
 }
 
 void ClipInspectorView::setController(ClipInspectorController *controller)
 {
     this->controller = controller;
 
-    connect(clipNameLineEdit, &QLineEdit::textEdited, controller, &ClipInspectorController::selectedClipNameEdited);
-    connect(clipDurationLineEdit, &QLineEdit::textEdited, controller, &ClipInspectorController::selectedClipDurationEdited);
+    //connect(clipNameLineEdit, &QLineEdit::textEdited, controller, &ClipInspectorController::selectedClipNameEdited);
+    //connect(clipDurationLineEdit, &QLineEdit::textEdited, controller, &ClipInspectorController::selectedClipDurationEdited);
 }
 
 QSize ClipInspectorView::sizeHint() const
 {
     return QSize(500, 200);
-}
-
-void ClipInspectorView::selectedClipChanged()
-{
-    clipNameLineEdit->setText(model->selectedClip()->name());
-    clipDurationLineEdit->setText(QString::number(model->selectedClip()->duration(), 'f', 2));
-}
-
-void ClipInspectorView::sceneListChanged()
-{
 }

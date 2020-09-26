@@ -55,6 +55,12 @@ public Q_SLOTS:
     void setTime(float time);
     void selectedClipChanged(QModelIndex index);
     void selectedClipDurationChanged();
+
+
+protected Q_SLOTS:
+    // QAbstractItemView interface
+    void dataChanged(const QModelIndex &topLeft, const QModelIndex &bottomRight, const QVector<int> &roles);
+
 };
 
 #endif // CLIPLISTVIEW_H

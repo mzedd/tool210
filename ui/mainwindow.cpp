@@ -25,8 +25,8 @@ void MainWindow::setClipListModel(ClipListModel *clipListModel)
 
 void MainWindow::setOpenGLModel(OpenGLModel *openGLmodel)
 {
-    clipScreenView = new ClipScreenView(openGLmodel, this);
-    clipScreenView->setController(mainController->clipsScreenController());
+    //clipScreenView = new ClipScreenView(openGLmodel, this);
+    //clipScreenView->setController(mainController->clipsScreenController());
 }
 
 void MainWindow::setClipInspectorModel(ClipInspectorModel *model)
@@ -43,6 +43,9 @@ void MainWindow::initialize()
 {
     createMenu();
     createWidgets();
+
+    connect(timelineView->clipListView->selectionModel(), &QItemSelectionModel::currentChanged, clipInspectorView->dataMapper, &QDataWidgetMapper::setCurrentModelIndex);
+
 }
 
 void MainWindow::createMenu()

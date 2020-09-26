@@ -3,9 +3,8 @@
 
 #include <vector>
 #include <string>
-
-class Clip;
-class Scene;
+#include "Clip.h"
+#include "Scene.h"
 
 class Demo
 {

@@ -285,3 +285,8 @@ void ClipListView::selectedClipDurationChanged()
 {
     viewport()->update();
 }
+
+void ClipListView::dataChanged(const QModelIndex &/*topLeft*/, const QModelIndex &/*bottomRight*/, const QVector<int> &/*roles*/)
+{
+    viewport()->update();
+}
