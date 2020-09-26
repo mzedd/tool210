@@ -2,6 +2,7 @@
 #define DEMOFILEACCESSINTERFACE_H
 
 #include <vector>
+#include <QString>
 #include "Demo.h"
 
 class DemoFileAccessInterface {

@@ -3,6 +3,7 @@
 
 #include <vector>
 #include "Demo.h"
+#include "Clip.h"
 
 #include <iostream>
 
@@ -16,7 +17,7 @@ int main()
 
     std::vector<Clip *> clipList = demo->clipList();
     for(Clip *clip : clipList) {
-        std::cout << clip->name().toStdString() << std::endl;
+        std::cout << clip->name() << std::endl;
     }
 
     assert(!clipList.at(0)->name().compare("first clip"));
@@ -24,7 +25,7 @@ int main()
 
     std::vector<Scene *> sceneList = demo->sceneList();
     for(Scene *scene : sceneList) {
-        std::cout << scene->name().toStdString() << std::endl;
+        std::cout << scene->name() << std::endl;
     }
 
     assert(!clipList.at(0)->scene()->name().compare("FirstScene"));

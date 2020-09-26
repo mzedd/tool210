@@ -2,6 +2,7 @@
 
 #include "ShaderOnlyScene.h"
 #include "Demo.h"
+#include "Clip.h"
 
 #include <QFile>
 #include <QJsonDocument>
@@ -41,7 +42,7 @@ void DemoJsonFileAccess::storeDemo(QString filepath, Demo* demo)
     QJsonArray clipArray;
     for(Clip *clip : demo->clipList()) {
         QJsonObject clipJsonObject;
-        clipJsonObject.insert("name", clip->name());
+        clipJsonObject.insert("name", QString::fromStdString(clip->name()));
         clipJsonObject.insert("duration", clip->duration());
         clipJsonObject.insert("scene id", getSceneIdFrom(clip->scene(), demo->sceneList()));
         clipArray.append(clipJsonObject);
@@ -51,7 +52,7 @@ void DemoJsonFileAccess::storeDemo(QString filepath, Demo* demo)
     QJsonArray sceneArray;
     for(Scene *scene : demo->sceneList()) {
         QJsonObject sceneJsonObject;
-        sceneJsonObject.insert("name", scene->name());
+        sceneJsonObject.insert("name", QString::fromStdString(scene->name()));
         sceneJsonObject.insert("shader file name", QString::fromStdString(static_cast<ShaderOnlyScene *>(scene)->shaderFileName()));
         sceneArray.append(sceneJsonObject);
     }
@@ -100,7 +101,7 @@ std::vector<Scene *> *DemoJsonFileAccess::getSceneList()
             QJsonObject sceneJsonObject = array.at(i).toObject();
 
             scene = new ShaderOnlyScene;
-            scene->setName(sceneJsonObject["name"].toString());
+            scene->setName(sceneJsonObject["name"].toString().toStdString());
             scene->setShaderFileName(sceneJsonObject["shader file name"].toString().toStdString());
 
             sceneList->push_back(scene);
@@ -124,7 +125,7 @@ std::vector<Clip *> *DemoJsonFileAccess::getClipList(std::vector<Scene *> *scene
             QJsonObject clipJsonObject = array.at(i).toObject();
 
             clip = new Clip;
-            clip->setName(clipJsonObject["name"].toString());
+            clip->setName(clipJsonObject["name"].toString().toStdString());
             clip->setDuration(static_cast<float>(clipJsonObject["duration"].toDouble()));
             clip->setScene(sceneList->at(clipJsonObject["scene id"].toInt()));
 
