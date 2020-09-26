@@ -45,3 +45,8 @@ set_target_properties(${PROJECT_NAME}
     LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin"
     RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin"
 )
+
+###########################
+# Include tests
+
+add_subdirectory(tests)

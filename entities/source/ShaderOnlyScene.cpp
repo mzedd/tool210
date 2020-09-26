@@ -6,6 +6,11 @@ ShaderOnlyScene::ShaderOnlyScene()
     shaderFileName_ = std::string("");
 }
 
+ShaderOnlyScene::~ShaderOnlyScene()
+{
+
+}
+
 std::string ShaderOnlyScene::shaderFileName() const
 {
     return shaderFileName_;
