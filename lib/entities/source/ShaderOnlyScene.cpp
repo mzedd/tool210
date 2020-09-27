@@ -1,6 +1,9 @@
 #include "ShaderOnlyScene.h"
 
-ShaderOnlyScene::ShaderOnlyScene()
+static int idCounter = 0;
+
+ShaderOnlyScene::ShaderOnlyScene() :
+    Scene(idCounter++)
 {
     name_ = std::string("default shader only scene");
     shaderFileName_ = std::string("");

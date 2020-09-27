@@ -53,7 +53,11 @@ int Demo::sceneCount() const
 
 Scene *Demo::sceneAt(int index)
 {
-    return sceneList_.at(index);
+    for(Scene *scene : sceneList_) {
+        if(scene->id() == index)
+            return scene;
+    }
+    return nullptr;
 }
 
 void Demo::addScene()
