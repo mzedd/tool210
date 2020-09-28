@@ -15,7 +15,6 @@ class TimelineView : public QWidget
     Q_OBJECT
 public:
     explicit TimelineView(ClipListModel *model, QWidget *parent = nullptr);
-    void setController(TimelineController *timelineController);
     void setRenderContext(RenderContext* renderContext);
 
     ClipListView *clipListView;

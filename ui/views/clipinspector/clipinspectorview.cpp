@@ -49,14 +49,6 @@ void ClipInspectorView::setModel(ClipInspectorModel *model)
     dataMapper->toFirst();
 }
 
-void ClipInspectorView::setController(ClipInspectorController *controller)
-{
-    this->controller = controller;
-
-    //connect(clipNameLineEdit, &QLineEdit::textEdited, controller, &ClipInspectorController::selectedClipNameEdited);
-    //connect(clipDurationLineEdit, &QLineEdit::textEdited, controller, &ClipInspectorController::selectedClipDurationEdited);
-}
-
 QSize ClipInspectorView::sizeHint() const
 {
     return QSize(500, 200);

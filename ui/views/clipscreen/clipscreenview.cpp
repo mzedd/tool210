@@ -18,12 +18,6 @@ ClipScreenView::ClipScreenView(OpenGLModel *model, QWidget *parent) :
     connect(model, SIGNAL(runChanged()), openGLScreen, SLOT(update()));
 }
 
-void ClipScreenView::setController(ClipScreenController *clipScreenController)
-{
-    this->clipScreenController = clipScreenController;
-    connect(openGLScreen, SIGNAL(frameFinishedAt(float)), clipScreenController, SIGNAL(frameFinishedAt(float)));
-}
-
 QSize ClipScreenView::sizeHint() const
 {
     return QSize(600, 500);

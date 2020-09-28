@@ -4,7 +4,6 @@
 #include <QWidget>
 #include "aspectratiowidget.h"
 #include "openglscreen.h"
-#include "controllers/clipscreencontroller.h"
 
 class OpenGLModel;
 class RenderContext;
@@ -15,7 +14,6 @@ class ClipScreenView : public QWidget
 
 public:
     explicit ClipScreenView(OpenGLModel *model, QWidget *parent = nullptr);
-    void setController(ClipScreenController *clipScreenController);
 
     QSize sizeHint() const;
 
@@ -24,8 +22,6 @@ public:
 private:
     AspectRatioWidget *aspectRatioWidget;
     OpenGLScreen *openGLScreen;
-
-    ClipScreenController *clipScreenController;
 };
 
 #endif // CLIPSCREEN_H

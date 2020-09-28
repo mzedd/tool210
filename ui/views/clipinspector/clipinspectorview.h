@@ -16,7 +16,6 @@ class ClipInspectorView : public QWidget
 public:
     explicit ClipInspectorView(QWidget *parent = nullptr);
     void setModel(ClipInspectorModel *model);
-    void setController(ClipInspectorController *controller);
 
     QSize sizeHint() const;
 
@@ -29,7 +28,6 @@ private:
     QComboBox *sceneComboBox;
 
     ClipInspectorModel *model;
-    ClipInspectorController *controller;
 };
 
 #endif // CLIPINSPECTORVIEW_H

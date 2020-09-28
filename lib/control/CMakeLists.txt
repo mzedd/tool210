@@ -10,10 +10,6 @@ find_package(Qt5 COMPONENTS Core Gui REQUIRED)
 add_library(${PROJECT_NAME} STATIC
   # source
   ## controllers
-  source/controllers/maincontroller.cpp
-  source/controllers/timelinecontroller.cpp
-  source/controllers/clipscreencontroller.cpp
-  source/controllers/clipinspectorcontroller.cpp
   source/controllers/rendercontext.cpp
 
   ## models
@@ -28,10 +24,6 @@ add_library(${PROJECT_NAME} STATIC
 
   # public
   ## controllers
-  public/controllers/maincontroller.h
-  public/controllers/timelinecontroller.h
-  public/controllers/clipscreencontroller.h
-  public/controllers/clipinspectorcontroller.h
   public/controllers/rendercontext.h
 
   ## models

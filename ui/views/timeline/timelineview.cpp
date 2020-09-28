@@ -38,15 +38,6 @@ TimelineView::TimelineView(ClipListModel *model, QWidget *parent) :
     //connect(model, &ClipListModel::selectedClipDurationChanged, clipListView, &ClipListView::selectedClipDurationChanged);
 }
 
-void TimelineView::setController(TimelineController *timelineController)
-{
-    connect(runPauseButton, SIGNAL(clicked()), timelineController, SIGNAL(playPauseClicked()));
-    connect(addClipButton, SIGNAL(clicked()), timelineController, SIGNAL(addClip()));
-    connect(clipListView, &ClipListView::timeChanged, timelineController, &TimelineController::timeChanged);
-    connect(clipListView, &ClipListView::clipSelected, timelineController, &TimelineController::clipSelected);
-    connect(timelineController, SIGNAL(timeChanged(float)), this, SLOT(setTime(float)));
-}
-
 void TimelineView::setRenderContext(RenderContext *renderContext)
 {
     clipListView->setRenderContext(renderContext);

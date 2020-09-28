@@ -6,34 +6,25 @@
 #include "models/cliplistmodel.h"
 
 MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent),
-      mainController(nullptr)
+    : QMainWindow(parent)
 {
 
-}
-
-void MainWindow::setMainController(MainController *mainController)
-{
-    this->mainController = mainController;
 }
 
 void MainWindow::setClipListModel(ClipListModel *clipListModel)
 {
     timelineView = new TimelineView(clipListModel, this);
-    timelineView->setController(mainController->timelineController());
 }
 
 void MainWindow::setOpenGLModel(OpenGLModel *openGLmodel)
 {
     clipScreenView = new ClipScreenView(openGLmodel, this);
-    clipScreenView->setController(mainController->clipsScreenController());
 }
 
 void MainWindow::setClipInspectorModel(ClipInspectorModel *model)
 {
     clipInspectorView = new ClipInspectorView(this);
     clipInspectorView->setModel(model);
-    clipInspectorView->setController(mainController->clipInspectorController());
 
     sceneEditorView = new SceneEditorView(this);
     sceneEditorView->setModel(model->sceneList());
@@ -68,7 +59,6 @@ void MainWindow::createMenu()
     QAction *loadDemo = new QAction("Open", menuBar);
     fileMenu->addAction(loadDemo);
     connect(loadDemo, &QAction::triggered, this, &MainWindow::openDemoFile);
-    connect(this, &MainWindow::loadDemo, mainController, &MainController::handleLoadDemo);
 
     setMenuBar(menuBar);
 }

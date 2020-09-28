@@ -9,8 +9,6 @@
 #include "models/scenelistmodel.h"
 #include "rendercontext.h"
 
-#include "maincontroller.h"
-
 #include "demojsonfileaccess.h"
 
 int main(int argc, char *argv[])
@@ -20,27 +18,19 @@ int main(int argc, char *argv[])
     QApplication app(argc, argv);
 
     MainWindow mainWindow;
-    MainController mainController;
-    mainWindow.setMainController(&mainController);
 
     DemoJsonFileAccess *demoFileAccessor = new DemoJsonFileAccess;
 
-    DemoModel *demoModel = new DemoModel;
-
     Demo *demo = demoFileAccessor->getDemo("resources/demo.json");
-    mainController.setModel(demoModel);
-    mainController.setDemoFileAccessor(demoFileAccessor);
 
     RenderContext *renderContext = new RenderContext;
 
     ClipListModel *clipListModel = new ClipListModel;
     clipListModel->setClipList(&demo->clipList());
-    mainController.timelineController()->setModel(clipListModel);
     mainWindow.setClipListModel(clipListModel);
 
     OpenGLModel *openGLModel = new OpenGLModel;
     openGLModel->setSceneList(&demo->sceneList());
-    mainController.clipsScreenController()->setModel(openGLModel);
     mainWindow.setOpenGLModel(openGLModel);
 
     ClipInspectorModel *clipInspectorModel = new ClipInspectorModel;
@@ -48,7 +38,6 @@ int main(int argc, char *argv[])
     sceneListModel->setSceneList(&demo->sceneList());
     clipInspectorModel->setClipListModel(clipListModel);
     clipInspectorModel->setSceneListModel(sceneListModel);
-    mainController.clipInspectorController()->setModel(clipInspectorModel);
     mainWindow.setClipInspectorModel(clipInspectorModel);
 
     mainWindow.setRenderContext(renderContext);

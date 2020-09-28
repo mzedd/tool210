@@ -4,8 +4,6 @@
 #include <QMainWindow>
 #include <QMenuBar>
 
-#include "controllers/maincontroller.h"
-
 #include "views/timeline/timelineview.h"
 #include "views/clipscreen/clipscreenview.h"
 #include "views/clipinspector/clipinspectorview.h"
@@ -19,7 +17,6 @@ class MainWindow : public QMainWindow
 
 public:
     MainWindow(QWidget *parent = nullptr);
-    void setMainController(MainController *mainController);
     void setClipListModel(ClipListModel* clipListModel);
     void setOpenGLModel(OpenGLModel *openGLmodel);
     void setClipInspectorModel(ClipInspectorModel* model);
@@ -27,7 +24,6 @@ public:
     void initialize();
 
 private:
-    MainController *mainController;
     TimelineView *timelineView;
     ClipScreenView *clipScreenView;
     ClipInspectorView *clipInspectorView;
