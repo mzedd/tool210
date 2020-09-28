@@ -25,8 +25,8 @@ void MainWindow::setClipListModel(ClipListModel *clipListModel)
 
 void MainWindow::setOpenGLModel(OpenGLModel *openGLmodel)
 {
-    //clipScreenView = new ClipScreenView(openGLmodel, this);
-    //clipScreenView->setController(mainController->clipsScreenController());
+    clipScreenView = new ClipScreenView(openGLmodel, this);
+    clipScreenView->setController(mainController->clipsScreenController());
 }
 
 void MainWindow::setClipInspectorModel(ClipInspectorModel *model)
@@ -37,6 +37,12 @@ void MainWindow::setClipInspectorModel(ClipInspectorModel *model)
 
     sceneEditorView = new SceneEditorView(this);
     sceneEditorView->setModel(model->sceneList());
+}
+
+void MainWindow::setRenderContext(RenderContext *renderContext)
+{
+    timelineView->setRenderContext(renderContext);
+    clipScreenView->setRenderContext(renderContext);
 }
 
 void MainWindow::initialize()

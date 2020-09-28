@@ -4,6 +4,8 @@
 #include <QAbstractItemView>
 #include <QWheelEvent>
 
+class RenderContext;
+
 class ClipListView : public QAbstractItemView
 {
     Q_OBJECT
@@ -14,6 +16,8 @@ public:
     QRect visualRect(const QModelIndex &index) const;
     void scrollTo(const QModelIndex &index, QAbstractItemView::ScrollHint hint = EnsureVisible);
     QModelIndex indexAt(const QPoint &point) const;
+
+    void setRenderContext(RenderContext *renderContext);
 
 protected:
     QModelIndex moveCursor(CursorAction cursorAction, Qt::KeyboardModifiers modifiers);
@@ -32,9 +36,12 @@ protected:
     QRegion visualRegionForSelection(const QItemSelection &selection) const;
 
 private:
+    RenderContext *renderContext;
+
     bool isMouseFloatingOverTimeCursor(const QPoint &point) const;
     int clipUnderTimeCursor() const;
     void setTimeFromCursorPosition(int x);
+    float getCursorPosition() const;
 
     enum DragState {
         None,
@@ -42,7 +49,6 @@ private:
     };
 
     float zoom;
-    float time;
     DragState timeCurorDragState;
 
 Q_SIGNALS:
@@ -52,7 +58,6 @@ Q_SIGNALS:
     void clipSelected(int id);
 
 public Q_SLOTS:
-    void setTime(float time);
     void selectedClipChanged(QModelIndex index);
     void selectedClipDurationChanged();
 

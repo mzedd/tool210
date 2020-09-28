@@ -5,45 +5,40 @@
 #include <QElapsedTimer>
 #include <QOpenGLFunctions>
 #include <vector>
+#include <QMap>
+#include <QOpenGLShaderProgram>
 #include "Clip.h"
+#include "interactors/sceneinformationinteractor.h"
+#include "rendercontext.h"
 
 class Q_DECL_EXPORT OpenGLModel : public QObject, protected QOpenGLFunctions
 {
     Q_OBJECT
 
-    Q_PROPERTY(float time READ time WRITE setTime NOTIFY timeChanged)
-    Q_PROPERTY(bool run READ run WRITE setRun NOTIFY runChanged)
-
 public:
     explicit OpenGLModel(QObject *parent = nullptr);
 
-    float time() const;
-    void setTime(float time);
+    void setSceneInformationInteractor(SceneInformationInteractor* interactor);
 
     Clip *clipToRender() const;
     void setClipToRender(Clip *clip);
-
-    bool run() const;
-    void setRun(bool run);
 
     void initializeGL();
     void resiszeGL(int w, int h);
     void paintGL();
 
-    float deltaTime();
     void setSceneList(std::vector<Scene*> *sceneList);
 
 private:
-    float time_;
     Clip *clipToRender_;
-    bool run_;
-
-    QElapsedTimer timer;
-    float timeAtRunChanged;
 
     std::vector<Scene*> *sceneList;
     int width;
     int height;
+
+    QMap<int, QOpenGLShaderProgram *> shaderMap;
+
+    SceneInformationInteractor *sceneInformationInteractor;
 
 Q_SIGNALS:
     void timeChanged();

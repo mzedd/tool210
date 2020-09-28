@@ -1,5 +1,6 @@
 #include "cliplistview.h"
 #include <models/cliplistmodel.h>
+#include "rendercontext.h"
 #include <QPainter>
 
 #include <QDebug>
@@ -11,12 +12,10 @@ constexpr float SCROLL_SENSITIVITY = 0.01f;
 constexpr float ZOOM_MINIMUM = 0.5f;
 constexpr float ZOOM_MAXIMUM = 5.0f;
 constexpr float ZOOM_DEFAULT = 1.0f;
-constexpr float TIME_CURSOR_DEFAULT = 10.0f;
 
 ClipListView::ClipListView(QWidget *parent) :
     QAbstractItemView(parent),
     zoom(ZOOM_DEFAULT),
-    time(TIME_CURSOR_DEFAULT),
     timeCurorDragState(DragState::None)
 {
     setMouseTracking(true);
@@ -59,6 +58,11 @@ QModelIndex ClipListView::indexAt(const QPoint &point) const
     }
 
     return QModelIndex();
+}
+
+void ClipListView::setRenderContext(RenderContext *renderContext)
+{
+    this->renderContext = renderContext;
 }
 
 QModelIndex ClipListView::moveCursor(QAbstractItemView::CursorAction cursorAction, Qt::KeyboardModifiers /*modifiers*/)
@@ -110,8 +114,7 @@ void ClipListView::mousePressEvent(QMouseEvent *event)
             timeCurorDragState = DragState::Dragged;
         } else {
             if(event->y() <= TIMEAXIS_HEIGHT) {
-                time = event->x() / (PIXEL_PER_SECOND * zoom);
-                emit timeChanged(time);
+                setTimeFromCursorPosition(event->x());
             } else {
                 QModelIndex index = indexAt(event->pos());
                 if(index.isValid()) {
@@ -137,7 +140,6 @@ void ClipListView::mouseMoveEvent(QMouseEvent *event)
 
     if(timeCurorDragState == DragState::Dragged) {
         setTimeFromCursorPosition(event->x());
-        emit timeChanged(time);
         viewport()->update();
     }
 }
@@ -148,7 +150,6 @@ void ClipListView::mouseReleaseEvent(QMouseEvent *event)
         if(isMouseFloatingOverTimeCursor(event->pos())) {
             timeCurorDragState = DragState::None;
             setTimeFromCursorPosition(event->x());
-            emit timeChanged(time);
 
             emit clipToRenderChanged(clipUnderTimeCursor());
         } else {
@@ -237,7 +238,7 @@ void ClipListView::paintEvent(QPaintEvent*)
     }
 
     // draw time cursor
-    float x = time * PIXEL_PER_SECOND * zoom;
+    float x = getCursorPosition();
     QLine timeCursorLine(x, 0, x, height());
     pen.setColor(Qt::red);
     pen.setWidth(2);
@@ -252,27 +253,25 @@ QRegion ClipListView::visualRegionForSelection(const QItemSelection& /*selection
 
 bool ClipListView::isMouseFloatingOverTimeCursor(const QPoint &point) const
 {
-    float x = time * PIXEL_PER_SECOND * zoom;
+    float x = getCursorPosition();
     QRect timeCursorRect(x - 1, 0, 3, height());
     return timeCursorRect.contains(point);
 }
 
 int ClipListView::clipUnderTimeCursor() const
 {
-    float x = time * PIXEL_PER_SECOND * zoom;
+    float x = getCursorPosition();
     return indexAt(QPoint(x, TIMEAXIS_HEIGHT + CLIP_HEIGHT * 0.5f)).row();
 }
 
 void ClipListView::setTimeFromCursorPosition(int x)
 {
-    time = x / (PIXEL_PER_SECOND * zoom);
-    time = qMax(0.0f, time);
+    renderContext->setTime(x / (PIXEL_PER_SECOND * zoom));
 }
 
-void ClipListView::setTime(float time)
+float ClipListView::getCursorPosition() const
 {
-    this->time = time;
-    viewport()->update();
+    return renderContext->time() * PIXEL_PER_SECOND * zoom;
 }
 
 void ClipListView::selectedClipChanged(QModelIndex index)

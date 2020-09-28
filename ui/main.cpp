@@ -4,9 +4,10 @@
 #include "Demo.h"
 #include "models/demomodel.h"
 #include "models/cliplistmodel.h"
-//#include "models/openglmodel.h"
+#include "models/openglmodel.h"
 #include "models/clipinspectormodel.h"
 #include "models/scenelistmodel.h"
+#include "rendercontext.h"
 
 #include "maincontroller.h"
 
@@ -30,15 +31,17 @@ int main(int argc, char *argv[])
     mainController.setModel(demoModel);
     mainController.setDemoFileAccessor(demoFileAccessor);
 
+    RenderContext *renderContext = new RenderContext;
+
     ClipListModel *clipListModel = new ClipListModel;
     clipListModel->setClipList(&demo->clipList());
     mainController.timelineController()->setModel(clipListModel);
     mainWindow.setClipListModel(clipListModel);
 
-    //OpenGLModel *openGLModel = new OpenGLModel;
-    //openGLModel->setSceneList(&demo->sceneList());
-    //mainController.clipsScreenController()->setModel(openGLModel);
-    //mainWindow.setOpenGLModel(openGLModel);
+    OpenGLModel *openGLModel = new OpenGLModel;
+    openGLModel->setSceneList(&demo->sceneList());
+    mainController.clipsScreenController()->setModel(openGLModel);
+    mainWindow.setOpenGLModel(openGLModel);
 
     ClipInspectorModel *clipInspectorModel = new ClipInspectorModel;
     SceneListModel *sceneListModel = new SceneListModel;
@@ -48,6 +51,7 @@ int main(int argc, char *argv[])
     mainController.clipInspectorController()->setModel(clipInspectorModel);
     mainWindow.setClipInspectorModel(clipInspectorModel);
 
+    mainWindow.setRenderContext(renderContext);
     mainWindow.initialize();
     mainWindow.show();
 

@@ -7,8 +7,11 @@
 #include "controllers/maincontroller.h"
 
 #include "views/timeline/timelineview.h"
+#include "views/clipscreen/clipscreenview.h"
 #include "views/clipinspector/clipinspectorview.h"
 #include "views/sceneeditor/sceneeditorview.h"
+
+class RenderContext;
 
 class MainWindow : public QMainWindow
 {
@@ -20,12 +23,13 @@ public:
     void setClipListModel(ClipListModel* clipListModel);
     void setOpenGLModel(OpenGLModel *openGLmodel);
     void setClipInspectorModel(ClipInspectorModel* model);
+    void setRenderContext(RenderContext *renderContext);
     void initialize();
 
 private:
     MainController *mainController;
     TimelineView *timelineView;
-    //ClipScreenView *clipScreenView;
+    ClipScreenView *clipScreenView;
     ClipInspectorView *clipInspectorView;
     SceneEditorView *sceneEditorView;
 

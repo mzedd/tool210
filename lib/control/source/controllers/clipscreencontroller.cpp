@@ -13,7 +13,6 @@ void ClipScreenController::setModel(OpenGLModel *model)
 
 void ClipScreenController::setTime(float time)
 {
-    model->setTime(time);
 }
 
 void ClipScreenController::setClipToRender(Clip *clip)
@@ -23,7 +22,6 @@ void ClipScreenController::setClipToRender(Clip *clip)
 
 void ClipScreenController::toggleRun()
 {
-    model->setRun(!model->run());
 }
 
 

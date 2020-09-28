@@ -7,6 +7,7 @@
 #include "controllers/clipscreencontroller.h"
 
 class OpenGLModel;
+class RenderContext;
 
 class ClipScreenView : public QWidget
 {
@@ -17,6 +18,8 @@ public:
     void setController(ClipScreenController *clipScreenController);
 
     QSize sizeHint() const;
+
+    void setRenderContext(RenderContext *renderContext);
 
 private:
     AspectRatioWidget *aspectRatioWidget;

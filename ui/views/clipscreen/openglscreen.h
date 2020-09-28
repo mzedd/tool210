@@ -4,12 +4,16 @@
 #include <QOpenGLWidget>
 #include <models/openglmodel.h>
 
+class RenderContext;
+
 class OpenGLScreen : public QOpenGLWidget
 {
     Q_OBJECT
 public:
     OpenGLScreen(OpenGLModel *model, QWidget* parent = nullptr);
     ~OpenGLScreen();
+
+    void setRenderContext(RenderContext *renderContext);
 
 protected:
     void initializeGL() override;
@@ -18,6 +22,7 @@ protected:
 
 private:
     OpenGLModel *model;
+    RenderContext *renderContext;
 
 Q_SIGNALS:
     void frameFinishedAt(float time);

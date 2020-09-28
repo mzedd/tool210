@@ -14,6 +14,7 @@ add_library(${PROJECT_NAME} STATIC
   source/controllers/timelinecontroller.cpp
   source/controllers/clipscreencontroller.cpp
   source/controllers/clipinspectorcontroller.cpp
+  source/controllers/rendercontext.cpp
 
   ## models
   source/models/demomodel.cpp
@@ -22,12 +23,16 @@ add_library(${PROJECT_NAME} STATIC
   source/models/openglmodel.cpp
   source/models/clipinspectormodel.cpp
 
+  ## interactors
+  source/interactors/sceneinformationinteractor.cpp
+
   # public
   ## controllers
   public/controllers/maincontroller.h
   public/controllers/timelinecontroller.h
   public/controllers/clipscreencontroller.h
   public/controllers/clipinspectorcontroller.h
+  public/controllers/rendercontext.h
 
   ## models
   public/models/demomodel.h
@@ -35,6 +40,9 @@ add_library(${PROJECT_NAME} STATIC
   public/models/scenelistmodel.h
   public/models/openglmodel.h
   public/models/clipinspectormodel.h
+
+  ## interactors
+  public/interactors/sceneinformationinteractor.h
 
   ## file accessor
   public/demofileaccessinterface.h

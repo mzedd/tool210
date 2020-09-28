@@ -14,6 +14,11 @@ OpenGLScreen::~OpenGLScreen()
     makeCurrent();
 }
 
+void OpenGLScreen::setRenderContext(RenderContext *renderContext)
+{
+    this->renderContext = renderContext;
+}
+
 void OpenGLScreen::initializeGL()
 {
     model->initializeGL();
@@ -28,8 +33,8 @@ void OpenGLScreen::paintGL()
 {
     model->paintGL();
 
-    if(model->run()) {
-        emit frameFinishedAt(model->deltaTime());
+    if(renderContext->run()) {
+        emit frameFinishedAt(renderContext->deltaTime());
         update();
     }
 }

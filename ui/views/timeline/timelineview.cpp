@@ -47,6 +47,11 @@ void TimelineView::setController(TimelineController *timelineController)
     connect(timelineController, SIGNAL(timeChanged(float)), this, SLOT(setTime(float)));
 }
 
+void TimelineView::setRenderContext(RenderContext *renderContext)
+{
+    clipListView->setRenderContext(renderContext);
+}
+
 void TimelineView::setZoomLabel(float zoom)
 {
     zoomLabel->setText(QString("Zoom: %1 %").arg(zoom*100.0f));
@@ -60,5 +65,4 @@ void TimelineView::setTimeLabel(float time)
 void TimelineView::setTime(float time)
 {
     setTimeLabel(time);
-    clipListView->setTime(time);
 }

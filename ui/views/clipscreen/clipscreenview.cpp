@@ -28,3 +28,8 @@ QSize ClipScreenView::sizeHint() const
 {
     return QSize(600, 500);
 }
+
+void ClipScreenView::setRenderContext(RenderContext *renderContext)
+{
+    openGLScreen->setRenderContext(renderContext);
+}

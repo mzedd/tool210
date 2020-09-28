@@ -2,27 +2,18 @@
 #include "Demo.h"
 #include "Scene.h"
 
-constexpr float MSEC_PER_SECS = 0.001f;
+
 
 OpenGLModel::OpenGLModel(QObject *parent) :
     QObject(parent),
-    time_(10.0f),
     clipToRender_(nullptr),
-    run_(false),
-    timeAtRunChanged(0.0f)
+    sceneInformationInteractor(nullptr)
 {
-    timer.start();
 }
 
-float OpenGLModel::time() const
+void OpenGLModel::setSceneInformationInteractor(SceneInformationInteractor *sceneInformationInteractor)
 {
-    return time_;
-}
-
-void OpenGLModel::setTime(float time)
-{
-    this->time_ = time;
-    timeAtRunChanged = timer.elapsed() * MSEC_PER_SECS - time_;
+    this->sceneInformationInteractor = sceneInformationInteractor;
 }
 
 Clip *OpenGLModel::clipToRender() const
@@ -34,18 +25,6 @@ void OpenGLModel::setClipToRender(Clip *clip)
 {
     clipToRender_ = clip;
     emit clipToRenderChanged();
-}
-
-bool OpenGLModel::run() const
-{
-    return run_;
-}
-
-void OpenGLModel::setRun(bool run)
-{
-    run_ = run;
-    timeAtRunChanged = timer.elapsed() * MSEC_PER_SECS - time_;
-    emit runChanged();
 }
 
 void OpenGLModel::initializeGL()
@@ -78,12 +57,6 @@ void OpenGLModel::paintGL()
         clipToRender()->renderAt(time());*/
         glDrawArrays(GL_TRIANGLES, 0, 6);
     }
-}
-
-float OpenGLModel::deltaTime()
-{
-    time_ = timer.elapsed() * MSEC_PER_SECS - timeAtRunChanged;
-    return time_;
 }
 
 void OpenGLModel::setSceneList(std::vector<Scene *> *sceneList)
