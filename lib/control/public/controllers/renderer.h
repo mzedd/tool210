@@ -7,10 +7,11 @@ class Clip;
 
 class Renderer
 {
+public:
     virtual void setClipToRender(Clip *clip) = 0;
     virtual void renderAt(float time) = 0;
     virtual void setViewport(int width, int height) = 0;
-    virtual void addShader(int id, std::string filepath);
+    virtual bool addShader(int id, std::string filepath) = 0;
     virtual void removeShader(int id) = 0;
 };
 

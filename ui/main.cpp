@@ -28,12 +28,11 @@ int main(int argc, char *argv[])
     SceneListModel *sceneListModel = new SceneListModel;
     sceneListModel->setSceneList(&demo->sceneList());
 
-    OpenGLRenderer *openGLModel = new OpenGLRenderer;
-    openGLModel->setSceneList(&demo->sceneList());
+    OpenGLRenderer *openGLRenderer = new OpenGLRenderer;
 
     mainWindow.setClipListModel(clipListModel);
     mainWindow.setSceneListModel(sceneListModel);
-    mainWindow.setOpenGLModel(openGLModel);
+    mainWindow.setOpenGLModel(openGLRenderer);
     mainWindow.setRenderContext(renderContext);
 
     mainWindow.initialize();

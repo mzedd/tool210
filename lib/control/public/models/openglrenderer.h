@@ -2,49 +2,38 @@
 #define OPENGLRENDERER_H
 
 #include <QObject>
-#include <QElapsedTimer>
 #include <QOpenGLFunctions>
-#include <vector>
 #include <QMap>
 #include <QOpenGLShaderProgram>
+#include <QOpenGLVertexArrayObject>
+#include <QOpenGLBuffer>
 #include "Clip.h"
-#include "interactors/sceneinformationinteractor.h"
 #include "rendercontext.h"
 #include "renderer.h"
 
-class Q_DECL_EXPORT OpenGLRenderer : public QObject, protected QOpenGLFunctions
+class OpenGLRenderer : public QObject, protected QOpenGLFunctions, public Renderer
 {
-    Q_OBJECT
-
 public:
     explicit OpenGLRenderer(QObject *parent = nullptr);
-
-    void setSceneInformationInteractor(SceneInformationInteractor* interactor);
-
-    Clip *clipToRender() const;
-    void setClipToRender(Clip *clip);
-
     void initializeGL();
-    void resiszeGL(int w, int h);
-    void paintGL();
 
-    void setSceneList(std::vector<Scene*> *sceneList);
+    // Renderer interface
+    void setClipToRender(Clip *clip);
+    void renderAt(float time);
+    void setViewport(int width, int height);
+    bool addShader(int id, std::string filepath);
+    void removeShader(int id);
 
 private:
-    Clip *clipToRender_;
+    QMap<int, QOpenGLShaderProgram *> shaderMap;
+    RenderContext *renderContext;
+    Clip *clipToRender;
 
-    std::vector<Scene*> *sceneList;
+    QOpenGLVertexArrayObject vao;
+    QOpenGLBuffer vbo;
+
     int width;
     int height;
-
-    QMap<int, QOpenGLShaderProgram *> shaderMap;
-
-    SceneInformationInteractor *sceneInformationInteractor;
-
-Q_SIGNALS:
-    void timeChanged();
-    void clipToRenderChanged();
-    void runChanged();
 };
 
 #endif // OPENGLRENDERER_H

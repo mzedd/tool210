@@ -4,60 +4,108 @@
 
 OpenGLRenderer::OpenGLRenderer(QObject *parent) :
     QObject(parent),
-    clipToRender_(nullptr),
-    sceneInformationInteractor(nullptr)
+    renderContext(nullptr),
+    clipToRender(nullptr)
 {
-}
 
-void OpenGLRenderer::setSceneInformationInteractor(SceneInformationInteractor *sceneInformationInteractor)
-{
-    this->sceneInformationInteractor = sceneInformationInteractor;
-}
-
-Clip *OpenGLRenderer::clipToRender() const
-{
-    return clipToRender_;
-}
-
-void OpenGLRenderer::setClipToRender(Clip *clip)
-{
-    clipToRender_ = clip;
-    emit clipToRenderChanged();
 }
 
 void OpenGLRenderer::initializeGL()
 {
+    float vertices[] = {
+        -1.0f, -1.0f, 0.0f,
+         1.0f, -1.0f, 0.0f,
+         1.0f,  1.0f, 0.0f,
+        -1.0f, -1.0f, 0.0f,
+         1.0f,  1.0f, 0.0f,
+        -1.0f,  1.0f, 0.0f
+    };
+
     initializeOpenGLFunctions();
+
+    vao.create();
+    vao.bind();
+
+    vbo.create();
+    vbo.bind();
+    vbo.allocate(vertices, sizeof (vertices));
 }
 
-void OpenGLRenderer::resiszeGL(int w, int h)
+void OpenGLRenderer::setClipToRender(Clip *clip)
 {
-    glViewport(0, 0, w, h);
-    for(unsigned int i = 0; i < sceneList->size(); i++) {
-        //sceneList->at(i)->setViewportResolution(w, h);
-    }
-
-    width = w;
-    height = h;
+    clipToRender = clip;
 }
 
-void OpenGLRenderer::paintGL()
+void OpenGLRenderer::renderAt(float time)
 {
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    if(clipToRender()) {
-        /*if(!clipToRender()->scene()->isInitialized()) {
-            clipToRender()->scene()->initialize();
-            clipToRender()->scene()->setViewportResolution(width, height);
-        }
+    if(clipToRender)
+    {
+        int sceneId = clipToRender->scene()->id();
+        QOpenGLShaderProgram *shaderProgram = shaderMap.value(sceneId);
 
-        clipToRender()->renderAt(time());*/
+        shaderProgram->bind();
+        shaderProgram->setUniformValue("iTime", time);
+
         glDrawArrays(GL_TRIANGLES, 0, 6);
     }
 }
 
-void OpenGLRenderer::setSceneList(std::vector<Scene *> *sceneList)
+void OpenGLRenderer::setViewport(int width, int height)
 {
-    this->sceneList = sceneList;
+    this->width = width;
+    this->height = height;
+
+    glViewport(0, 0, width, height);
+
+    for(QOpenGLShaderProgram* program : shaderMap) {
+        program->setUniformValue("iResolution", width, height);
+    }
+}
+
+bool OpenGLRenderer::addShader(int id, std::string filepath)
+{
+    QOpenGLShaderProgram *shaderProgram = new QOpenGLShaderProgram;
+
+    // add and compile vertex shader
+    QOpenGLShader vertShader(QOpenGLShader::Vertex);
+    vertShader.compileSourceFile("resources/quad.vert");
+
+    if(!vertShader.isCompiled()) {
+        qWarning() << vertShader.log();
+        return false;
+    }
+
+    // add and compile fragment shader
+    QOpenGLShader fragShader(QOpenGLShader::Fragment);
+    fragShader.compileSourceFile(QString::fromStdString(filepath));
+
+    if(!fragShader.isCompiled()) {
+        qWarning() << fragShader.log();
+        return false;
+    }
+
+    // add and link shaders to program
+    shaderProgram->addShader(&vertShader);
+    shaderProgram->addShader(&fragShader);
+    shaderProgram->link();
+
+    if(!shaderProgram->isLinked()) {
+        qWarning() << shaderProgram->log();
+        return false;
+    }
+
+    shaderProgram->enableAttributeArray(0);
+    shaderProgram->setAttributeArray(0, GL_FLOAT, 0, 3);
+    shaderProgram->setUniformValue("iResolution", width, height);
+
+    shaderMap.insert(id, shaderProgram);
+    return true;
+}
+
+void OpenGLRenderer::removeShader(int id)
+{
+    delete shaderMap.take(id);
 }

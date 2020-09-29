@@ -25,12 +25,12 @@ void OpenGLScreen::initializeGL()
 
 void OpenGLScreen::resizeGL(int w, int h)
 {
-    model->resiszeGL(w, h);
+    model->setViewport(w, h);
 }
 
 void OpenGLScreen::paintGL()
 {
-    model->paintGL();
+    model->renderAt(renderContext->time());
 
     if(renderContext->run()) {
         emit frameFinishedAt(renderContext->deltaTime());
