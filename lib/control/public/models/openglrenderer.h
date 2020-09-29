@@ -7,8 +7,8 @@
 #include <QOpenGLShaderProgram>
 #include <QOpenGLVertexArrayObject>
 #include <QOpenGLBuffer>
+
 #include "Clip.h"
-#include "rendercontext.h"
 #include "renderer.h"
 
 class OpenGLRenderer : public QObject, protected QOpenGLFunctions, public Renderer
@@ -26,7 +26,6 @@ public:
 
 private:
     QMap<int, QOpenGLShaderProgram *> shaderMap;
-    RenderContext *renderContext;
     Clip *clipToRender;
 
     QOpenGLVertexArrayObject vao;

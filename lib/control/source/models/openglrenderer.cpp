@@ -1,10 +1,7 @@
 #include "openglrenderer.h"
-#include "Demo.h"
-#include "Scene.h"
 
 OpenGLRenderer::OpenGLRenderer(QObject *parent) :
     QObject(parent),
-    renderContext(nullptr),
     clipToRender(nullptr)
 {
 
