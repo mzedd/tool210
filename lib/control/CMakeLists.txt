@@ -25,6 +25,7 @@ add_library(${PROJECT_NAME} STATIC
   # public
   ## controllers
   public/controllers/rendercontext.h
+  public/controllers/renderer.h
 
   ## models
   public/models/demomodel.h
