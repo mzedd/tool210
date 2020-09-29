@@ -13,11 +13,9 @@ add_library(${PROJECT_NAME} STATIC
   source/controllers/rendercontext.cpp
 
   ## models
-  source/models/demomodel.cpp
   source/models/cliplistmodel.cpp
   source/models/scenelistmodel.cpp
   source/models/openglmodel.cpp
-  source/models/clipinspectormodel.cpp
 
   ## interactors
   source/interactors/sceneinformationinteractor.cpp
@@ -28,11 +26,9 @@ add_library(${PROJECT_NAME} STATIC
   public/controllers/renderer.h
 
   ## models
-  public/models/demomodel.h
   public/models/cliplistmodel.h
   public/models/scenelistmodel.h
   public/models/openglmodel.h
-  public/models/clipinspectormodel.h
 
   ## interactors
   public/interactors/sceneinformationinteractor.h
