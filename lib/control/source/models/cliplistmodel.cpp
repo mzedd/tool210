@@ -12,7 +12,7 @@ ClipListModel::ClipListModel(QObject *parent) :
 
 int ClipListModel::rowCount(const QModelIndex&) const
 {
-    return clipList->size();
+    return demo->clipList().size();
 }
 
 int ClipListModel::columnCount(const QModelIndex &/*parent*/) const
@@ -25,7 +25,7 @@ QVariant ClipListModel::data(const QModelIndex &index, int role) const
     if(!index.isValid())
         return  QVariant();
 
-    Clip *clip = clipList->at(index.row());
+    Clip *clip = demo->clipList().at(index.row());
 
     switch (role) {
     case Qt::DisplayRole:
@@ -56,7 +56,7 @@ bool ClipListModel::setData(const QModelIndex &index, const QVariant &value, int
     if(!(role == Qt::EditRole))
         return false;
 
-    Clip *clip = clipList->at(index.row());
+    Clip *clip = demo->clipList().at(index.row());
 
     switch (index.column()) {
     case 0: // name
@@ -73,14 +73,23 @@ bool ClipListModel::setData(const QModelIndex &index, const QVariant &value, int
 
 bool ClipListModel::moveRows(const QModelIndex& /*sourceParent*/, int sourceRow, int /*count*/, const QModelIndex &destinationParent, int /*destinationChild*/)
 {
-    Clip *tmp = clipList->at(sourceRow);
-    clipList->at(sourceRow) = clipList->at(destinationParent.row());
-    clipList->at(destinationParent.row()) = tmp;
+    Clip *tmp = demo->clipList().at(sourceRow);
+    demo->clipList().at(sourceRow) = demo->clipList().at(destinationParent.row());
+    demo->clipList().at(destinationParent.row()) = tmp;
 
     return true;
 }
 
-void ClipListModel::setClipList(std::vector<Clip *> *clipList)
+bool ClipListModel::insertRows(int /*row*/, int /*count*/, const QModelIndex &/*parent*/)
 {
-    this->clipList = clipList;
+    demo->addClip();
+
+    QModelIndex tmp = index(rowCount() - 1, 0);
+    emit dataChanged(tmp, tmp);
+    return true;
+}
+
+void ClipListModel::setDemo(Demo *demo)
+{
+    this->demo = demo;
 }

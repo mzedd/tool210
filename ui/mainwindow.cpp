@@ -65,8 +65,7 @@ void MainWindow::createMenu()
 
 void MainWindow::createWidgets()
 {
-    //setCentralWidget(clipScreenView);
-    setCentralWidget(new QWidget(this));
+    setCentralWidget(clipScreenView);
 
     QDockWidget *dockWidget = new QDockWidget(this);
     dockWidget->setFeatures(QDockWidget::DockWidgetMovable);

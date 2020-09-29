@@ -18,8 +18,9 @@ float RenderContext::time() const
 
 void RenderContext::setTime(float time)
 {
-    time_ = std::min(0.0f, time);
+    time_ = std::max(0.0f, time);
     timeAtRunChanged = timer.elapsed() * MSEC_PER_SECS - time_;
+    emit timeChanged();
 }
 
 bool RenderContext::run() const

@@ -4,6 +4,7 @@
 #include <QHBoxLayout>
 #include "cliplistview.h"
 #include "cliplistmodel.h"
+#include "rendercontext.h"
 
 TimelineView::TimelineView(ClipListModel *model, QWidget *parent) :
     QWidget(parent)
@@ -31,16 +32,30 @@ TimelineView::TimelineView(ClipListModel *model, QWidget *parent) :
     setLayout(mainLayout);
 
     connect(clipListView, SIGNAL(zoomChanged(float)), this, SLOT(setZoomLabel(float)));
-    connect(clipListView, SIGNAL(timeChanged(float)), this, SLOT(setTimeLabel(float)));
+
     connect(clipListView, SIGNAL(clipToRenderChanged(int)), this, SIGNAL(clipToRenderChanged(int)));
     connect(clipListView, &ClipListView::clipSelected, this, &TimelineView::clipSelected);
-    //connect(model, &ClipListModel::selectedClipChanged, clipListView, &ClipListView::selectedClipChanged);
-    //connect(model, &ClipListModel::selectedClipDurationChanged, clipListView, &ClipListView::selectedClipDurationChanged);
+
+    connect(runPauseButton, &QPushButton::clicked, this, &TimelineView::playPauseClicked);
+    connect(addClipButton, &QPushButton::clicked, this, &TimelineView::addClipButtonClicked);
 }
 
 void TimelineView::setRenderContext(RenderContext *renderContext)
 {
+    this->renderContext = renderContext;
     clipListView->setRenderContext(renderContext);
+
+    connect(renderContext, &RenderContext::timeChanged, this, &TimelineView::updateTimeLabel);
+}
+
+void TimelineView::updateTimeLabel()
+{
+    timeLabel->setText(QString("Time: %1 s").arg(renderContext->time()));
+}
+
+void TimelineView::addClipButtonClicked()
+{
+    clipListView->model()->insertRow(0);
 }
 
 void TimelineView::setZoomLabel(float zoom)
@@ -48,12 +63,7 @@ void TimelineView::setZoomLabel(float zoom)
     zoomLabel->setText(QString("Zoom: %1 %").arg(zoom*100.0f));
 }
 
-void TimelineView::setTimeLabel(float time)
+void TimelineView::playPauseClicked()
 {
-    timeLabel->setText(QString("Time: %1 s").arg(time));
-}
-
-void TimelineView::setTime(float time)
-{
-    setTimeLabel(time);
+    renderContext->setRun(!renderContext->run());
 }

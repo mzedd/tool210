@@ -20,19 +20,22 @@ public:
     ClipListView *clipListView;
 
 private:
+    RenderContext *renderContext;
 
     QPushButton *runPauseButton;
     QPushButton *addClipButton;
     QLabel *zoomLabel;
     QLabel *timeLabel;
 
-private slots:
+
+
+private Q_SLOTS:
     void setZoomLabel(float zoom);
-    void setTimeLabel(float time);
-    void setTime(float time);
+    void playPauseClicked();
+    void updateTimeLabel();
+    void addClipButtonClicked();
 
 signals:
-    void timeChanged(float time);
     void addClipClicked();
     void clipToRenderChanged(int id);
     void clipSelected(int id);

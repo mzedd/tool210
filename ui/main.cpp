@@ -26,7 +26,7 @@ int main(int argc, char *argv[])
     RenderContext *renderContext = new RenderContext;
 
     ClipListModel *clipListModel = new ClipListModel;
-    clipListModel->setClipList(&demo->clipList());
+    clipListModel->setDemo(demo);
     mainWindow.setClipListModel(clipListModel);
 
     OpenGLModel *openGLModel = new OpenGLModel;

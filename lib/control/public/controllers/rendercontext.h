@@ -28,6 +28,7 @@ private:
 
 Q_SIGNALS:
     void runChanged();
+    void timeChanged();
 };
 
 #endif // RENDERCONTEXT_H
