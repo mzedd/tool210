@@ -62,7 +62,7 @@ Scene *Demo::sceneAt(int index)
 
 void Demo::addScene()
 {
-    sceneList_.push_back(new ShaderOnlyScene);
+    sceneList_.push_back(new Scene);
 }
 
 int Demo::clipIdAt(float time)

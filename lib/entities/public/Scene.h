@@ -6,19 +6,20 @@
 class Scene
 {
 public:
-    Scene(int id) : id_(id) {};
-    virtual ~Scene() { };
+    Scene();
 
-    int id() const { return id_;}
+    int id() const;
 
-    std::string name() const { return name_; };
-    void setName(std::string name) { name_ = name; };
+    std::string name() const;
+    void setName(std::string name);
 
-    virtual std::string shaderFileName() const = 0;
+    std::string shaderFileName() const;
+    void setShaderFileName(std::string filename);
 
 protected:
     int id_;
     std::string name_;
+    std::string shaderFileName_;
 };
 
 #endif // SCENE_H

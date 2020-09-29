@@ -7,13 +7,12 @@ add_library(${PROJECT_NAME} STATIC
   # source
   source/Demo.cpp
   source/Clip.cpp
-  source/ShaderOnlyScene.cpp
+  source/scene.cpp
 
   # public
   public/Demo.h
   public/Clip.h
   public/Scene.h
-  public/ShaderOnlyScene.h
 )
 
 target_include_directories(${PROJECT_NAME}
