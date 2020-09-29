@@ -14,14 +14,11 @@ Demo *DemoJsonFileAccess::getDemo(QString filepath)
 {
     loadFile(filepath);
 
-    std::vector<Scene *> *sceneList;
-    std::vector<Clip *> *clipList;
-
-    sceneList = getSceneList();
-    clipList = getClipList(sceneList);
-
-    Demo *demo = new Demo(clipList, sceneList);
+    Demo *demo = new Demo;
     demo->setName(getDemoName().toStdString());
+
+    populateSceneList(demo);
+    populateClipList(demo);
 
     return demo;
 }
@@ -88,52 +85,42 @@ QString DemoJsonFileAccess::getDemoName()
     return QString();
 }
 
-std::vector<Scene *> *DemoJsonFileAccess::getSceneList()
+void DemoJsonFileAccess::populateSceneList(Demo *demo)
 {
-    std::vector<Scene *> *sceneList = new std::vector<Scene *>();
-    Scene *scene;
-
     if(jsonObject.contains("scene list") && jsonObject["scene list"].isArray()) {
         QJsonArray array = jsonObject["scene list"].toArray();
 
-        sceneList->reserve(array.size());
+        demo->sceneList().reserve(array.size());
         for(int i = 0; i < array.size(); i++) {
             QJsonObject sceneJsonObject = array.at(i).toObject();
 
-            scene = new Scene;
+            demo->addScene();
+            Scene *scene = demo->sceneList().back();
+
             scene->setName(sceneJsonObject["name"].toString().toStdString());
             scene->setShaderFileName(sceneJsonObject["shader file name"].toString().toStdString());
-
-            sceneList->push_back(scene);
         }
     }
-
-    return sceneList;
 }
 
 
-std::vector<Clip *> *DemoJsonFileAccess::getClipList(std::vector<Scene *> *sceneList)
+void DemoJsonFileAccess::populateClipList(Demo *demo)
 {
-    std::vector<Clip *> *clipList = new std::vector<Clip *>();
-    Clip *clip;
-
     if(jsonObject.contains("clip list") && jsonObject["clip list"].isArray()) {
         QJsonArray array =  jsonObject["clip list"].toArray();
 
-        clipList->reserve(array.size());
+        demo->clipList().reserve(array.size());
         for (int i = 0; i < array.size(); i++) {
             QJsonObject clipJsonObject = array.at(i).toObject();
 
-            clip = new Clip;
+            demo->addClip();
+            Clip *clip = demo->clipList().back();
+
             clip->setName(clipJsonObject["name"].toString().toStdString());
             clip->setDuration(static_cast<float>(clipJsonObject["duration"].toDouble()));
-            clip->setScene(sceneList->at(clipJsonObject["scene id"].toInt()));
-
-            clipList->push_back(clip);
+            clip->setScene(demo->sceneList().at(clipJsonObject["scene id"].toInt()));
         }
     }
-
-    return clipList;
 }
 
 int DemoJsonFileAccess::getSceneIdFrom(Scene *scene, std::vector<Scene *> &sceneList) const

@@ -8,10 +8,7 @@
 
 int main()
 {
-    auto clipList = new std::vector<Clip *>();
-    auto sceneList = new std::vector<Scene *>();
-
-    Demo demo(clipList, sceneList);
+    Demo demo;
 
     demo.addClip();
     demo.clipList().at(0)->setName("first clip");

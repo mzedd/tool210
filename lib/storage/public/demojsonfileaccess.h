@@ -13,8 +13,8 @@ public:
 private:
     void loadFile(QString filename);
     QString getDemoName();
-    std::vector<Scene *> *getSceneList();
-    std::vector<Clip *> *getClipList(std::vector<Scene *> *sceneList);
+    void populateSceneList(Demo *demo);
+    void populateClipList(Demo *demo);
 
     int getSceneIdFrom(Scene *scene, std::vector<Scene *> &sceneList) const;
 

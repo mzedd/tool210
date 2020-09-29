@@ -2,9 +2,7 @@
 #include "Clip.h"
 #include "Scene.h"
 
-Demo::Demo(std::vector<Clip *> *clipList, std::vector<Scene *> *sceneList) :
-    clipList_(*clipList),
-    sceneList_(*sceneList)
+Demo::Demo()
 {
 
 }

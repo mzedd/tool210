@@ -9,7 +9,7 @@
 class Demo
 {
 public:
-    Demo(std::vector<Clip *> *clipList, std::vector<Scene *> *sceneList);
+    Demo();
     ~Demo();
 
     std::string name() const;
@@ -27,8 +27,8 @@ public:
 
 private:
     std::string name_;
-    std::vector<Clip *> &clipList_;
-    std::vector<Scene *> &sceneList_;
+    std::vector<Clip *> clipList_;
+    std::vector<Scene *> sceneList_;
 
     // TODO: musicTrack
     // TODO: postProcessingEffects
