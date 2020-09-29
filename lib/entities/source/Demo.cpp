@@ -1,7 +1,6 @@
 #include "Demo.h"
 #include "Clip.h"
 #include "Scene.h"
-#include "ShaderOnlyScene.h"
 
 Demo::Demo(std::vector<Clip *> *clipList, std::vector<Scene *> *sceneList) :
     clipList_(*clipList),

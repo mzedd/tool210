@@ -1,8 +1,8 @@
 #include "demojsonfileaccess.h"
 
-#include "ShaderOnlyScene.h"
 #include "Demo.h"
 #include "Clip.h"
+#include "Scene.h"
 
 #include <QFile>
 #include <QJsonDocument>
@@ -53,7 +53,7 @@ void DemoJsonFileAccess::storeDemo(QString filepath, Demo* demo)
     for(Scene *scene : demo->sceneList()) {
         QJsonObject sceneJsonObject;
         sceneJsonObject.insert("name", QString::fromStdString(scene->name()));
-        sceneJsonObject.insert("shader file name", QString::fromStdString(static_cast<ShaderOnlyScene *>(scene)->shaderFileName()));
+        sceneJsonObject.insert("shader file name", QString::fromStdString(scene->shaderFileName()));
         sceneArray.append(sceneJsonObject);
     }
     demoJsonObject.insert("scene list", sceneArray);
@@ -91,7 +91,7 @@ QString DemoJsonFileAccess::getDemoName()
 std::vector<Scene *> *DemoJsonFileAccess::getSceneList()
 {
     std::vector<Scene *> *sceneList = new std::vector<Scene *>();
-    ShaderOnlyScene *scene;
+    Scene *scene;
 
     if(jsonObject.contains("scene list") && jsonObject["scene list"].isArray()) {
         QJsonArray array = jsonObject["scene list"].toArray();
@@ -100,7 +100,7 @@ std::vector<Scene *> *DemoJsonFileAccess::getSceneList()
         for(int i = 0; i < array.size(); i++) {
             QJsonObject sceneJsonObject = array.at(i).toObject();
 
-            scene = new ShaderOnlyScene;
+            scene = new Scene;
             scene->setName(sceneJsonObject["name"].toString().toStdString());
             scene->setShaderFileName(sceneJsonObject["shader file name"].toString().toStdString());
 
