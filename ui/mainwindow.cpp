@@ -8,26 +8,25 @@
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
 {
-
+    clipInspectorView = new ClipInspectorView(this);
+    sceneEditorView = new SceneEditorView(this);
 }
 
 void MainWindow::setClipListModel(ClipListModel *clipListModel)
 {
     timelineView = new TimelineView(clipListModel, this);
+    clipInspectorView->setClipListModel(clipListModel);
+}
+
+void MainWindow::setSceneListModel(SceneListModel *sceneListModel)
+{
+    clipInspectorView->setSceneListModel(sceneListModel);
+    sceneEditorView->setModel(sceneListModel);
 }
 
 void MainWindow::setOpenGLModel(OpenGLModel *openGLmodel)
 {
     clipScreenView = new ClipScreenView(openGLmodel, this);
-}
-
-void MainWindow::setClipInspectorModel(ClipInspectorModel *model)
-{
-    clipInspectorView = new ClipInspectorView(this);
-    clipInspectorView->setModel(model);
-
-    sceneEditorView = new SceneEditorView(this);
-    sceneEditorView->setModel(model->sceneList());
 }
 
 void MainWindow::setRenderContext(RenderContext *renderContext)
@@ -42,7 +41,6 @@ void MainWindow::initialize()
     createWidgets();
 
     connect(timelineView->clipListView->selectionModel(), &QItemSelectionModel::currentChanged, clipInspectorView->dataMapper, &QDataWidgetMapper::setCurrentModelIndex);
-
 }
 
 void MainWindow::createMenu()

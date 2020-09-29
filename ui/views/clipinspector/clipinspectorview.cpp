@@ -3,6 +3,8 @@
 #include <QFormLayout>
 #include <QLabel>
 
+#include "cliplistmodel.h"
+#include "scenelistmodel.h"
 
 ClipInspectorView::ClipInspectorView(QWidget *parent) :
     QWidget(parent)
@@ -28,7 +30,7 @@ ClipInspectorView::ClipInspectorView(QWidget *parent) :
     clipDataLayout->addRow(new QLabel("Scene:"), sceneComboBox);
     mainLayout->addLayout(clipDataLayout);
 
-    dataMapper = new QDataWidgetMapper;
+    dataMapper = new QDataWidgetMapper(this);
     tableView = new QTableView;
 
     mainLayout->addWidget(tableView);
@@ -37,16 +39,18 @@ ClipInspectorView::ClipInspectorView(QWidget *parent) :
     setLayout(mainLayout);
 }
 
-void ClipInspectorView::setModel(ClipInspectorModel *model)
+void ClipInspectorView::setClipListModel(ClipListModel *clipListModel)
 {
-    this->model = model;
-    sceneComboBox->setModel(model->sceneList());
-    dataMapper->setModel(model->clipList());
-    tableView->setModel(model->clipList());
+    dataMapper->setModel(clipListModel);
+    tableView->setModel(clipListModel);
 
     dataMapper->addMapping(clipNameLineEdit, 0);
     dataMapper->addMapping(clipDurationLineEdit, 1);
-    dataMapper->toFirst();
+}
+
+void ClipInspectorView::setSceneListModel(SceneListModel *sceneListModel)
+{
+    sceneComboBox->setModel(sceneListModel);
 }
 
 QSize ClipInspectorView::sizeHint() const

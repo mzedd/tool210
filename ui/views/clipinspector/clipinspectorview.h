@@ -7,15 +7,17 @@
 #include <QComboBox>
 #include <QDataWidgetMapper>
 #include <QTableView>
-#include "models/clipinspectormodel.h"
-#include "controllers/clipinspectorcontroller.h"
+
+class ClipListModel;
+class SceneListModel;
 
 class ClipInspectorView : public QWidget
 {
     Q_OBJECT
 public:
     explicit ClipInspectorView(QWidget *parent = nullptr);
-    void setModel(ClipInspectorModel *model);
+    void setClipListModel(ClipListModel *clipListModel);
+    void setSceneListModel(SceneListModel *sceneListModel);
 
     QSize sizeHint() const;
 
@@ -27,7 +29,6 @@ private:
     QLineEdit *clipDurationLineEdit;
     QComboBox *sceneComboBox;
 
-    ClipInspectorModel *model;
 };
 
 #endif // CLIPINSPECTORVIEW_H

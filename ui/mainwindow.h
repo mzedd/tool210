@@ -18,8 +18,8 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     void setClipListModel(ClipListModel* clipListModel);
+    void setSceneListModel(SceneListModel *sceneListModel);
     void setOpenGLModel(OpenGLModel *openGLmodel);
-    void setClipInspectorModel(ClipInspectorModel* model);
     void setRenderContext(RenderContext *renderContext);
     void initialize();
 
