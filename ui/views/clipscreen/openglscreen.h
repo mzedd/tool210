@@ -2,7 +2,7 @@
 #define OPENGLSCREEN_H
 
 #include <QOpenGLWidget>
-#include <models/openglmodel.h>
+#include "models/openglrenderer.h"
 
 class RenderContext;
 
@@ -10,7 +10,7 @@ class OpenGLScreen : public QOpenGLWidget
 {
     Q_OBJECT
 public:
-    OpenGLScreen(OpenGLModel *model, QWidget* parent = nullptr);
+    OpenGLScreen(OpenGLRenderer *model, QWidget* parent = nullptr);
     ~OpenGLScreen();
 
     void setRenderContext(RenderContext *renderContext);
@@ -21,7 +21,7 @@ protected:
     void paintGL() override;
 
 private:
-    OpenGLModel *model;
+    OpenGLRenderer *model;
     RenderContext *renderContext;
 
 Q_SIGNALS:

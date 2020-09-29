@@ -4,7 +4,7 @@
 #include "Demo.h"
 #include "models/cliplistmodel.h"
 #include "models/scenelistmodel.h"
-#include "models/openglmodel.h"
+#include "models/openglrenderer.h"
 #include "rendercontext.h"
 
 #include "demojsonfileaccess.h"
@@ -28,7 +28,7 @@ int main(int argc, char *argv[])
     SceneListModel *sceneListModel = new SceneListModel;
     sceneListModel->setSceneList(&demo->sceneList());
 
-    OpenGLModel *openGLModel = new OpenGLModel;
+    OpenGLRenderer *openGLModel = new OpenGLRenderer;
     openGLModel->setSceneList(&demo->sceneList());
 
     mainWindow.setClipListModel(clipListModel);

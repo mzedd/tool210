@@ -1,7 +1,7 @@
 #include "openglscreen.h"
 #include <QtDebug>
 
-OpenGLScreen::OpenGLScreen(OpenGLModel *model, QWidget* parent) :
+OpenGLScreen::OpenGLScreen(OpenGLRenderer *model, QWidget* parent) :
     QOpenGLWidget(parent),
     model(model)
 {

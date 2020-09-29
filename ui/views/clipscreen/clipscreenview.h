@@ -5,7 +5,7 @@
 #include "aspectratiowidget.h"
 #include "openglscreen.h"
 
-class OpenGLModel;
+class OpenGLRenderer;
 class RenderContext;
 
 class ClipScreenView : public QWidget
@@ -13,7 +13,7 @@ class ClipScreenView : public QWidget
     Q_OBJECT
 
 public:
-    explicit ClipScreenView(OpenGLModel *model, QWidget *parent = nullptr);
+    explicit ClipScreenView(OpenGLRenderer *model, QWidget *parent = nullptr);
 
     QSize sizeHint() const;
 

@@ -3,7 +3,7 @@
 
 constexpr float ASPECT_RATIO = 16.0/9.0;
 
-ClipScreenView::ClipScreenView(OpenGLModel *model, QWidget *parent) :
+ClipScreenView::ClipScreenView(OpenGLRenderer *model, QWidget *parent) :
     QWidget(parent)
 {
     openGLScreen = new OpenGLScreen(model);

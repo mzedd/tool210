@@ -1,38 +1,36 @@
-#include "openglmodel.h"
+#include "openglrenderer.h"
 #include "Demo.h"
 #include "Scene.h"
 
-
-
-OpenGLModel::OpenGLModel(QObject *parent) :
+OpenGLRenderer::OpenGLRenderer(QObject *parent) :
     QObject(parent),
     clipToRender_(nullptr),
     sceneInformationInteractor(nullptr)
 {
 }
 
-void OpenGLModel::setSceneInformationInteractor(SceneInformationInteractor *sceneInformationInteractor)
+void OpenGLRenderer::setSceneInformationInteractor(SceneInformationInteractor *sceneInformationInteractor)
 {
     this->sceneInformationInteractor = sceneInformationInteractor;
 }
 
-Clip *OpenGLModel::clipToRender() const
+Clip *OpenGLRenderer::clipToRender() const
 {
     return clipToRender_;
 }
 
-void OpenGLModel::setClipToRender(Clip *clip)
+void OpenGLRenderer::setClipToRender(Clip *clip)
 {
     clipToRender_ = clip;
     emit clipToRenderChanged();
 }
 
-void OpenGLModel::initializeGL()
+void OpenGLRenderer::initializeGL()
 {
     initializeOpenGLFunctions();
 }
 
-void OpenGLModel::resiszeGL(int w, int h)
+void OpenGLRenderer::resiszeGL(int w, int h)
 {
     glViewport(0, 0, w, h);
     for(unsigned int i = 0; i < sceneList->size(); i++) {
@@ -43,7 +41,7 @@ void OpenGLModel::resiszeGL(int w, int h)
     height = h;
 }
 
-void OpenGLModel::paintGL()
+void OpenGLRenderer::paintGL()
 {
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -59,7 +57,7 @@ void OpenGLModel::paintGL()
     }
 }
 
-void OpenGLModel::setSceneList(std::vector<Scene *> *sceneList)
+void OpenGLRenderer::setSceneList(std::vector<Scene *> *sceneList)
 {
     this->sceneList = sceneList;
 }

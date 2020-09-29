@@ -15,7 +15,7 @@ add_library(${PROJECT_NAME} STATIC
   ## models
   source/models/cliplistmodel.cpp
   source/models/scenelistmodel.cpp
-  source/models/openglmodel.cpp
+  source/models/openglrenderer.cpp
 
   ## interactors
   source/interactors/sceneinformationinteractor.cpp
@@ -28,7 +28,7 @@ add_library(${PROJECT_NAME} STATIC
   ## models
   public/models/cliplistmodel.h
   public/models/scenelistmodel.h
-  public/models/openglmodel.h
+  public/models/openglrenderer.h
 
   ## interactors
   public/interactors/sceneinformationinteractor.h

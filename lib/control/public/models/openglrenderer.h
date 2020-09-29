@@ -1,5 +1,5 @@
-#ifndef OPENGLMODEL_H
-#define OPENGLMODEL_H
+#ifndef OPENGLRENDERER_H
+#define OPENGLRENDERER_H
 
 #include <QObject>
 #include <QElapsedTimer>
@@ -10,13 +10,14 @@
 #include "Clip.h"
 #include "interactors/sceneinformationinteractor.h"
 #include "rendercontext.h"
+#include "renderer.h"
 
-class Q_DECL_EXPORT OpenGLModel : public QObject, protected QOpenGLFunctions
+class Q_DECL_EXPORT OpenGLRenderer : public QObject, protected QOpenGLFunctions
 {
     Q_OBJECT
 
 public:
-    explicit OpenGLModel(QObject *parent = nullptr);
+    explicit OpenGLRenderer(QObject *parent = nullptr);
 
     void setSceneInformationInteractor(SceneInformationInteractor* interactor);
 
@@ -46,4 +47,4 @@ Q_SIGNALS:
     void runChanged();
 };
 
-#endif // OPENGLMODEL_H
+#endif // OPENGLRENDERER_H

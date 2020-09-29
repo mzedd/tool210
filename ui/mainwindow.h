@@ -19,7 +19,7 @@ public:
     MainWindow(QWidget *parent = nullptr);
     void setClipListModel(ClipListModel* clipListModel);
     void setSceneListModel(SceneListModel *sceneListModel);
-    void setOpenGLModel(OpenGLModel *openGLmodel);
+    void setOpenGLModel(OpenGLRenderer *openGLmodel);
     void setRenderContext(RenderContext *renderContext);
     void initialize();
 

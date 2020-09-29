@@ -24,7 +24,7 @@ void MainWindow::setSceneListModel(SceneListModel *sceneListModel)
     sceneEditorView->setModel(sceneListModel);
 }
 
-void MainWindow::setOpenGLModel(OpenGLModel *openGLmodel)
+void MainWindow::setOpenGLModel(OpenGLRenderer *openGLmodel)
 {
     clipScreenView = new ClipScreenView(openGLmodel, this);
 }
