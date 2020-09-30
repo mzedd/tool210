@@ -27,8 +27,6 @@ private:
     QLabel *zoomLabel;
     QLabel *timeLabel;
 
-
-
 private Q_SLOTS:
     void setZoomLabel(float zoom);
     void playPauseClicked();
@@ -37,8 +35,6 @@ private Q_SLOTS:
 
 signals:
     void addClipClicked();
-    void clipToRenderChanged(int id);
-    void clipSelected(int id);
     void setCurrent(QModelIndex index);
 };
 

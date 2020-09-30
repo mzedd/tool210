@@ -22,7 +22,7 @@ public:
     void setMainController(MainController *mainController);
     void setClipListModel(ClipListModel* clipListModel);
     void setSceneListModel(SceneListModel *sceneListModel);
-    void setOpenGLModel(OpenGLRenderer *openGLmodel);
+    void setOpenGLModel(OpenGLScreen *openGLScreen);
     void setRenderContext(RenderContext *renderContext);
     void initialize();
 

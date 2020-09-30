@@ -1,7 +1,6 @@
 #ifndef OPENGLRENDERER_H
 #define OPENGLRENDERER_H
 
-#include <QObject>
 #include <QOpenGLFunctions>
 #include <QMap>
 #include <QOpenGLShaderProgram>
@@ -10,12 +9,14 @@
 
 #include "Clip.h"
 #include "renderer.h"
+#include "rendercontext.h"
 
 class OpenGLRenderer : public QObject, protected QOpenGLFunctions, public Renderer
 {
 public:
     explicit OpenGLRenderer(QObject *parent = nullptr);
     void initializeGL();
+    void setRenderContext(RenderContext *renderContext);
 
     // Renderer interface
     void setClipToRender(Clip *clip);
@@ -27,6 +28,8 @@ public:
 private:
     QMap<int, QOpenGLShaderProgram *> shaderMap;
     Clip *clipToRender;
+
+    RenderContext *renderContext;
 
     QOpenGLVertexArrayObject vao;
     QOpenGLBuffer vbo;

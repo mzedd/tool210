@@ -151,7 +151,6 @@ void ClipListView::mouseReleaseEvent(QMouseEvent *event)
             timeCurorDragState = DragState::None;
             setTimeFromCursorPosition(event->x());
 
-            emit clipToRenderChanged(clipUnderTimeCursor());
         } else {
             QModelIndex index = indexAt(event->pos());
             if(index.isValid()) {

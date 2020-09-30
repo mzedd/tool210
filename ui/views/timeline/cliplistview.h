@@ -53,8 +53,6 @@ private:
 
 Q_SIGNALS:
     void zoomChanged(float zoom);
-    void timeChanged(float time);
-    void clipToRenderChanged(int id);
     void clipSelected(int id);
 
 public Q_SLOTS:

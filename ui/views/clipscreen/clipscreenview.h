@@ -13,7 +13,7 @@ class ClipScreenView : public QWidget
     Q_OBJECT
 
 public:
-    explicit ClipScreenView(OpenGLRenderer *model, QWidget *parent = nullptr);
+    explicit ClipScreenView(OpenGLScreen *model, QWidget *parent = nullptr);
 
     QSize sizeHint() const;
 

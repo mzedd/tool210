@@ -8,6 +8,8 @@
 #include "models/openglrenderer.h"
 #include "rendercontext.h"
 
+#include "views/clipscreen/openglscreen.h"
+
 #include "demojsonfileaccess.h"
 
 int main(int argc, char *argv[])
@@ -21,17 +23,17 @@ int main(int argc, char *argv[])
     RenderContext *renderContext = new RenderContext;
     ClipListModel *clipListModel = new ClipListModel;
     SceneListModel *sceneListModel = new SceneListModel;
-    OpenGLRenderer *openGLRenderer = new OpenGLRenderer;
+    OpenGLScreen *openGLScreen = new OpenGLScreen;
 
-    AddSceneInteractor *addSceneInteractor = new AddSceneInteractor(openGLRenderer);
+    AddSceneInteractor *addSceneInteractor = new AddSceneInteractor(openGLScreen);
     DemoJsonFileAccess *demoFileAccessor = new DemoJsonFileAccess;
     MainController mainController;
 
-    renderContext->setRenderer(openGLRenderer);
+    renderContext->setRenderer(openGLScreen);
 
     mainController.setClipListModel(clipListModel);
     mainController.setSceneListModel(sceneListModel);
-    mainController.setRenderer(openGLRenderer);
+    mainController.setRenderer(openGLScreen);
     mainController.setDemoFileAccessor(demoFileAccessor);
     mainController.setAddSceneInteractor(addSceneInteractor);
     mainController.setRenderContext(renderContext);
@@ -39,7 +41,7 @@ int main(int argc, char *argv[])
     mainWindow.setMainController(&mainController);
     mainWindow.setClipListModel(clipListModel);
     mainWindow.setSceneListModel(sceneListModel);
-    mainWindow.setOpenGLModel(openGLRenderer);
+    mainWindow.setOpenGLModel(openGLScreen);
     mainWindow.setRenderContext(renderContext);
 
     mainWindow.initialize();

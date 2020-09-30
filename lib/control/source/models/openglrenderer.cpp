@@ -28,6 +28,11 @@ void OpenGLRenderer::initializeGL()
     vbo.allocate(vertices, sizeof (vertices));
 }
 
+void OpenGLRenderer::setRenderContext(RenderContext *renderContext)
+{
+    this->renderContext = renderContext;
+}
+
 void OpenGLRenderer::setClipToRender(Clip *clip)
 {
     clipToRender = clip;
@@ -35,7 +40,7 @@ void OpenGLRenderer::setClipToRender(Clip *clip)
 
 void OpenGLRenderer::renderAt(float time)
 {
-    glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+    glClearColor(1.0f, 0.0f, 0.0f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     if(clipToRender)
@@ -45,6 +50,9 @@ void OpenGLRenderer::renderAt(float time)
 
         shaderProgram->bind();
         shaderProgram->setUniformValue("iTime", time);
+
+        vao.bind();
+        vbo.bind();
 
         glDrawArrays(GL_TRIANGLES, 0, 6);
     }
@@ -63,7 +71,7 @@ void OpenGLRenderer::setViewport(int width, int height)
 }
 
 bool OpenGLRenderer::addShader(int id, std::string filepath)
-{
+{   
     QOpenGLShaderProgram *shaderProgram = new QOpenGLShaderProgram;
 
     // add and compile vertex shader

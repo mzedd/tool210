@@ -32,10 +32,6 @@ TimelineView::TimelineView(ClipListModel *model, QWidget *parent) :
     setLayout(mainLayout);
 
     connect(clipListView, SIGNAL(zoomChanged(float)), this, SLOT(setZoomLabel(float)));
-
-    connect(clipListView, SIGNAL(clipToRenderChanged(int)), this, SIGNAL(clipToRenderChanged(int)));
-    connect(clipListView, &ClipListView::clipSelected, this, &TimelineView::clipSelected);
-
     connect(runPauseButton, &QPushButton::clicked, this, &TimelineView::playPauseClicked);
     connect(addClipButton, &QPushButton::clicked, this, &TimelineView::addClipButtonClicked);
 }
