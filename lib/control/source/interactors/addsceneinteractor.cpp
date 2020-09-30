@@ -1,10 +1,15 @@
 #include "interactors/addsceneinteractor.h"
 
-AddSceneInteractor::AddSceneInteractor(Demo *demo, Renderer *renderer):
-    demo(demo),
+AddSceneInteractor::AddSceneInteractor(Renderer *renderer):
+    demo(nullptr),
     renderer(renderer)
 {
 
+}
+
+void AddSceneInteractor::setDemo(Demo *demo)
+{
+    this->demo = demo;
 }
 
 void AddSceneInteractor::addScene()

@@ -4,41 +4,27 @@
 
 MainController::MainController(QObject *parent) :
     QObject(parent),
-    timelineController_(new TimelineController(this)),
-    clipScreenController_(new ClipScreenController(this)),
-    clipInspectorController_(new ClipInspectorController(this)),
-    model(nullptr),
+    demo(nullptr),
+    clipListModel(nullptr),
+    sceneListModel(nullptr),
+    addSceneInteractor(nullptr),
     demoFileAccessor(nullptr)
 {
-    // TimelineController signals
-    connect(timelineController_, SIGNAL(playPauseClicked()), this, SLOT(handlePlayPauseClicked()));
-    connect(timelineController_, SIGNAL(addClip()), this, SLOT(handleAddClip()));
-    connect(timelineController_, SIGNAL(timeChanged(float)), this, SLOT(handleTimeChanged(float)));
-
-    // ClipScreenController signals
-    connect(clipScreenController_, SIGNAL(frameFinishedAt(float)), this, SLOT(handleFrameFinishedAt(float)));
 }
 
-TimelineController *MainController::timelineController() const
+void MainController::setClipListModel(ClipListModel *clipListModel)
 {
-    return timelineController_;
+    this->clipListModel = clipListModel;
 }
 
-ClipScreenController *MainController::clipsScreenController() const
+void MainController::setSceneListModel(SceneListModel *sceneListModel)
 {
-    return clipScreenController_;
+    this->sceneListModel = sceneListModel;
 }
 
-ClipInspectorController *MainController::clipInspectorController() const
+void MainController::setAddSceneInteractor(AddSceneInteractor *addSceneInteractor)
 {
-    return  clipInspectorController_;
-}
-
-void MainController::setModel(DemoModel *model)
-{
-    this->model = model;
-    model->setParent(this);
-    connect(model, &DemoModel::clipToRenderChanged, this, &MainController::handleClipToRenderChanged);
+    this->addSceneInteractor = addSceneInteractor;
 }
 
 void MainController::setDemoFileAccessor(DemoFileAccessInterface *demoFileAccessor)
@@ -46,37 +32,48 @@ void MainController::setDemoFileAccessor(DemoFileAccessInterface *demoFileAccess
     this->demoFileAccessor = demoFileAccessor;
 }
 
-void MainController::handleLoadDemo(QString filename)
+void MainController::distributeDemo()
 {
-    model->setDemo(demoFileAccessor->getDemo(filename));
+    distributeDemoToModels();
+    distributeDemoToInteractors();
 }
 
-void MainController::handlePlayPauseClicked()
+void MainController::distributeDemoToModels()
 {
-    clipsScreenController()->toggleRun();
+    if(clipListModel)
+        clipListModel->setDemo(demo);
+
+    if(sceneListModel)
+        sceneListModel->setSceneList(&demo->sceneList());
 }
 
-void MainController::handleTimeChanged(float time)
+void MainController::distributeDemoToInteractors()
 {
-    model->checkClipToBeRenderdChangedAt(time);
-    clipsScreenController()->setTime(time);
+    if(addSceneInteractor)
+        addSceneInteractor->setDemo(demo);
 }
 
-void MainController::handleAddClip()
+void MainController::newDemo()
 {
-    model->addClip();
+    if(demo)
+        delete demo;
+
+    demo = new Demo;
+    distributeDemo();
 }
 
-void MainController::handleClipToRenderChanged(int id)
+void MainController::loadDemo(QString filename)
 {
-    if(id < 0)
-        clipScreenController_->setClipToRender(nullptr);
-    //else
-        //clipScreenController_->setClipToRender(demo->clipList().at(id));
+    if(demo)
+        delete demo;
+
+    demo = demoFileAccessor->getDemo(filename);
+    distributeDemo();
 }
 
-void MainController::handleFrameFinishedAt(float time)
+void MainController::storeDemo(QString filename)
 {
-    model->checkClipToBeRenderdChangedAt(time);
-    timelineController()->setTime(time);
+    if(demo) {
+        demoFileAccessor->storeDemo(filename, demo);
+    }
 }

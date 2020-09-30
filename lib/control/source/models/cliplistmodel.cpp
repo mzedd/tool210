@@ -5,14 +5,18 @@
 #include <QDebug>
 
 ClipListModel::ClipListModel(QObject *parent) :
-    QAbstractTableModel(parent)
+    QAbstractTableModel(parent),
+    demo(nullptr)
 {
 
 }
 
 int ClipListModel::rowCount(const QModelIndex&) const
 {
-    return demo->clipList().size();
+    if(demo)
+        return demo->clipList().size();
+    else
+        return 0;
 }
 
 int ClipListModel::columnCount(const QModelIndex &/*parent*/) const
@@ -24,6 +28,9 @@ QVariant ClipListModel::data(const QModelIndex &index, int role) const
 {
     if(!index.isValid())
         return  QVariant();
+
+    if(demo == nullptr)
+        return QVariant();
 
     Clip *clip = demo->clipList().at(index.row());
 
@@ -54,6 +61,9 @@ bool ClipListModel::setData(const QModelIndex &index, const QVariant &value, int
     qDebug() << index;
 
     if(!(role == Qt::EditRole))
+        return false;
+
+    if(demo == nullptr)
         return false;
 
     Clip *clip = demo->clipList().at(index.row());

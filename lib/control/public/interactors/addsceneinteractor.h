@@ -8,7 +8,8 @@
 class AddSceneInteractor
 {
 public:
-    AddSceneInteractor(Demo *demo, Renderer *renderer);
+    AddSceneInteractor(Renderer *renderer);
+    void setDemo(Demo *demo);
     void addScene();
 
 private:

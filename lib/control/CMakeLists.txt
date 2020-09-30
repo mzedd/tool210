@@ -10,6 +10,7 @@ find_package(Qt5 COMPONENTS Core Gui REQUIRED)
 add_library(${PROJECT_NAME} STATIC
   # source
   ## controllers
+  source/controllers/maincontroller.cpp
   source/controllers/rendercontext.cpp
 
   ## models
@@ -22,6 +23,7 @@ add_library(${PROJECT_NAME} STATIC
 
   # public
   ## controllers
+  public/controllers/maincontroller.h
   public/controllers/rendercontext.h
   public/controllers/renderer.h
 

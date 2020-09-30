@@ -9,11 +9,17 @@ SceneListModel::SceneListModel(QAbstractListModel *parent) :
 
 int SceneListModel::rowCount(const QModelIndex& /*parent*/) const
 {
-    return static_cast<int>(data_->size());
+    if(data_)
+        return static_cast<int>(data_->size());
+    else
+        return 0;
 }
 
 QVariant SceneListModel::data(const QModelIndex &index, int role) const
 {
+    if(data_ == nullptr)
+        return QVariant();
+
     Scene *scene = data_->at(index.row());
 
     QVariant data;

@@ -3,10 +3,10 @@
 
 #include <QObject>
 
-#include "models/demomodel.h"
-#include "timelinecontroller.h"
-#include "clipscreencontroller.h"
-#include "clipinspectorcontroller.h"
+#include "Demo.h"
+#include "models/cliplistmodel.h"
+#include "models/scenelistmodel.h"
+#include "interactors/addsceneinteractor.h"
 #include "demofileaccessinterface.h"
 
 class Q_DECL_EXPORT MainController : public QObject
@@ -14,30 +14,33 @@ class Q_DECL_EXPORT MainController : public QObject
     Q_OBJECT
 public:
     explicit MainController(QObject *parent = nullptr);
-    TimelineController *timelineController() const;
-    ClipScreenController *clipsScreenController() const;
-    ClipInspectorController *clipInspectorController() const;
-    void setModel(DemoModel *model);
+
+    void setClipListModel(ClipListModel *clipListModel);
+    void setSceneListModel(SceneListModel *sceneListModel);
+
+    void setAddSceneInteractor(AddSceneInteractor *addSceneInteractor);
+
     void setDemoFileAccessor(DemoFileAccessInterface *demoFileAccessor);
 
 private:
-    TimelineController *timelineController_;
-    ClipScreenController *clipScreenController_;
-    ClipInspectorController *clipInspectorController_;
-    DemoModel *model;
+    void distributeDemo();
+    void distributeDemoToModels();
+    void distributeDemoToInteractors();
+
+    Demo* demo;
+
+    ClipListModel *clipListModel;
+    SceneListModel *sceneListModel;
+
+    AddSceneInteractor *addSceneInteractor;
 
     DemoFileAccessInterface *demoFileAccessor;
 
 public Q_SLOTS:
-    void handleLoadDemo(QString filename);
+    void newDemo();
+    void loadDemo(QString filename);
+    void storeDemo(QString filename);
 
-private Q_SLOTS:
-    void handlePlayPauseClicked();
-    void handleTimeChanged(float time);
-    void handleAddClip();
-    void handleClipToRenderChanged(int id);
-
-    void handleFrameFinishedAt(float time);
 };
 
 #endif // MAINCONTROLLER_H
