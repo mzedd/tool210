@@ -27,10 +27,14 @@ int main(int argc, char *argv[])
     DemoJsonFileAccess *demoFileAccessor = new DemoJsonFileAccess;
     MainController mainController;
 
+    renderContext->setRenderer(openGLRenderer);
+
     mainController.setClipListModel(clipListModel);
     mainController.setSceneListModel(sceneListModel);
+    mainController.setRenderer(openGLRenderer);
     mainController.setDemoFileAccessor(demoFileAccessor);
     mainController.setAddSceneInteractor(addSceneInteractor);
+    mainController.setRenderContext(renderContext);
 
     mainWindow.setMainController(&mainController);
     mainWindow.setClipListModel(clipListModel);

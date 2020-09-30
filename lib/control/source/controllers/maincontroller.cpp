@@ -8,6 +8,7 @@ MainController::MainController(QObject *parent) :
     clipListModel(nullptr),
     sceneListModel(nullptr),
     addSceneInteractor(nullptr),
+    renderContext(nullptr),
     demoFileAccessor(nullptr)
 {
 }
@@ -22,9 +23,19 @@ void MainController::setSceneListModel(SceneListModel *sceneListModel)
     this->sceneListModel = sceneListModel;
 }
 
+void MainController::setRenderer(Renderer *renderer)
+{
+    this->renderer = renderer;
+}
+
 void MainController::setAddSceneInteractor(AddSceneInteractor *addSceneInteractor)
 {
     this->addSceneInteractor = addSceneInteractor;
+}
+
+void MainController::setRenderContext(RenderContext *renderContext)
+{
+    this->renderContext = renderContext;
 }
 
 void MainController::setDemoFileAccessor(DemoFileAccessInterface *demoFileAccessor)
@@ -51,6 +62,9 @@ void MainController::distributeDemoToInteractors()
 {
     if(addSceneInteractor)
         addSceneInteractor->setDemo(demo);
+
+    if(renderContext)
+        renderContext->setDemo(demo);
 }
 
 void MainController::newDemo()
@@ -69,6 +83,10 @@ void MainController::loadDemo(QString filename)
 
     demo = demoFileAccessor->getDemo(filename);
     distributeDemo();
+
+    for(Scene *scene : demo->sceneList()) {
+        renderer->addShader(scene->id(), scene->shaderFileName());
+    }
 }
 
 void MainController::storeDemo(QString filename)

@@ -6,8 +6,10 @@
 #include "Demo.h"
 #include "models/cliplistmodel.h"
 #include "models/scenelistmodel.h"
+#include "controllers/renderer.h"
 #include "interactors/addsceneinteractor.h"
 #include "demofileaccessinterface.h"
+#include "rendercontext.h"
 
 class Q_DECL_EXPORT MainController : public QObject
 {
@@ -17,8 +19,10 @@ public:
 
     void setClipListModel(ClipListModel *clipListModel);
     void setSceneListModel(SceneListModel *sceneListModel);
+    void setRenderer(Renderer *renderer);
 
     void setAddSceneInteractor(AddSceneInteractor *addSceneInteractor);
+    void setRenderContext(RenderContext *renderContext);
 
     void setDemoFileAccessor(DemoFileAccessInterface *demoFileAccessor);
 
@@ -31,8 +35,10 @@ private:
 
     ClipListModel *clipListModel;
     SceneListModel *sceneListModel;
+    Renderer *renderer;
 
     AddSceneInteractor *addSceneInteractor;
+    RenderContext *renderContext;
 
     DemoFileAccessInterface *demoFileAccessor;
 

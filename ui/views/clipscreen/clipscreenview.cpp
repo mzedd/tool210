@@ -1,7 +1,10 @@
 #include "clipscreenview.h"
 #include <QVBoxLayout>
+#include <QOpenGLWidget>
 
-constexpr float ASPECT_RATIO = 16.0/9.0;
+#include "rendercontext.h"
+
+constexpr float ASPECT_RATIO = 16.0f/9.0f;
 
 ClipScreenView::ClipScreenView(OpenGLRenderer *model, QWidget *parent) :
     QWidget(parent)
@@ -12,10 +15,6 @@ ClipScreenView::ClipScreenView(OpenGLRenderer *model, QWidget *parent) :
 
     QVBoxLayout *layout = new QVBoxLayout(this);
     layout->addWidget(aspectRatioWidget);
-
-    connect(model, SIGNAL(clipToRenderChanged()), openGLScreen, SLOT(update()));
-    connect(model, SIGNAL(timeChanged()), openGLScreen, SLOT(update()));
-    connect(model, SIGNAL(runChanged()), openGLScreen, SLOT(update()));
 }
 
 QSize ClipScreenView::sizeHint() const
@@ -26,4 +25,5 @@ QSize ClipScreenView::sizeHint() const
 void ClipScreenView::setRenderContext(RenderContext *renderContext)
 {
     openGLScreen->setRenderContext(renderContext);
+    connect(renderContext, SIGNAL(timeChanged()), openGLScreen, SLOT(update()));
 }

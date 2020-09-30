@@ -3,6 +3,8 @@
 
 #include <QObject>
 #include <QElapsedTimer>
+#include "Demo.h"
+#include "renderer.h"
 
 class RenderContext : public QObject
 {
@@ -10,6 +12,9 @@ class RenderContext : public QObject
 
 public:
     RenderContext(QObject *parent = nullptr);
+
+    void setDemo(Demo *demo);
+    void setRenderer(Renderer *renderer);
 
     float time() const;
     void setTime(float time);
@@ -20,6 +25,9 @@ public:
     float deltaTime();
 
 private:
+    Demo *demo;
+    Renderer *renderer;
+
     float time_;
     bool run_;
 

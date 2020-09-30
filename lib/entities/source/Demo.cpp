@@ -38,9 +38,6 @@ std::vector<Scene *> &Demo::sceneList()
 void Demo::addClip()
 {
     clipList().push_back(new Clip());
-
-    addScene();
-    clipList().back()->setScene(sceneList_.back());
 }
 
 int Demo::sceneCount() const
