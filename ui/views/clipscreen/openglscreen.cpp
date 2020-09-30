@@ -89,6 +89,7 @@ void OpenGLScreen::setViewport(int width, int height)
     glViewport(0, 0, width, height);
 
     for(QOpenGLShaderProgram* program : shaderMap) {
+        program->bind();
         program->setUniformValue("iResolution", width, height);
     }
 }
@@ -128,6 +129,7 @@ bool OpenGLScreen::addShader(int id, std::string filepath)
 
     shaderProgram->enableAttributeArray(0);
     shaderProgram->setAttributeArray(0, GL_FLOAT, 0, 3);
+    shaderProgram->bind();
     shaderProgram->setUniformValue("iResolution", width, height);
 
     shaderMap.insert(id, shaderProgram);
