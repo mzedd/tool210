@@ -39,4 +39,5 @@ QVariant SceneListModel::data(const QModelIndex &index, int role) const
 void SceneListModel::setSceneList(std::vector<Scene *> *sceneList)
 {
     data_ = sceneList;
+    emit dataChanged(index(0, 0), index(rowCount(), 0));
 }

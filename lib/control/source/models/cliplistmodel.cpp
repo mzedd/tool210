@@ -102,4 +102,5 @@ bool ClipListModel::insertRows(int /*row*/, int /*count*/, const QModelIndex &/*
 void ClipListModel::setDemo(Demo *demo)
 {
     this->demo = demo;
+    emit dataChanged(index(0, 0), index(rowCount(), columnCount()));
 }
