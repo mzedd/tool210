@@ -32,6 +32,7 @@ int main(int argc, char *argv[])
     mainController.setDemoFileAccessor(demoFileAccessor);
     mainController.setAddSceneInteractor(addSceneInteractor);
 
+    mainWindow.setMainController(&mainController);
     mainWindow.setClipListModel(clipListModel);
     mainWindow.setSceneListModel(sceneListModel);
     mainWindow.setOpenGLModel(openGLRenderer);

@@ -12,6 +12,11 @@ MainWindow::MainWindow(QWidget *parent)
     sceneEditorView = new SceneEditorView(this);
 }
 
+void MainWindow::setMainController(MainController *mainController)
+{
+    this->mainController = mainController;
+}
+
 void MainWindow::setClipListModel(ClipListModel *clipListModel)
 {
     timelineView = new TimelineView(clipListModel, this);
@@ -39,8 +44,7 @@ void MainWindow::initialize()
 {
     createMenu();
     createWidgets();
-
-    connect(timelineView->clipListView->selectionModel(), &QItemSelectionModel::currentChanged, clipInspectorView->dataMapper, &QDataWidgetMapper::setCurrentModelIndex);
+    createConnections();
 }
 
 void MainWindow::createMenu()
@@ -54,9 +58,21 @@ void MainWindow::createMenu()
     menuBar->addMenu(editMenu);
     menuBar->addMenu(viewMenu);
 
+    QAction *newDemo = new QAction("New", menuBar);
+    fileMenu->addAction(newDemo);
+    connect(newDemo, &QAction::triggered, this, &MainWindow::handleNewDemo);
+
     QAction *loadDemo = new QAction("Open", menuBar);
     fileMenu->addAction(loadDemo);
-    connect(loadDemo, &QAction::triggered, this, &MainWindow::openDemoFile);
+    connect(loadDemo, &QAction::triggered, this, &MainWindow::handleLoadDemo);
+
+    QAction *saveDemo = new QAction("Save", menuBar);
+    fileMenu->addAction(saveDemo);
+    connect(saveDemo, &QAction::triggered, this, &MainWindow::handelSaveDemo);
+
+    QAction *closeTool210 = new QAction("Close", menuBar);
+    fileMenu->addAction(closeTool210);
+    connect(closeTool210, &QAction::triggered, QApplication::instance(), &QApplication::quit);
 
     setMenuBar(menuBar);
 }
@@ -81,9 +97,24 @@ void MainWindow::createWidgets()
     addDockWidget(Qt::DockWidgetArea::RightDockWidgetArea, dockWidget);
 }
 
-void MainWindow::openDemoFile()
+void MainWindow::createConnections()
+{
+    connect(timelineView->clipListView->selectionModel(), &QItemSelectionModel::currentChanged, clipInspectorView->dataMapper, &QDataWidgetMapper::setCurrentModelIndex);
+}
+
+void MainWindow::handleNewDemo()
+{
+    mainController->newDemo();
+}
+
+void MainWindow::handleLoadDemo()
 {
     QString filename = QFileDialog::getOpenFileName(this, tr("Open Demo"), ".", tr("JSON files (*.json)"));
+    mainController->loadDemo(filename);
+}
 
-    emit loadDemo(filename);
+void MainWindow::handelSaveDemo()
+{
+    QString filename = QFileDialog::getSaveFileName(this, tr("Save Demo"), ".", tr("JSON files (*.json)"));
+    mainController->storeDemo(filename);
 }

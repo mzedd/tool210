@@ -3,7 +3,9 @@
 
 #include <QMainWindow>
 #include <QMenuBar>
+#include <QApplication>
 
+#include "controllers/maincontroller.h"
 #include "views/timeline/timelineview.h"
 #include "views/clipscreen/clipscreenview.h"
 #include "views/clipinspector/clipinspectorview.h"
@@ -17,6 +19,7 @@ class MainWindow : public QMainWindow
 
 public:
     MainWindow(QWidget *parent = nullptr);
+    void setMainController(MainController *mainController);
     void setClipListModel(ClipListModel* clipListModel);
     void setSceneListModel(SceneListModel *sceneListModel);
     void setOpenGLModel(OpenGLRenderer *openGLmodel);
@@ -24,6 +27,8 @@ public:
     void initialize();
 
 private:
+    MainController *mainController;
+
     TimelineView *timelineView;
     ClipScreenView *clipScreenView;
     ClipInspectorView *clipInspectorView;
@@ -31,12 +36,12 @@ private:
 
     void createMenu();
     void createWidgets();
-
-Q_SIGNALS:
-    void loadDemo(QString filepath);
+    void createConnections();
 
 private Q_SLOTS:
-    void openDemoFile();
+    void handleNewDemo();
+    void handleLoadDemo();
+    void handelSaveDemo();
 
 };
 #endif // MAINWINDOW_H
