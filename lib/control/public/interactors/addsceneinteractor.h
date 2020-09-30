@@ -3,16 +3,17 @@
 
 #include <string>
 #include "Demo.h"
+#include "renderer.h"
 
-class SceneInformationInteractor
+class AddSceneInteractor
 {
 public:
-    SceneInformationInteractor(Demo *demo);
-
-    std::string getShaderFilepathBy(int id);
+    AddSceneInteractor(Demo *demo, Renderer *renderer);
+    void addScene();
 
 private:
     Demo *demo;
+    Renderer *renderer;
 };
 
 #endif // SCENEINFORMATIONINTERACTOR_H

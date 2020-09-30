@@ -18,7 +18,7 @@ add_library(${PROJECT_NAME} STATIC
   source/models/openglrenderer.cpp
 
   ## interactors
-  source/interactors/sceneinformationinteractor.cpp
+  source/interactors/addsceneinteractor.cpp
 
   # public
   ## controllers
@@ -31,7 +31,7 @@ add_library(${PROJECT_NAME} STATIC
   public/models/openglrenderer.h
 
   ## interactors
-  public/interactors/sceneinformationinteractor.h
+  public/interactors/addsceneinteractor.h
 
   ## file accessor
   public/demofileaccessinterface.h
