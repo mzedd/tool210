@@ -21,7 +21,7 @@ int ClipListModel::rowCount(const QModelIndex&) const
 
 int ClipListModel::columnCount(const QModelIndex &/*parent*/) const
 {
-    return 2;
+    return 3;
 }
 
 QVariant ClipListModel::data(const QModelIndex &index, int role) const
@@ -39,11 +39,17 @@ QVariant ClipListModel::data(const QModelIndex &index, int role) const
     case Qt::EditRole:
         switch (index.column()) {
             case 0:
-            return QVariant(QString::fromStdString(clip->name()));
-            break;
-        case 1:
-            return QVariant(clip->duration());
-            break;
+                return QVariant(QString::fromStdString(clip->name()));
+                break;
+            case 1:
+                return QVariant(clip->duration());
+                break;
+            case 2:
+                if(clip->scene()) {
+                    return QVariant(clip->scene()->id());
+                }
+                return QVariant("-");
+                break;
         }
         break;
     case ClipName:
@@ -96,6 +102,7 @@ bool ClipListModel::insertRows(int /*row*/, int /*count*/, const QModelIndex &/*
 
     QModelIndex tmp = index(rowCount() - 1, 0);
     emit dataChanged(tmp, tmp);
+    emit layoutChanged();
     return true;
 }
 
@@ -103,4 +110,5 @@ void ClipListModel::setDemo(Demo *demo)
 {
     this->demo = demo;
     emit dataChanged(index(0, 0), index(rowCount(), columnCount()));
+    emit layoutChanged();
 }
