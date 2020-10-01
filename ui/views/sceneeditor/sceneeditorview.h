@@ -17,12 +17,17 @@ public:
 
 private:
     QDataWidgetMapper *dataMapper;
+
     QComboBox *sceneSelector;
+    QPushButton *addSceneButton;
+
     QLineEdit *sceneNameLineEdit;
-    QLineEdit *sceneShaderFilepath;
     FilepathWidget *filepathWidget;
 
     SceneListModel *model;
+
+private Q_SLOTS:
+    void handleAddScene();
 };
 
 #endif // SCENEEDITORVIEW_H

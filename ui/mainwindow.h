@@ -12,6 +12,7 @@
 #include "views/sceneeditor/sceneeditorview.h"
 
 class RenderContext;
+class AddSceneInteractor;
 
 class MainWindow : public QMainWindow
 {

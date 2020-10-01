@@ -11,6 +11,7 @@ public:
     AddSceneInteractor(Renderer *renderer);
     void setDemo(Demo *demo);
     void addScene();
+    void setSceneShaderFilename(int id, std::string filename);
 
 private:
     Demo *demo;

@@ -1,5 +1,6 @@
 #include "sceneeditorview.h"
 #include <QVBoxLayout>
+#include <QHBoxLayout>
 #include <QFormLayout>
 #include <QLabel>
 
@@ -8,6 +9,7 @@ SceneEditorView::SceneEditorView(QWidget *parent) :
     model(nullptr)
 {
     QVBoxLayout *mainLayout = new QVBoxLayout;
+    QHBoxLayout *selectAndAddLayout = new QHBoxLayout;
     QFormLayout *sceneDataLayout = new QFormLayout;
 
     // heading
@@ -21,7 +23,10 @@ SceneEditorView::SceneEditorView(QWidget *parent) :
 
     // scene selector
     sceneSelector = new QComboBox;
-    mainLayout->addWidget(sceneSelector);
+    addSceneButton = new QPushButton("+");
+    selectAndAddLayout->addWidget(sceneSelector);
+    selectAndAddLayout->addWidget(addSceneButton);
+    mainLayout->addLayout(selectAndAddLayout);
 
     // scene data form
     sceneNameLineEdit = new QLineEdit;
@@ -35,6 +40,7 @@ SceneEditorView::SceneEditorView(QWidget *parent) :
 
     dataMapper = new QDataWidgetMapper(this);
     connect(sceneSelector, QOverload<int>::of(&QComboBox::currentIndexChanged), dataMapper, &QDataWidgetMapper::setCurrentIndex);
+    connect(addSceneButton, &QPushButton::clicked, this, &SceneEditorView::handleAddScene);
 
     // using manual submit because we use our custom filepath widget
     dataMapper->setSubmitPolicy(QDataWidgetMapper::ManualSubmit);
@@ -54,4 +60,9 @@ void SceneEditorView::setModel(SceneListModel *model)
 
     sceneSelector->setCurrentIndex(0);
     dataMapper->toFirst();
+}
+
+void SceneEditorView::handleAddScene()
+{
+    model->insertRow(0);
 }

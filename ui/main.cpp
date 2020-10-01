@@ -30,6 +30,7 @@ int main(int argc, char *argv[])
     MainController mainController;
 
     renderContext->setRenderer(openGLScreen);
+    sceneListModel->setAddScenenInteractor(addSceneInteractor);
 
     mainController.setClipListModel(clipListModel);
     mainController.setSceneListModel(sceneListModel);

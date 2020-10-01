@@ -66,7 +66,7 @@ bool SceneListModel::setData(const QModelIndex &index, const QVariant &value, in
         scene->setName(value.toString().toStdString());
         break;
     case 1: // shader filename
-        scene->setShaderFileName(value.toString().toStdString());
+        addSceneInteractor->setSceneShaderFilename(scene->id(), value.toString().toStdString());
         qDebug() << "filename changed";
         break;
     }
@@ -75,8 +75,21 @@ bool SceneListModel::setData(const QModelIndex &index, const QVariant &value, in
     return true;
 }
 
+bool SceneListModel::insertRows(int /*row*/, int count, const QModelIndex &/*parent*/)
+{
+    for(int i = 0; i < count; i++) {
+        data_->push_back(new Scene);
+    }
+    return true;
+}
+
 void SceneListModel::setSceneList(std::vector<Scene *> *sceneList)
 {
     data_ = sceneList;
     emit dataChanged(index(0, 0), index(rowCount(), 0));
+}
+
+void SceneListModel::setAddScenenInteractor(AddSceneInteractor *addSceneInteractor)
+{
+    this->addSceneInteractor = addSceneInteractor;
 }
