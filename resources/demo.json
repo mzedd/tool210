@@ -7,7 +7,7 @@
         },
         {
             "name": "SecondScene",
-            "shader file name" : "resources/default.frag"
+            "shader file name" : "resources/circle.frag"
         }
     ],
     "clip list": [
