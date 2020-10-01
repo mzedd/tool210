@@ -26,4 +26,5 @@ void ClipScreenView::setRenderContext(RenderContext *renderContext)
 {
     openGLScreen->setRenderContext(renderContext);
     connect(renderContext, SIGNAL(timeChanged()), openGLScreen, SLOT(update()));
+    connect(renderContext, &RenderContext::runChanged, openGLScreen, QOverload<>::of(&QOpenGLWidget::update));
 }

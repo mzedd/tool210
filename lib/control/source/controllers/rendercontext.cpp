@@ -57,6 +57,6 @@ void RenderContext::setRun(bool run)
 
 float RenderContext::deltaTime()
 {
-    time_ = timer.elapsed() * MSEC_PER_SECS - timeAtRunChanged;
+    setTime(timer.elapsed() * MSEC_PER_SECS - timeAtRunChanged);
     return time_;
 }

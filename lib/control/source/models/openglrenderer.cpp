@@ -56,6 +56,8 @@ void OpenGLRenderer::renderAt(float time)
 
         glDrawArrays(GL_TRIANGLES, 0, 6);
     }
+
+    renderContext->deltaTime();
 }
 
 void OpenGLRenderer::setViewport(int width, int height)

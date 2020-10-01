@@ -42,6 +42,7 @@ void TimelineView::setRenderContext(RenderContext *renderContext)
     clipListView->setRenderContext(renderContext);
 
     connect(renderContext, &RenderContext::timeChanged, this, &TimelineView::updateTimeLabel);
+    connect(renderContext, &RenderContext::timeChanged, clipListView, &ClipListView::timeChanged);
 }
 
 void TimelineView::updateTimeLabel()

@@ -273,13 +273,7 @@ float ClipListView::getCursorPosition() const
     return renderContext->time() * PIXEL_PER_SECOND * zoom;
 }
 
-void ClipListView::selectedClipChanged(QModelIndex index)
-{
-    setCurrentIndex(index);
-    viewport()->update();
-}
-
-void ClipListView::selectedClipDurationChanged()
+void ClipListView::timeChanged()
 {
     viewport()->update();
 }

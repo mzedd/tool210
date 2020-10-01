@@ -56,9 +56,7 @@ Q_SIGNALS:
     void clipSelected(int id);
 
 public Q_SLOTS:
-    void selectedClipChanged(QModelIndex index);
-    void selectedClipDurationChanged();
-
+    void timeChanged();
 
 protected Q_SLOTS:
     // QAbstractItemView interface
