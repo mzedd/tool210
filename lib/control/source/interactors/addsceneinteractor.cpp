@@ -21,5 +21,6 @@ void AddSceneInteractor::setSceneShaderFilename(int id, std::string filename)
 {
     Scene *scene = demo->sceneAt(id);
     scene->setShaderFileName(filename);
+    renderer->removeShader(id);
     renderer->addShader(scene->id(), filename);
 }

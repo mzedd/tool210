@@ -112,5 +112,6 @@ bool OpenGLRenderer::addShader(int id, std::string filepath)
 
 void OpenGLRenderer::removeShader(int id)
 {
-    delete shaderMap.take(id);
+    if(shaderMap.contains(id))
+        delete shaderMap.take(id);
 }
