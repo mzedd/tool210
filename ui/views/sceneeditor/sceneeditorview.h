@@ -5,6 +5,7 @@
 #include <QComboBox>
 #include <QDataWidgetMapper>
 #include <QLineEdit>
+#include "filepathwidget.h"
 #include "models/scenelistmodel.h"
 
 class SceneEditorView : public QWidget
@@ -19,6 +20,7 @@ private:
     QComboBox *sceneSelector;
     QLineEdit *sceneNameLineEdit;
     QLineEdit *sceneShaderFilepath;
+    FilepathWidget *filepathWidget;
 
     SceneListModel *model;
 };

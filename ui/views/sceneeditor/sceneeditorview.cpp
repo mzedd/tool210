@@ -25,9 +25,9 @@ SceneEditorView::SceneEditorView(QWidget *parent) :
 
     // scene data form
     sceneNameLineEdit = new QLineEdit;
-    sceneShaderFilepath = new QLineEdit("-");
+    filepathWidget = new FilepathWidget();
     sceneDataLayout->addRow(new QLabel("Name:"), sceneNameLineEdit);
-    sceneDataLayout->addRow(new QLabel("Shader filename:"), sceneShaderFilepath);
+    sceneDataLayout->addRow(new QLabel("filepath:"), filepathWidget);
     mainLayout->addLayout(sceneDataLayout);
 
     mainLayout->addStretch();
@@ -35,6 +35,11 @@ SceneEditorView::SceneEditorView(QWidget *parent) :
 
     dataMapper = new QDataWidgetMapper(this);
     connect(sceneSelector, QOverload<int>::of(&QComboBox::currentIndexChanged), dataMapper, &QDataWidgetMapper::setCurrentIndex);
+
+    // using manual submit because we use our custom filepath widget
+    dataMapper->setSubmitPolicy(QDataWidgetMapper::ManualSubmit);
+    connect(sceneNameLineEdit, &QLineEdit::editingFinished, dataMapper, &QDataWidgetMapper::submit);
+    connect(filepathWidget, &FilepathWidget::filepathChanged, dataMapper, &QDataWidgetMapper::submit);
 }
 
 void SceneEditorView::setModel(SceneListModel *model)
@@ -44,7 +49,8 @@ void SceneEditorView::setModel(SceneListModel *model)
     dataMapper->setModel(model);
 
     dataMapper->addMapping(sceneNameLineEdit, 0);
-    dataMapper->addMapping(sceneShaderFilepath, 1);
+    //dataMapper->addMapping(sceneShaderFilepath, 1);
+    dataMapper->addMapping(filepathWidget, 1);
 
     sceneSelector->setCurrentIndex(0);
     dataMapper->toFirst();

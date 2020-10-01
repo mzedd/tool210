@@ -1,4 +1,5 @@
 #include "models/scenelistmodel.h"
+#include <QDebug>
 
 SceneListModel::SceneListModel(QAbstractListModel *parent) :
     QAbstractTableModel(parent),
@@ -66,9 +67,11 @@ bool SceneListModel::setData(const QModelIndex &index, const QVariant &value, in
         break;
     case 1: // shader filename
         scene->setShaderFileName(value.toString().toStdString());
+        qDebug() << "filename changed";
         break;
     }
 
+    emit dataChanged(index, index);
     return true;
 }
 

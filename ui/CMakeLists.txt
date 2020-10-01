@@ -36,6 +36,8 @@ add_executable(${PROJECT_NAME}
   # sceneeditor
   views/sceneeditor/sceneeditorview.cpp
   views/sceneeditor/sceneeditorview.h
+  views/sceneeditor/filepathwidget.cpp
+  views/sceneeditor/filepathwidget.h
 )
 
 target_include_directories(${PROJECT_NAME}
