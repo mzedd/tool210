@@ -57,12 +57,11 @@ void SceneEditorView::setModel(SceneListModel *model)
     dataMapper->addMapping(sceneNameLineEdit, 0);
     //dataMapper->addMapping(sceneShaderFilepath, 1);
     dataMapper->addMapping(filepathWidget, 1);
-
-    sceneSelector->setCurrentIndex(0);
-    dataMapper->toFirst();
 }
 
 void SceneEditorView::handleAddScene()
 {
     model->insertRow(0);
+    sceneSelector->setCurrentIndex(model->rowCount()-1);
+    dataMapper->toLast();
 }
