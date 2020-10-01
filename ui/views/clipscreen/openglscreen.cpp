@@ -66,19 +66,22 @@ void OpenGLScreen::renderAt(float time)
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    if(clipToRender)
-    {
-        int sceneId = clipToRender->scene()->id();
-        QOpenGLShaderProgram *shaderProgram = shaderMap.value(sceneId);
+    if(clipToRender == nullptr)
+        return;
 
-        shaderProgram->bind();
-        shaderProgram->setUniformValue("iTime", time);
+    if(clipToRender->scene() == nullptr)
+        return;
 
-        vao.bind();
-        vbo.bind();
+    int sceneId = clipToRender->scene()->id();
+    QOpenGLShaderProgram *shaderProgram = shaderMap.value(sceneId);
 
-        glDrawArrays(GL_TRIANGLES, 0, 6);
-    }
+    shaderProgram->bind();
+    shaderProgram->setUniformValue("iTime", time);
+
+    vao.bind();
+    vbo.bind();
+
+    glDrawArrays(GL_TRIANGLES, 0, 6);
 }
 
 void OpenGLScreen::setViewport(int width, int height)
