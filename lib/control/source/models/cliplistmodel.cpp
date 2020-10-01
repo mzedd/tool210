@@ -81,6 +81,9 @@ bool ClipListModel::setData(const QModelIndex &index, const QVariant &value, int
     case 1: // duration
         clip->setDuration(value.toFloat());
         break;
+    case 2: // set scene
+        clip->setScene(demo->sceneAt(value.toInt()));
+        break;
     }
 
     emit dataChanged(index, index);

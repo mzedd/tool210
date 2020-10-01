@@ -46,6 +46,7 @@ void ClipInspectorView::setClipListModel(ClipListModel *clipListModel)
 
     dataMapper->addMapping(clipNameLineEdit, 0);
     dataMapper->addMapping(clipDurationLineEdit, 1);
+    dataMapper->addMapping(sceneComboBox, 2, "currentIndex");
 }
 
 void ClipInspectorView::setSceneListModel(SceneListModel *sceneListModel)
