@@ -31,6 +31,7 @@ QVariant SceneListModel::data(const QModelIndex &index, int role) const
 
     switch (role) {
         case Qt::DisplayRole:
+        case Qt::EditRole:
         switch (index.column()) {
         case 0:
             data.setValue(QString::fromStdString(scene->name()));
