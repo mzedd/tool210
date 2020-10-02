@@ -65,3 +65,17 @@ set_target_properties(${PROJECT_NAME}
     AUTORCC ON
     RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin"
 )
+
+# Copy <filename> to build directory
+set(copy_source_dir "${CMAKE_SOURCE_DIR}/resources")
+set(copy_dest_dir "${CMAKE_BINARY_DIR}/bin/Debug/resources")
+set(copy_file_name "quad.vert")
+add_custom_command(
+    TARGET ${PROJECT_NAME} POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E make_directory ${copy_dest_dir}
+)
+add_custom_command(
+    TARGET ${PROJECT_NAME} POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy "${copy_source_dir}/${copy_file_name}" "${copy_dest_dir}/${copy_file_name}"
+    COMMENT "Copying ${copy_file_name} to build directory"
+)
