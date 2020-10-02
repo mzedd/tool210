@@ -12,10 +12,16 @@ public:
     void setDemo(Demo *demo);
     void addScene();
     void setSceneShaderFilename(int id, std::string filename);
+    void addShader(int id, std::string filepath);
+
+    std::string demoFilePath() const;
+    void setDemoFilePath(const std::string filepath);
 
 private:
     Demo *demo;
     Renderer *renderer;
+
+    std::string demoFilePath_;
 };
 
 #endif // SCENEINFORMATIONINTERACTOR_H

@@ -87,11 +87,14 @@ void MainController::loadDemo(QString filename)
         delete demo;
 
     demo = demoFileAccessor->getDemo(filename);
+    addSceneInteractor->setDemoFilePath(filename.toStdString());
     distributeDemo();
 
     for(Scene *scene : demo->sceneList()) {
-        renderer->addShader(scene->id(), scene->shaderFileName());
+        addSceneInteractor->addShader(scene->id(), scene->shaderFileName());
     }
+
+
 }
 
 void MainController::storeDemo(QString filename)
