@@ -39,7 +39,6 @@ private:
     RenderContext *renderContext;
 
     bool isMouseFloatingOverTimeCursor(const QPoint &point) const;
-    int clipUnderTimeCursor() const;
     void setTimeFromCursorPosition(int x);
     float getCursorPosition() const;
 
@@ -53,7 +52,6 @@ private:
 
 Q_SIGNALS:
     void zoomChanged(float zoom);
-    void clipSelected(int id);
 
 public Q_SLOTS:
     void timeChanged();

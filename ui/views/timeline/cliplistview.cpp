@@ -116,12 +116,7 @@ void ClipListView::mousePressEvent(QMouseEvent *event)
             if(event->y() <= TIMEAXIS_HEIGHT) {
                 setTimeFromCursorPosition(event->x());
             } else {
-                QModelIndex index = indexAt(event->pos());
-                if(index.isValid()) {
-                    emit clipSelected(index.row());
-                } else {
-                    setCurrentIndex(QModelIndex());
-                }
+                setCurrentIndex(indexAt(event->pos()));
             }
         }
     }
@@ -156,9 +151,9 @@ void ClipListView::mouseReleaseEvent(QMouseEvent *event)
             if(index.isValid()) {
                 if(index != currentIndex()) {
                     model()->moveRow(currentIndex(), currentIndex().row(), index, index.row());
-                    emit clipSelected(index.row());
                 }
             }
+            setCurrentIndex(index);
         }
     }
 
@@ -255,12 +250,6 @@ bool ClipListView::isMouseFloatingOverTimeCursor(const QPoint &point) const
     float x = getCursorPosition();
     QRect timeCursorRect(x - 1, 0, 3, height());
     return timeCursorRect.contains(point);
-}
-
-int ClipListView::clipUnderTimeCursor() const
-{
-    float x = getCursorPosition();
-    return indexAt(QPoint(x, TIMEAXIS_HEIGHT + CLIP_HEIGHT * 0.5f)).row();
 }
 
 void ClipListView::setTimeFromCursorPosition(int x)
