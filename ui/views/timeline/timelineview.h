@@ -6,7 +6,6 @@
 #include <QLabel>
 #include "cliplistview.h"
 #include "models/cliplistmodel.h"
-#include "controllers/timelinecontroller.h"
 
 class RenderContext;
 
