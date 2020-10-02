@@ -136,6 +136,9 @@ bool OpenGLScreen::addShader(int id, std::string filepath)
     shaderProgram->setUniformValue("iResolution", width, height);
 
     shaderMap.insert(id, shaderProgram);
+    renderContext->setTime(renderContext->time()); // hacky
+    update();
+
     return true;
 }
 

@@ -38,6 +38,8 @@ void RenderContext::setTime(float time)
     if(clipId > -1) {
         Clip *clipToRender = demo->clipList().at(clipId);
         renderer->setClipToRender(clipToRender);
+    } else {
+        renderer->setClipToRender(nullptr);
     }
 
     emit timeChanged();
