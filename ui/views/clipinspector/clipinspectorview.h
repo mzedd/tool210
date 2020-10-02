@@ -6,7 +6,6 @@
 #include <QLineEdit>
 #include <QComboBox>
 #include <QDataWidgetMapper>
-#include <QTableView>
 
 class ClipListModel;
 class SceneListModel;
@@ -22,7 +21,6 @@ public:
     QSize sizeHint() const;
 
     QDataWidgetMapper *dataMapper;
-    QTableView *tableView;
 
 private:
     QLineEdit *clipNameLineEdit;

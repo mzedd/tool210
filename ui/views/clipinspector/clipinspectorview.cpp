@@ -36,10 +36,6 @@ ClipInspectorView::ClipInspectorView(QWidget *parent) :
     connect(clipDurationLineEdit, &QLineEdit::editingFinished, dataMapper, &QDataWidgetMapper::submit);
     connect(sceneComboBox, QOverload<int>::of(&QComboBox::currentIndexChanged), dataMapper, &QDataWidgetMapper::submit);
 
-    tableView = new QTableView;
-
-    mainLayout->addWidget(tableView);
-
     mainLayout->addStretch();
     setLayout(mainLayout);
 }
@@ -47,7 +43,6 @@ ClipInspectorView::ClipInspectorView(QWidget *parent) :
 void ClipInspectorView::setClipListModel(ClipListModel *clipListModel)
 {
     dataMapper->setModel(clipListModel);
-    tableView->setModel(clipListModel);
 
     dataMapper->addMapping(clipNameLineEdit, 0);
     dataMapper->addMapping(clipDurationLineEdit, 1);
