@@ -82,6 +82,7 @@ bool ClipListModel::setData(const QModelIndex &index, const QVariant &value, int
         clip->setDuration(value.toFloat());
         break;
     case 2: // set scene
+        qDebug() << "set scene";
         clip->setScene(demo->sceneAt(value.toInt()));
         break;
     }

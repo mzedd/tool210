@@ -31,6 +31,11 @@ ClipInspectorView::ClipInspectorView(QWidget *parent) :
     mainLayout->addLayout(clipDataLayout);
 
     dataMapper = new QDataWidgetMapper(this);
+    dataMapper->setSubmitPolicy(QDataWidgetMapper::ManualSubmit);
+    connect(clipNameLineEdit, &QLineEdit::editingFinished, dataMapper, &QDataWidgetMapper::submit);
+    connect(clipDurationLineEdit, &QLineEdit::editingFinished, dataMapper, &QDataWidgetMapper::submit);
+    connect(sceneComboBox, QOverload<int>::of(&QComboBox::currentIndexChanged), dataMapper, &QDataWidgetMapper::submit);
+
     tableView = new QTableView;
 
     mainLayout->addWidget(tableView);

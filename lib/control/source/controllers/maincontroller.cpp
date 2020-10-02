@@ -13,6 +13,11 @@ MainController::MainController(QObject *parent) :
 {
 }
 
+void MainController::setupConnections()
+{
+    connect(clipListModel, &ClipListModel::dataChanged, this, &MainController::modelDataChanged);
+}
+
 void MainController::setClipListModel(ClipListModel *clipListModel)
 {
     this->clipListModel = clipListModel;
@@ -94,4 +99,9 @@ void MainController::storeDemo(QString filename)
     if(demo) {
         demoFileAccessor->storeDemo(filename, demo);
     }
+}
+
+void MainController::modelDataChanged()
+{
+    renderer->renderAt(renderContext->time());
 }

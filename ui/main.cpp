@@ -48,7 +48,9 @@ int main(int argc, char *argv[])
     mainWindow.initialize();
     mainWindow.show();
 
+
     mainController.newDemo(); // initialize the editor with a fresh empty demo
+    mainController.setupConnections();
 
     return app.exec();
 }

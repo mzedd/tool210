@@ -48,7 +48,25 @@ void OpenGLScreen::resizeGL(int w, int h)
 
 void OpenGLScreen::paintGL()
 {
-    renderAt(renderContext->time());
+    glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+    if(clipToRender == nullptr)
+        return;
+
+    if(clipToRender->scene() == nullptr)
+        return;
+
+    int sceneId = clipToRender->scene()->id();
+    QOpenGLShaderProgram *shaderProgram = shaderMap.value(sceneId);
+
+    shaderProgram->bind();
+    shaderProgram->setUniformValue("iTime", renderContext->time());
+
+    vao.bind();
+    vbo.bind();
+
+    glDrawArrays(GL_TRIANGLES, 0, 6);
 
     if(renderContext->run()) {
         emit frameFinishedAt(renderContext->deltaTime());
@@ -63,25 +81,7 @@ void OpenGLScreen::setClipToRender(Clip *clip)
 
 void OpenGLScreen::renderAt(float time)
 {
-    glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-    if(clipToRender == nullptr)
-        return;
-
-    if(clipToRender->scene() == nullptr)
-        return;
-
-    int sceneId = clipToRender->scene()->id();
-    QOpenGLShaderProgram *shaderProgram = shaderMap.value(sceneId);
-
-    shaderProgram->bind();
-    shaderProgram->setUniformValue("iTime", time);
-
-    vao.bind();
-    vbo.bind();
-
-    glDrawArrays(GL_TRIANGLES, 0, 6);
+    update();
 }
 
 void OpenGLScreen::setViewport(int width, int height)

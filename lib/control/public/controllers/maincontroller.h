@@ -16,6 +16,7 @@ class Q_DECL_EXPORT MainController : public QObject
     Q_OBJECT
 public:
     explicit MainController(QObject *parent = nullptr);
+    void setupConnections();
 
     void setClipListModel(ClipListModel *clipListModel);
     void setSceneListModel(SceneListModel *sceneListModel);
@@ -46,6 +47,8 @@ public Q_SLOTS:
     void newDemo();
     void loadDemo(QString filename);
     void storeDemo(QString filename);
+
+    void modelDataChanged();
 
 };
 
