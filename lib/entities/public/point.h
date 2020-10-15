@@ -9,6 +9,9 @@ public:
     void normalize();
     bool isNormalized();
 
+    Point operator+(Point point);
+    Point operator-(Point point);
+
     float x;
     float y;
     float z;

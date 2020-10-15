@@ -28,3 +28,25 @@ bool Point::isNormalized()
 {
     return std::fabs(getLength() - 1.0f) < std::numeric_limits<float>::epsilon();
 }
+
+Point Point::operator+(Point point)
+{
+    Point resultingPoint;
+
+    resultingPoint.x = x + point.x;
+    resultingPoint.y = y + point.y;
+    resultingPoint.z = z + point.z;
+
+    return resultingPoint;
+}
+
+Point Point::operator-(Point point)
+{
+    Point resultingPoint;
+
+    resultingPoint.x = x - point.x;
+    resultingPoint.y = y - point.y;
+    resultingPoint.z = z - point.z;
+
+    return resultingPoint;
+}
