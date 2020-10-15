@@ -26,7 +26,10 @@ Point Camera::getUpVector()
 
 Point Camera::getRight()
 {
-    return right;
+    Point point;
+    point.x = 1.0f;
+
+    return point;
 }
 
 float Camera::getZoom() const

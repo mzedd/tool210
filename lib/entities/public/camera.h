@@ -18,7 +18,7 @@ public:
 
     float getZoom() const;
 
-private:
+public:
     Point position;
     Point lookAt;
     Point up;

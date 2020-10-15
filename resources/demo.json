@@ -19,7 +19,25 @@
         {
             "name": "second clip",
             "duration": 210.0,
-            "scene id": 1
+            "scene id": 1,
+            "camera": {
+                "position": {
+                    "x": 5.0,
+                    "y": 5.0,
+                    "z": 5.0
+                },
+                "lookAt": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "up": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 1.0
+                },
+                "zoom": 1.0
+            }
         }
     ]
 }

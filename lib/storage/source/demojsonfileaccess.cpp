@@ -119,6 +119,33 @@ void DemoJsonFileAccess::populateClipList(Demo *demo)
             clip->setName(clipJsonObject["name"].toString().toStdString());
             clip->setDuration(static_cast<float>(clipJsonObject["duration"].toDouble()));
             clip->setScene(demo->sceneList().at(clipJsonObject["scene id"].toInt()));
+
+            if (clipJsonObject.contains("camera")) {
+                QJsonObject camera = clipJsonObject["camera"].toObject();
+
+                Point point;
+
+                QJsonObject jsonPoint = camera["position"].toObject();
+                point.x = jsonPoint["x"].toDouble();
+                point.y = jsonPoint["y"].toDouble();
+                point.z = jsonPoint["z"].toDouble();
+                clip->getCamera().position = point;
+
+                jsonPoint = camera["lookAt"].toObject();
+                point.x = jsonPoint["x"].toDouble();
+                point.y = jsonPoint["y"].toDouble();
+                point.z = jsonPoint["z"].toDouble();
+                clip->getCamera().lookAt = point;
+
+                jsonPoint = camera["up"].toObject();
+                point.x = jsonPoint["x"].toDouble();
+                point.y = jsonPoint["y"].toDouble();
+                point.z = jsonPoint["z"].toDouble();
+                clip->getCamera().up = point;
+
+                clip->getCamera().zoom = camera["zoom"].toDouble();
+            }
+
         }
     }
 }
