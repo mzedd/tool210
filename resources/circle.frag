@@ -9,8 +9,18 @@
 #define MAX_STEPS 128
 #define MAX_DISTANCE 30.0
 
+struct Camera {
+    vec3 position;
+    vec3 forward;
+    vec3 right;
+    vec3 up;
+    float zoom;
+};
+
 uniform vec2 iResolution;
 uniform float iTime;
+
+uniform Camera camera;
 
 float pi = acos(-1.0);
 int AA = 2;
@@ -362,12 +372,19 @@ void main(void)
 	m = vec2(iTime, 0.0);
     
     //vec3 ro = vec3(m.x,2.65,m.y);
-    vec3 ro = normalize(vec3(-2.0, 2.0, 2.0))*5.0;
-    vec3 ta = vec3(0.0, 0.0, 0.0);
-    vec3 f = normalize(ta-ro);
-    vec3 r = cross(c.yzy,f);
-    vec3 u = cross(f,r);
-    float zoom = 1.5;
+    //vec3 ro = normalize(vec3(-2.0, 2.0, 2.0))*5.0;
+    //vec3 ta = vec3(0.0, 0.0, 0.0);
+    //vec3 f = normalize(ta-ro);
+    //vec3 r = cross(c.yzy,f);
+    //vec3 u = cross(f,r);
+
+
+    vec3 ro = camera.position;
+    vec3 f = camera.forward;
+    vec3 r = camera.right;
+    vec3 u = camera.up;
+    float zoom = camera.zoom;
+
     vec3 rd = normalize(uv.x*r+uv.y*u+zoom*f);
     
     bool firstRay = true;

@@ -30,6 +30,8 @@ protected:
     void paintGL() override;
 
 private:
+    QVector3D fromPoint(Point point);
+
     QMap<int, QOpenGLShaderProgram *> shaderMap;
     Clip *clipToRender;
 

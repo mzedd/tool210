@@ -1,5 +1,6 @@
 #include "openglscreen.h"
 #include <QtDebug>
+#include <QVector3D>
 #include "rendercontext.h"
 
 OpenGLScreen::OpenGLScreen(QWidget* parent) :
@@ -63,6 +64,18 @@ void OpenGLScreen::paintGL()
     shaderProgram->bind();
     shaderProgram->setUniformValue("iTime", renderContext->time());
 
+    int location = shaderProgram->uniformLocation("camera.forward");
+
+    if(location != -1) {
+        Camera camera = clipToRender->getCamera();
+
+        shaderProgram->setUniformValue("camera.position", fromPoint(camera.getPosition()));
+        shaderProgram->setUniformValue("camera.forward", fromPoint(camera.getForwardVector()));
+        shaderProgram->setUniformValue("camera.right", fromPoint(camera.getRight()));
+        shaderProgram->setUniformValue("camera.up", fromPoint(camera.getUpVector()));
+        shaderProgram->setUniformValue("camera.zoom", camera.getZoom());
+    }
+
     vao.bind();
     vbo.bind();
 
@@ -72,6 +85,11 @@ void OpenGLScreen::paintGL()
         emit frameFinishedAt(renderContext->deltaTime());
         update();
     }
+}
+
+QVector3D OpenGLScreen::fromPoint(Point point)
+{
+    return QVector3D(point.x, point.y, point.z);
 }
 
 void OpenGLScreen::setClipToRender(Clip *clip)
