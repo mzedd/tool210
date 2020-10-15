@@ -40,3 +40,8 @@ void Clip::setScene(Scene *scene)
 {
     this->scene_ = scene;
 }
+
+Camera &Clip::getCamera()
+{
+    return camera;
+}

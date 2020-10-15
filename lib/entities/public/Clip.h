@@ -3,6 +3,7 @@
 
 #include <string>
 #include "Scene.h"
+#include "camera.h"
 
 class Clip
 {
@@ -19,10 +20,13 @@ public:
     Scene *scene() const;
     void setScene(Scene *scene);
 
+    Camera &getCamera();
+
 private:
     std::string name_;
     float duration_;
     Scene *scene_;
+    Camera camera;
 
 };
 
