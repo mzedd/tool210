@@ -38,11 +38,19 @@ add_executable(${PROJECT_NAME}
   views/sceneeditor/sceneeditorview.h
   views/sceneeditor/filepathwidget.cpp
   views/sceneeditor/filepathwidget.h
+
+  # cameraInspector
+  views/camerainspector/camerainspectorview.cpp
+  views/camerainspector/camerainspectorview.h
+  views/camerainspector/camerainspectorview.ui
+  views/camerainspector/pointview.cpp
+  views/camerainspector/pointview.h
+  views/camerainspector/pointview.ui
 )
 
 target_include_directories(${PROJECT_NAME}
-  PUBLIC
-    source
+  PRIVATE
+    "${CMAKE_SOURCE_DIR}/ui"
 )
 
 target_link_libraries(${PROJECT_NAME}
@@ -63,6 +71,7 @@ set_target_properties(${PROJECT_NAME}
   PROPERTIES
     AUTOMOC ON
     AUTORCC ON
+    AUTOUIC ON
     RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin"
 )
 

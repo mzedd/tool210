@@ -10,6 +10,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     clipInspectorView = new ClipInspectorView(this);
     sceneEditorView = new SceneEditorView(this);
+    cameraInspectorView = new CameraInspectorView(this);
 }
 
 void MainWindow::setMainController(MainController *mainController)
@@ -94,6 +95,11 @@ void MainWindow::createWidgets()
     dockWidget = new QDockWidget(this);
     dockWidget->setFeatures(QDockWidget::DockWidgetMovable);
     dockWidget->setWidget(sceneEditorView);
+    addDockWidget(Qt::DockWidgetArea::RightDockWidgetArea, dockWidget);
+
+    dockWidget = new QDockWidget(this);
+    dockWidget->setFeatures(QDockWidget::DockWidgetMovable);
+    dockWidget->setWidget(cameraInspectorView);
     addDockWidget(Qt::DockWidgetArea::RightDockWidgetArea, dockWidget);
 }
 

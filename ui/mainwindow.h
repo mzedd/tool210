@@ -10,6 +10,7 @@
 #include "views/clipscreen/clipscreenview.h"
 #include "views/clipinspector/clipinspectorview.h"
 #include "views/sceneeditor/sceneeditorview.h"
+#include "views/camerainspector/camerainspectorview.h"
 
 class RenderContext;
 class AddSceneInteractor;
@@ -34,6 +35,7 @@ private:
     ClipScreenView *clipScreenView;
     ClipInspectorView *clipInspectorView;
     SceneEditorView *sceneEditorView;
+    CameraInspectorView *cameraInspectorView;
 
     void createMenu();
     void createWidgets();
