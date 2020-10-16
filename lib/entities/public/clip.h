@@ -2,7 +2,7 @@
 #define CLIP_H
 
 #include <string>
-#include "Scene.h"
+#include "scene.h"
 #include "camera.h"
 
 namespace Tool210 {

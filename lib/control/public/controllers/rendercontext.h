@@ -3,7 +3,7 @@
 
 #include <QObject>
 #include <QElapsedTimer>
-#include "Demo.h"
+#include "demo.h"
 #include "renderer.h"
 
 class RenderContext : public QObject

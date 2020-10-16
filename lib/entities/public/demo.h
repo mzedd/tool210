@@ -3,8 +3,8 @@
 
 #include <vector>
 #include <string>
-#include "Clip.h"
-#include "Scene.h"
+#include "clip.h"
+#include "scene.h"
 
 namespace Tool210 {
 namespace Entities {

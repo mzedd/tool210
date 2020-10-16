@@ -1,6 +1,6 @@
 #include "cliplistmodel.h"
-#include "Demo.h"
-#include "Clip.h"
+#include "demo.h"
+#include "clip.h"
 
 #include <QDebug>
 

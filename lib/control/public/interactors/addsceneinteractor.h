@@ -2,7 +2,7 @@
 #define SCENEINFORMATIONINTERACTOR_H
 
 #include <string>
-#include "Demo.h"
+#include "demo.h"
 #include "renderer.h"
 
 class AddSceneInteractor

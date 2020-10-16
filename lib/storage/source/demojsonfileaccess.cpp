@@ -1,8 +1,8 @@
 #include "demojsonfileaccess.h"
 
-#include "Demo.h"
-#include "Clip.h"
-#include "Scene.h"
+#include "demo.h"
+#include "clip.h"
+#include "scene.h"
 
 #include <QFile>
 #include <QJsonDocument>

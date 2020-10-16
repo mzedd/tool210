@@ -3,7 +3,7 @@
 
 #include <vector>
 #include <QString>
-#include "Demo.h"
+#include "demo.h"
 
 class DemoFileAccessInterface {
 public:

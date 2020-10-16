@@ -1,4 +1,4 @@
-#include "Clip.h"
+#include "clip.h"
 
 namespace Tool210 {
 namespace Entities {

@@ -5,16 +5,16 @@ project(tool210-entities LANGUAGES CXX)
 # Targets
 add_library(${PROJECT_NAME} STATIC
   # source
-  source/Demo.cpp
-  source/Clip.cpp
+  source/demo.cpp
+  source/clip.cpp
   source/scene.cpp
   source/camera.cpp
   source/point.cpp
 
   # public
-  public/Demo.h
-  public/Clip.h
-  public/Scene.h
+  public/demo.h
+  public/clip.h
+  public/scene.h
   public/camera.h
   public/point.h
 )

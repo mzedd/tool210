@@ -7,7 +7,7 @@
 #include <QOpenGLVertexArrayObject>
 #include <QOpenGLBuffer>
 
-#include "Clip.h"
+#include "clip.h"
 #include "renderer.h"
 #include "rendercontext.h"
 

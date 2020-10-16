@@ -3,7 +3,7 @@
 
 #include <vector>
 #include <QAbstractTableModel>
-#include "Scene.h"
+#include "scene.h"
 #include "interactors/addsceneinteractor.h"
 
 class Q_DECL_EXPORT SceneListModel : public QAbstractTableModel

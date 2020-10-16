@@ -3,7 +3,7 @@
 
 #include <QObject>
 
-#include "Demo.h"
+#include "demo.h"
 #include "models/cliplistmodel.h"
 #include "models/scenelistmodel.h"
 #include "controllers/renderer.h"

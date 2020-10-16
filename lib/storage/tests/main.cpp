@@ -2,8 +2,8 @@
 #include "demojsonfileaccess.h"
 
 #include <vector>
-#include "Demo.h"
-#include "Clip.h"
+#include "demo.h"
+#include "clip.h"
 
 #include <iostream>
 
