@@ -67,7 +67,7 @@ void OpenGLScreen::paintGL()
     int location = shaderProgram->uniformLocation("camera.forward");
 
     if(location != -1) {
-        Camera camera = clipToRender->getCamera();
+        Tool210::Entities::Camera camera = clipToRender->getCamera();
 
         shaderProgram->setUniformValue("camera.position", fromPoint(camera.getPosition()));
         shaderProgram->setUniformValue("camera.forward", fromPoint(camera.getForwardVector()));
@@ -87,12 +87,12 @@ void OpenGLScreen::paintGL()
     }
 }
 
-QVector3D OpenGLScreen::fromPoint(Point point)
+QVector3D OpenGLScreen::fromPoint(Tool210::Entities::Point point)
 {
     return QVector3D(point.x, point.y, point.z);
 }
 
-void OpenGLScreen::setClipToRender(Clip *clip)
+void OpenGLScreen::setClipToRender(Tool210::Entities::Clip *clip)
 {
     clipToRender = clip;
 }

@@ -7,16 +7,16 @@
 class DemoJsonFileAccess : public DemoFileAccessInterface
 {
 public:
-    Demo *getDemo(QString filepath);
-    void storeDemo(QString filepath, Demo* demo);
+    Tool210::Entities::Demo *getDemo(QString filepath);
+    void storeDemo(QString filepath, Tool210::Entities::Demo* demo);
 
 private:
     void loadFile(QString filename);
     QString getDemoName();
-    void populateSceneList(Demo *demo);
-    void populateClipList(Demo *demo);
+    void populateSceneList(Tool210::Entities::Demo *demo);
+    void populateClipList(Tool210::Entities::Demo *demo);
 
-    int getSceneIdFrom(Scene *scene, std::vector<Scene *> &sceneList) const;
+    int getSceneIdFrom(Tool210::Entities::Scene *scene, std::vector<Tool210::Entities::Scene *> &sceneList) const;
 
     QJsonObject jsonObject;
 };

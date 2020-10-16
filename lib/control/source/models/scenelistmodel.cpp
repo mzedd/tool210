@@ -26,7 +26,7 @@ QVariant SceneListModel::data(const QModelIndex &index, int role) const
     if(data_ == nullptr)
         return QVariant();
 
-    Scene *scene = data_->at(index.row());
+    Tool210::Entities::Scene *scene = data_->at(index.row());
 
     QVariant data;
 
@@ -58,7 +58,7 @@ bool SceneListModel::setData(const QModelIndex &index, const QVariant &value, in
     if(role != Qt::EditRole)
         return false;
 
-    Scene *scene = data_->at(index.row());
+    Tool210::Entities::Scene *scene = data_->at(index.row());
 
     switch (index.column())
     {
@@ -78,12 +78,12 @@ bool SceneListModel::setData(const QModelIndex &index, const QVariant &value, in
 bool SceneListModel::insertRows(int /*row*/, int count, const QModelIndex &/*parent*/)
 {
     for(int i = 0; i < count; i++) {
-        data_->push_back(new Scene);
+        data_->push_back(new Tool210::Entities::Scene);
     }
     return true;
 }
 
-void SceneListModel::setSceneList(std::vector<Scene *> *sceneList)
+void SceneListModel::setSceneList(std::vector<Tool210::Entities::Scene *> *sceneList)
 {
     data_ = sceneList;
     emit dataChanged(index(0, 0), index(rowCount(), 0));

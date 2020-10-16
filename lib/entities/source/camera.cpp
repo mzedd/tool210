@@ -1,5 +1,8 @@
 #include "camera.h"
 
+namespace Tool210 {
+namespace Entities {
+
 Camera::Camera() :
     zoom(0.0f)
 {
@@ -36,3 +39,6 @@ float Camera::getZoom() const
 {
     return zoom;
 }
+
+} // namespace Entities
+} // namespace Tool210

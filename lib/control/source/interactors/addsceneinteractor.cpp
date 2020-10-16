@@ -12,7 +12,7 @@ AddSceneInteractor::AddSceneInteractor(Renderer *renderer):
 
 }
 
-void AddSceneInteractor::setDemo(Demo *demo)
+void AddSceneInteractor::setDemo(Tool210::Entities::Demo *demo)
 {
     this->demo = demo;
 }
@@ -24,7 +24,7 @@ void AddSceneInteractor::addScene()
 
 void AddSceneInteractor::setSceneShaderFilename(int id, std::string filename)
 {
-    Scene *scene = demo->sceneAt(id);
+    Tool210::Entities::Scene *scene = demo->sceneAt(id);
 
     QString demoPath = QFileInfo(QString::fromStdString(demoFilePath_)).path();
     std::string relativFilepath = QDir(demoPath).relativeFilePath(QString::fromStdString(filename)).toStdString();
@@ -37,7 +37,7 @@ void AddSceneInteractor::setSceneShaderFilename(int id, std::string filename)
 
 void AddSceneInteractor::addShader(int id, std::string filepath)
 {
-    Scene *scene = demo->sceneAt(id);
+    Tool210::Entities::Scene *scene = demo->sceneAt(id);
 
     QString demoPath = QFileInfo(QString::fromStdString(demoFilePath_)).path();
     std::string relativFilepath = filepath;

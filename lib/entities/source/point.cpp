@@ -2,6 +2,9 @@
 #include <cmath>
 #include <limits>
 
+namespace Tool210 {
+namespace Entities {
+
 Point::Point() :
     x(0.0f),
     y(0.0f),
@@ -50,3 +53,6 @@ Point Point::operator-(Point point)
 
     return resultingPoint;
 }
+
+} // namespace Entities
+} // namespace Tool210

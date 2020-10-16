@@ -77,7 +77,7 @@ void MainController::newDemo()
     if(demo)
         delete demo;
 
-    demo = new Demo;
+    demo = new Tool210::Entities::Demo;
     distributeDemo();
 }
 
@@ -90,7 +90,7 @@ void MainController::loadDemo(QString filename)
     addSceneInteractor->setDemoFilePath(filename.toStdString());
     distributeDemo();
 
-    for(Scene *scene : demo->sceneList()) {
+    for(Tool210::Entities::Scene *scene : demo->sceneList()) {
         addSceneInteractor->addShader(scene->id(), scene->shaderFileName());
     }
 

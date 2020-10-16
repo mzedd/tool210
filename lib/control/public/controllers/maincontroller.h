@@ -32,7 +32,7 @@ private:
     void distributeDemoToModels();
     void distributeDemoToInteractors();
 
-    Demo* demo;
+    Tool210::Entities::Demo* demo;
 
     ClipListModel *clipListModel;
     SceneListModel *sceneListModel;

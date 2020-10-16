@@ -4,7 +4,11 @@
 #include <vector>
 #include <QAbstractTableModel>
 
-class Demo;
+namespace Tool210 {
+namespace Entities {
+    class Demo;
+}
+}
 
 class Q_DECL_EXPORT ClipListModel : public QAbstractTableModel
 {
@@ -21,7 +25,7 @@ public:
     bool moveRows(const QModelIndex &sourceParent, int sourceRow, int count, const QModelIndex &destinationParent, int destinationChild) override;
     bool insertRows(int row, int count, const QModelIndex &parent) override;
 
-    void setDemo(Demo *demo);
+    void setDemo(Tool210::Entities::Demo *demo);
 
     enum ClipRoles {
         ClipName = Qt::UserRole + 1,
@@ -29,7 +33,7 @@ public:
     };
 
 private:
-    Demo *demo;
+    Tool210::Entities::Demo *demo;
 
 };
 

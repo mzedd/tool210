@@ -32,7 +32,7 @@ QVariant ClipListModel::data(const QModelIndex &index, int role) const
     if(demo == nullptr)
         return QVariant();
 
-    Clip *clip = demo->clipList().at(index.row());
+    Tool210::Entities::Clip *clip = demo->clipList().at(index.row());
 
     switch (role) {
     case Qt::DisplayRole:
@@ -72,7 +72,7 @@ bool ClipListModel::setData(const QModelIndex &index, const QVariant &value, int
     if(demo == nullptr)
         return false;
 
-    Clip *clip = demo->clipList().at(index.row());
+    Tool210::Entities::Clip *clip = demo->clipList().at(index.row());
 
     switch (index.column()) {
     case 0: // name
@@ -93,7 +93,7 @@ bool ClipListModel::setData(const QModelIndex &index, const QVariant &value, int
 
 bool ClipListModel::moveRows(const QModelIndex& /*sourceParent*/, int sourceRow, int /*count*/, const QModelIndex &destinationParent, int /*destinationChild*/)
 {
-    Clip *tmp = demo->clipList().at(sourceRow);
+    Tool210::Entities::Clip *tmp = demo->clipList().at(sourceRow);
     demo->clipList().at(sourceRow) = demo->clipList().at(destinationParent.row());
     demo->clipList().at(destinationParent.row()) = tmp;
 
@@ -110,7 +110,7 @@ bool ClipListModel::insertRows(int /*row*/, int /*count*/, const QModelIndex &/*
     return true;
 }
 
-void ClipListModel::setDemo(Demo *demo)
+void ClipListModel::setDemo(Tool210::Entities::Demo *demo)
 {
     this->demo = demo;
     emit dataChanged(index(0, 0), index(rowCount(), columnCount()));

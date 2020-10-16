@@ -2,6 +2,9 @@
 #include "Clip.h"
 #include "Scene.h"
 
+namespace Tool210 {
+namespace Entities {
+
 Demo::Demo()
 {
 
@@ -71,3 +74,6 @@ int Demo::clipIdAt(float time)
 
     return -1;
 }
+
+} // namespace Entities
+} // namespace Tool210

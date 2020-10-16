@@ -8,7 +8,7 @@
 
 int main()
 {
-    Demo demo;
+    Tool210::Entities::Demo demo;
 
     demo.addClip();
     demo.clipList().at(0)->setName("first clip");

@@ -18,7 +18,7 @@ public:
     void setRenderContext(RenderContext *renderContext);
 
     // Renderer interface
-    void setClipToRender(Clip *clip) override;
+    void setClipToRender(Tool210::Entities::Clip *clip) override;
     void renderAt(float time) override;
     void setViewport(int width, int height) override;
     bool addShader(int id, std::string filepath) override;
@@ -30,10 +30,10 @@ protected:
     void paintGL() override;
 
 private:
-    QVector3D fromPoint(Point point);
+    QVector3D fromPoint(Tool210::Entities::Point point);
 
     QMap<int, QOpenGLShaderProgram *> shaderMap;
-    Clip *clipToRender;
+    Tool210::Entities::Clip *clipToRender;
 
     RenderContext *renderContext;
 

@@ -5,6 +5,9 @@
 #include "Scene.h"
 #include "camera.h"
 
+namespace Tool210 {
+namespace Entities {
+
 class Clip
 {
 
@@ -29,5 +32,8 @@ private:
     Camera camera;
 
 };
+
+} // namespace Entities
+} // namespace Tool210
 
 #endif // CLIP_H

@@ -3,6 +3,9 @@
 
 #include <string>
 
+namespace Tool210 {
+namespace Entities {
+
 class Scene
 {
 public:
@@ -21,5 +24,8 @@ protected:
     std::string name_;
     std::string shaderFileName_;
 };
+
+} // namespace Entities
+} // namespace Tool210
 
 #endif // SCENE_H

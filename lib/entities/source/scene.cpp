@@ -1,5 +1,8 @@
 #include "Scene.h"
 
+namespace Tool210 {
+namespace Entities {
+
 static int idCounter = 0;
 
 Scene::Scene() :
@@ -34,3 +37,6 @@ void Scene::setShaderFileName(std::string filename)
 {
     shaderFileName_ = filename;
 }
+
+} // namespace Entities
+} // namespace Tool210

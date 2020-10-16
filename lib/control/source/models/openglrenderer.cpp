@@ -33,7 +33,7 @@ void OpenGLRenderer::setRenderContext(RenderContext *renderContext)
     this->renderContext = renderContext;
 }
 
-void OpenGLRenderer::setClipToRender(Clip *clip)
+void OpenGLRenderer::setClipToRender(Tool210::Entities::Clip *clip)
 {
     clipToRender = clip;
 }

@@ -11,20 +11,20 @@ int main()
 {
     DemoFileAccessInterface *demoFileAccess = new DemoJsonFileAccess();
 
-    Demo *demo = demoFileAccess->getDemo("resources/demo.json");
+    Tool210::Entities::Demo *demo = demoFileAccess->getDemo("resources/demo.json");
 
     assert(!demo->name().compare("Test Demo"));
 
-    std::vector<Clip *> clipList = demo->clipList();
-    for(Clip *clip : clipList) {
+    std::vector<Tool210::Entities::Clip *> clipList = demo->clipList();
+    for(Tool210::Entities::Clip *clip : clipList) {
         std::cout << clip->name() << std::endl;
     }
 
     assert(!clipList.at(0)->name().compare("first clip"));
     assert(clipList.at(0)->name().compare("wrong clip name"));
 
-    std::vector<Scene *> sceneList = demo->sceneList();
-    for(Scene *scene : sceneList) {
+    std::vector<Tool210::Entities::Scene *> sceneList = demo->sceneList();
+    for(Tool210::Entities::Scene *scene : sceneList) {
         std::cout << scene->name() << std::endl;
     }
 

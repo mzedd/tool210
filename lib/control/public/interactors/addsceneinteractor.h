@@ -9,7 +9,7 @@ class AddSceneInteractor
 {
 public:
     AddSceneInteractor(Renderer *renderer);
-    void setDemo(Demo *demo);
+    void setDemo(Tool210::Entities::Demo *demo);
     void addScene();
     void setSceneShaderFilename(int id, std::string filename);
     void addShader(int id, std::string filepath);
@@ -18,7 +18,7 @@ public:
     void setDemoFilePath(const std::string filepath);
 
 private:
-    Demo *demo;
+    Tool210::Entities::Demo *demo;
     Renderer *renderer;
 
     std::string demoFilePath_;

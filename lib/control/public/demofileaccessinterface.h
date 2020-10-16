@@ -8,8 +8,8 @@
 class DemoFileAccessInterface {
 public:
     virtual ~DemoFileAccessInterface() {};
-    virtual Demo *getDemo(QString filepath) = 0;
-    virtual void storeDemo(QString filepath, Demo *demo) = 0;
+    virtual Tool210::Entities::Demo *getDemo(QString filepath) = 0;
+    virtual void storeDemo(QString filepath, Tool210::Entities::Demo *demo) = 0;
 };
 
 #endif // DEMOFILEACCESSINTERFACE_H

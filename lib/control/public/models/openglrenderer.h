@@ -19,7 +19,7 @@ public:
     void setRenderContext(RenderContext *renderContext);
 
     // Renderer interface
-    void setClipToRender(Clip *clip);
+    void setClipToRender(Tool210::Entities::Clip *clip);
     void renderAt(float time);
     void setViewport(int width, int height);
     bool addShader(int id, std::string filepath);
@@ -27,7 +27,7 @@ public:
 
 private:
     QMap<int, QOpenGLShaderProgram *> shaderMap;
-    Clip *clipToRender;
+    Tool210::Entities::Clip *clipToRender;
 
     RenderContext *renderContext;
 

@@ -10,11 +10,11 @@
 #include <QJsonArray>
 #include <QString>
 
-Demo *DemoJsonFileAccess::getDemo(QString filepath)
+Tool210::Entities::Demo *DemoJsonFileAccess::getDemo(QString filepath)
 {
     loadFile(filepath);
 
-    Demo *demo = new Demo;
+    Tool210::Entities::Demo *demo = new Tool210::Entities::Demo;
     demo->setName(getDemoName().toStdString());
 
     populateSceneList(demo);
@@ -23,7 +23,7 @@ Demo *DemoJsonFileAccess::getDemo(QString filepath)
     return demo;
 }
 
-void DemoJsonFileAccess::storeDemo(QString filepath, Demo* demo)
+void DemoJsonFileAccess::storeDemo(QString filepath, Tool210::Entities::Demo* demo)
 {
     QFile file(filepath);
 
@@ -37,7 +37,7 @@ void DemoJsonFileAccess::storeDemo(QString filepath, Demo* demo)
     demoJsonObject.insert(QString("name"), QString::fromStdString(demo->name()));
 
     QJsonArray clipArray;
-    for(Clip *clip : demo->clipList()) {
+    for(Tool210::Entities::Clip *clip : demo->clipList()) {
         QJsonObject clipJsonObject;
         clipJsonObject.insert("name", QString::fromStdString(clip->name()));
         clipJsonObject.insert("duration", clip->duration());
@@ -47,7 +47,7 @@ void DemoJsonFileAccess::storeDemo(QString filepath, Demo* demo)
     demoJsonObject.insert("clip list", clipArray);
 
     QJsonArray sceneArray;
-    for(Scene *scene : demo->sceneList()) {
+    for(Tool210::Entities::Scene *scene : demo->sceneList()) {
         QJsonObject sceneJsonObject;
         sceneJsonObject.insert("name", QString::fromStdString(scene->name()));
         sceneJsonObject.insert("shader file name", QString::fromStdString(scene->shaderFileName()));
@@ -85,7 +85,7 @@ QString DemoJsonFileAccess::getDemoName()
     return QString();
 }
 
-void DemoJsonFileAccess::populateSceneList(Demo *demo)
+void DemoJsonFileAccess::populateSceneList(Tool210::Entities::Demo *demo)
 {
     if(jsonObject.contains("scene list") && jsonObject["scene list"].isArray()) {
         QJsonArray array = jsonObject["scene list"].toArray();
@@ -95,7 +95,7 @@ void DemoJsonFileAccess::populateSceneList(Demo *demo)
             QJsonObject sceneJsonObject = array.at(i).toObject();
 
             demo->addScene();
-            Scene *scene = demo->sceneList().back();
+            Tool210::Entities::Scene *scene = demo->sceneList().back();
 
             scene->setName(sceneJsonObject["name"].toString().toStdString());
             scene->setShaderFileName(sceneJsonObject["shader file name"].toString().toStdString());
@@ -104,7 +104,7 @@ void DemoJsonFileAccess::populateSceneList(Demo *demo)
 }
 
 
-void DemoJsonFileAccess::populateClipList(Demo *demo)
+void DemoJsonFileAccess::populateClipList(Tool210::Entities::Demo *demo)
 {
     if(jsonObject.contains("clip list") && jsonObject["clip list"].isArray()) {
         QJsonArray array =  jsonObject["clip list"].toArray();
@@ -114,7 +114,7 @@ void DemoJsonFileAccess::populateClipList(Demo *demo)
             QJsonObject clipJsonObject = array.at(i).toObject();
 
             demo->addClip();
-            Clip *clip = demo->clipList().back();
+            Tool210::Entities::Clip *clip = demo->clipList().back();
 
             clip->setName(clipJsonObject["name"].toString().toStdString());
             clip->setDuration(static_cast<float>(clipJsonObject["duration"].toDouble()));
@@ -123,7 +123,7 @@ void DemoJsonFileAccess::populateClipList(Demo *demo)
             if (clipJsonObject.contains("camera")) {
                 QJsonObject camera = clipJsonObject["camera"].toObject();
 
-                Point point;
+                Tool210::Entities::Point point;
 
                 QJsonObject jsonPoint = camera["position"].toObject();
                 point.x = jsonPoint["x"].toDouble();
@@ -150,7 +150,7 @@ void DemoJsonFileAccess::populateClipList(Demo *demo)
     }
 }
 
-int DemoJsonFileAccess::getSceneIdFrom(Scene *scene, std::vector<Scene *> &sceneList) const
+int DemoJsonFileAccess::getSceneIdFrom(Tool210::Entities::Scene *scene, std::vector<Tool210::Entities::Scene *> &sceneList) const
 {
     for(size_t i = 0; i < sceneList.size(); i++) {
         if(sceneList.at(i) == scene)

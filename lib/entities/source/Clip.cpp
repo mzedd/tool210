@@ -1,5 +1,8 @@
 #include "Clip.h"
 
+namespace Tool210 {
+namespace Entities {
+
 const std::string DEFAULT_CLIP_NAME = "default";
 constexpr float DEFAULT_CLIP_DURATION = 10.0f;
 
@@ -45,3 +48,6 @@ Camera &Clip::getCamera()
 {
     return camera;
 }
+
+} // namespace Entities
+} // namespace Tool210

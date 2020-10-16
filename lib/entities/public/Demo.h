@@ -6,6 +6,9 @@
 #include "Clip.h"
 #include "Scene.h"
 
+namespace Tool210 {
+namespace Entities {
+
 class Demo
 {
 public:
@@ -33,5 +36,8 @@ private:
     // TODO: musicTrack
     // TODO: postProcessingEffects
 };
+
+} // namespace Entities
+} // namespace Tool210
 
 #endif // DEMO_H

@@ -13,7 +13,7 @@ class RenderContext : public QObject
 public:
     RenderContext(QObject *parent = nullptr);
 
-    void setDemo(Demo *demo);
+    void setDemo(Tool210::Entities::Demo *demo);
     void setRenderer(Renderer *renderer);
 
     float time() const;
@@ -25,7 +25,7 @@ public:
     float deltaTime();
 
 private:
-    Demo *demo;
+    Tool210::Entities::Demo *demo;
     Renderer *renderer;
 
     float time_;

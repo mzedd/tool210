@@ -18,11 +18,11 @@ public:
     bool setData(const QModelIndex &index, const QVariant &value, int role) override;
     bool insertRows(int row, int count, const QModelIndex &parent) override;
 
-    void setSceneList(std::vector<Scene *> *sceneList);
+    void setSceneList(std::vector<Tool210::Entities::Scene *> *sceneList);
     void setAddScenenInteractor(AddSceneInteractor *addSceneInteractor);
 
 private:
-    std::vector<Scene *> *data_;
+    std::vector<Tool210::Entities::Scene *> *data_;
     AddSceneInteractor *addSceneInteractor;
 
     enum SceneRoles {

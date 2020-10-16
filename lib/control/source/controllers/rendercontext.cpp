@@ -13,7 +13,7 @@ RenderContext::RenderContext(QObject *parent) :
     timer.start();
 }
 
-void RenderContext::setDemo(Demo *demo)
+void RenderContext::setDemo(Tool210::Entities::Demo *demo)
 {
     this->demo = demo;
 }
@@ -36,7 +36,7 @@ void RenderContext::setTime(float time)
     int clipId = demo->clipIdAt(time);
 
     if(clipId > -1) {
-        Clip *clipToRender = demo->clipList().at(clipId);
+        Tool210::Entities::Clip *clipToRender = demo->clipList().at(clipId);
         renderer->setClipToRender(clipToRender);
     } else {
         renderer->setClipToRender(nullptr);

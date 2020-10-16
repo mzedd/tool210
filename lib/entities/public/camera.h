@@ -3,6 +3,9 @@
 
 #include "point.h"
 
+namespace Tool210 {
+namespace Entities {
+
 class Camera
 {
 public:
@@ -26,5 +29,8 @@ public:
 
     float zoom;
 };
+
+} // namespace Entities
+} // namespace Tool210
 
 #endif // CAMERA_H
