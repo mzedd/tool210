@@ -1,6 +1,6 @@
-#include "Demo.h"
-#include "Clip.h"
-#include "Scene.h"
+#include "demo.h"
+#include "clip.h"
+#include "scene.h"
 
 namespace Tool210 {
 namespace Entities {
