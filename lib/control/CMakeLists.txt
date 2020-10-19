@@ -12,6 +12,7 @@ add_library(${PROJECT_NAME} STATIC
   ## controllers
   source/controllers/maincontroller.cpp
   source/controllers/rendercontext.cpp
+  source/controllers/editorcontext.cpp
 
   ## models
   source/models/cliplistmodel.cpp
@@ -28,6 +29,7 @@ add_library(${PROJECT_NAME} STATIC
   public/controllers/maincontroller.h
   public/controllers/rendercontext.h
   public/controllers/renderer.h
+  public/controllers/editorcontext.h
 
   ## models
   public/models/cliplistmodel.h
