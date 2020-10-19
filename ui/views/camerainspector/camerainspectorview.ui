@@ -24,24 +24,44 @@
    <item>
     <layout class="QFormLayout" name="formLayout">
      <item row="0" column="0">
-      <widget class="QLabel" name="label_2">
+      <widget class="QLabel" name="positionLabel">
        <property name="text">
-        <string>Posititon</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="0">
-      <widget class="QLabel" name="label_3">
-       <property name="text">
-        <string>TextLabel</string>
+        <string>Position</string>
        </property>
       </widget>
      </item>
      <item row="0" column="1">
-      <widget class="PointView" name="widget" native="true"/>
+      <widget class="PointView" name="positionWidget" native="true"/>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLabel" name="lookAtLabel">
+       <property name="text">
+        <string>LookAt</string>
+       </property>
+      </widget>
      </item>
      <item row="1" column="1">
-      <widget class="PointView" name="widget_2" native="true"/>
+      <widget class="PointView" name="lookAtWidget" native="true"/>
+     </item>
+     <item row="2" column="0">
+      <widget class="QLabel" name="upLabel">
+       <property name="text">
+        <string>Up</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="1">
+      <widget class="PointView" name="upWidget" native="true"/>
+     </item>
+     <item row="3" column="0">
+      <widget class="QLabel" name="zoomLabel">
+       <property name="text">
+        <string>Zoom</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="1">
+      <widget class="QLineEdit" name="zoomLineEdit"/>
      </item>
     </layout>
    </item>
