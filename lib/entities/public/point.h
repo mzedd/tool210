@@ -8,6 +8,8 @@ class Point
 {
 public:
     Point();
+    Point(float x, float y, float z);
+
     float getLength();
     void normalize();
     bool isNormalized();

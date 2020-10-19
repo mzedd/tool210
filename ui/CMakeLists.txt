@@ -15,6 +15,8 @@ add_executable(${PROJECT_NAME}
   mainwindow.h
 
   # views
+  views/view.h
+
   ## timeline
   views/timeline/timelineview.cpp
   views/timeline/timelineview.h
@@ -40,12 +42,18 @@ add_executable(${PROJECT_NAME}
   views/sceneeditor/filepathwidget.h
 
   # cameraInspector
+  views/camerainspector/camerainspectorpresenter.cpp
+  views/camerainspector/camerainspectorpresenter.h
+  views/camerainspector/camerainspectorviewmodel.cpp
+  views/camerainspector/camerainspectorviewmodel.h
   views/camerainspector/camerainspectorview.cpp
   views/camerainspector/camerainspectorview.h
   views/camerainspector/camerainspectorview.ui
   views/camerainspector/pointview.cpp
   views/camerainspector/pointview.h
   views/camerainspector/pointview.ui
+  views/camerainspector/pointviewmodel.cpp
+  views/camerainspector/pointviewmodel.h
 )
 
 target_include_directories(${PROJECT_NAME}

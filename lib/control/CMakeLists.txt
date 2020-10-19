@@ -20,6 +20,8 @@ add_library(${PROJECT_NAME} STATIC
 
   ## interactors
   source/interactors/addsceneinteractor.cpp
+  source/interactors/setcameradatainteractor.cpp
+  source/interactors/cameradata.cpp
 
   # public
   ## controllers
@@ -34,6 +36,10 @@ add_library(${PROJECT_NAME} STATIC
 
   ## interactors
   public/interactors/addsceneinteractor.h
+  public/interactors/setcameradatainteractor.h
+  public/interactors/camerainspectoroutputboundary.h
+  public/interactors/camerainspectorinputboundary.h
+  public/interactors/cameradata.h
 
   ## file accessor
   public/demofileaccessinterface.h
