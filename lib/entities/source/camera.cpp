@@ -9,6 +9,16 @@ Camera::Camera() :
 
 }
 
+void Camera::setLookAtPoint(Point &point)
+{
+    this->lookAt = point;
+}
+
+void Camera::setUpVector(Point &point)
+{
+    this->up = point;
+}
+
 Point Camera::getPosition()
 {
     return position;

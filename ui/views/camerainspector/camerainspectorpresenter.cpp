@@ -24,6 +24,8 @@ void CameraInspectorPresenter::present(CameraData cameraData)
     viewModel.lookAt = toPointViewModel(cameraData.lookAt);
     viewModel.up = toPointViewModel(cameraData.up);
     viewModel.zoom = std::to_string(cameraData.zoom);
+
+    view->update();
 }
 
 PointViewModel CameraInspectorPresenter::toPointViewModel(Tool210::Entities::Point point)

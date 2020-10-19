@@ -68,5 +68,57 @@
   </layout>
  </widget>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>xLineEdit</sender>
+   <signal>editingFinished()</signal>
+   <receiver>PointView</receiver>
+   <slot>editingFinished()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>125</x>
+     <y>36</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>128</x>
+     <y>63</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>yLineEdit</sender>
+   <signal>editingFinished()</signal>
+   <receiver>PointView</receiver>
+   <slot>editingFinished()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>355</x>
+     <y>34</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>354</x>
+     <y>62</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>zLineEdit</sender>
+   <signal>editingFinished()</signal>
+   <receiver>PointView</receiver>
+   <slot>editingFinished()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>636</x>
+     <y>37</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>639</x>
+     <y>58</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>editingFinished()</slot>
+ </slots>
 </ui>

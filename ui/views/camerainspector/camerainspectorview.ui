@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>699</width>
-    <height>473</height>
+    <height>491</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -86,8 +86,79 @@
    <extends>QWidget</extends>
    <header>views/camerainspector/pointview.h</header>
    <container>1</container>
+   <slots>
+    <signal>editFinished()</signal>
+   </slots>
   </customwidget>
  </customwidgets>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>zoomLineEdit</sender>
+   <signal>editingFinished()</signal>
+   <receiver>CameraInspectorView</receiver>
+   <slot>editingFinished()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>111</x>
+     <y>106</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>112</x>
+     <y>473</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>upWidget</sender>
+   <signal>editFinished()</signal>
+   <receiver>CameraInspectorView</receiver>
+   <slot>editingFinished()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>212</x>
+     <y>82</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>304</x>
+     <y>490</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>lookAtWidget</sender>
+   <signal>editFinished()</signal>
+   <receiver>CameraInspectorView</receiver>
+   <slot>editingFinished()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>302</x>
+     <y>55</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>436</x>
+     <y>491</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>positionWidget</sender>
+   <signal>editFinished()</signal>
+   <receiver>CameraInspectorView</receiver>
+   <slot>editingFinished()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>473</x>
+     <y>37</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>573</x>
+     <y>490</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>editingFinished()</slot>
+ </slots>
 </ui>

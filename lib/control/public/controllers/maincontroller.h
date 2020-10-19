@@ -10,6 +10,7 @@
 #include "interactors/addsceneinteractor.h"
 #include "demofileaccessinterface.h"
 #include "rendercontext.h"
+#include "interactors/setcameradatainteractor.h"
 
 class Q_DECL_EXPORT MainController : public QObject
 {
@@ -24,6 +25,8 @@ public:
 
     void setAddSceneInteractor(AddSceneInteractor *addSceneInteractor);
     void setRenderContext(RenderContext *renderContext);
+
+    void setEditorContext(EditorContext *editorContext);
 
     void setDemoFileAccessor(DemoFileAccessInterface *demoFileAccessor);
 
@@ -41,6 +44,9 @@ private:
     AddSceneInteractor *addSceneInteractor;
     RenderContext *renderContext;
 
+    EditorContext *editorContext;
+    SetCameraDataInteractor *setCameraDataInteractor;
+
     DemoFileAccessInterface *demoFileAccessor;
 
 public Q_SLOTS:
@@ -50,6 +56,7 @@ public Q_SLOTS:
 
     void modelDataChanged();
 
+    void currentChanged(const QModelIndex &current, const QModelIndex &previous);
 };
 
 #endif // MAINCONTROLLER_H

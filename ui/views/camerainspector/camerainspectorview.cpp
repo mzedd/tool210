@@ -31,7 +31,7 @@ Tool210::Entities::Point CameraInspectorView::fromQVector3D(QVector3D vector)
     return Tool210::Entities::Point(vector.x(), vector.y(), vector.z());
 }
 
-void CameraInspectorView::editFinished()
+void CameraInspectorView::editingFinished()
 {
     CameraData cameraData;
 

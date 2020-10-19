@@ -22,6 +22,12 @@ public:
 
 private:
     Ui::PointView *ui;
+
+public slots:
+    void editingFinished();
+
+signals:
+    void editFinished();
 };
 
 #endif // POINTVIEW_H

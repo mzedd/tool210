@@ -10,7 +10,9 @@
 #include "views/clipscreen/clipscreenview.h"
 #include "views/clipinspector/clipinspectorview.h"
 #include "views/sceneeditor/sceneeditorview.h"
+
 #include "views/camerainspector/camerainspectorview.h"
+#include "views/camerainspector/camerainspectorpresenter.h"
 
 class RenderContext;
 class AddSceneInteractor;
@@ -26,6 +28,8 @@ public:
     void setSceneListModel(SceneListModel *sceneListModel);
     void setOpenGLModel(OpenGLScreen *openGLScreen);
     void setRenderContext(RenderContext *renderContext);
+    void setCameraInspectorPresenter(CameraInspectorPresenter *cameraInspectorPresenter);
+    void setCameraInspectorInputBoundary(CameraInspectorInputBoundary *inputBoundary);
     void initialize();
 
 private:
@@ -36,6 +40,8 @@ private:
     ClipInspectorView *clipInspectorView;
     SceneEditorView *sceneEditorView;
     CameraInspectorView *cameraInspectorView;
+
+    CameraInspectorPresenter *cameraInspectorPresenter;
 
     void createMenu();
     void createWidgets();

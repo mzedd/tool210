@@ -5,7 +5,7 @@
 
 class CameraInspectorInputBoundary {
 public:
-    virtual void setData(CameraData cameraData);
+    virtual void setData(CameraData cameraData) = 0;
 
 };
 

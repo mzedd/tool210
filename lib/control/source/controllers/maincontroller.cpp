@@ -43,6 +43,11 @@ void MainController::setRenderContext(RenderContext *renderContext)
     this->renderContext = renderContext;
 }
 
+void MainController::setEditorContext(EditorContext *editorContext)
+{
+    this->editorContext = editorContext;
+}
+
 void MainController::setDemoFileAccessor(DemoFileAccessInterface *demoFileAccessor)
 {
     this->demoFileAccessor = demoFileAccessor;
@@ -107,4 +112,10 @@ void MainController::storeDemo(QString filename)
 void MainController::modelDataChanged()
 {
     renderer->renderAt(renderContext->time());
+}
+
+void MainController::currentChanged(const QModelIndex &current, const QModelIndex &/*previous*/)
+{
+    if(current.isValid())
+        editorContext->setSelectedClip(demo->clipList().at(current.row()));
 }

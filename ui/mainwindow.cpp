@@ -41,6 +41,18 @@ void MainWindow::setRenderContext(RenderContext *renderContext)
     clipScreenView->setRenderContext(renderContext);
 }
 
+void MainWindow::setCameraInspectorPresenter(CameraInspectorPresenter *cameraInspectorPresenter)
+{
+    this->cameraInspectorPresenter = cameraInspectorPresenter;
+    cameraInspectorPresenter->setView(cameraInspectorView);
+    cameraInspectorView->setViewModel(&cameraInspectorPresenter->getViewModel());
+}
+
+void MainWindow::setCameraInspectorInputBoundary(CameraInspectorInputBoundary *inputBoundary)
+{
+    cameraInspectorView->setInputBoundary(inputBoundary);
+}
+
 void MainWindow::initialize()
 {
     createMenu();
@@ -106,6 +118,7 @@ void MainWindow::createWidgets()
 void MainWindow::createConnections()
 {
     connect(timelineView->clipListView->selectionModel(), &QItemSelectionModel::currentChanged, clipInspectorView->dataMapper, &QDataWidgetMapper::setCurrentModelIndex);
+    connect(timelineView->clipListView->selectionModel(), &QItemSelectionModel::currentChanged, mainController, &MainController::currentChanged);
 }
 
 void MainWindow::handleNewDemo()

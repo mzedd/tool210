@@ -29,8 +29,8 @@ private:
     CameraInspectorViewModel* viewModel;
     CameraInspectorInputBoundary *inputBoundary;
 
-private Q_SLOTS:
-    void editFinished();
+public slots:
+    void editingFinished();
 };
 
 #endif // CAMERAINSPECTORVIEW_H

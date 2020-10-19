@@ -1,5 +1,6 @@
 #include "interactors/setcameradatainteractor.h"
 #include "clip.h"
+#include "camera.h"
 
 SetCameraDataInteractor::SetCameraDataInteractor(CameraInspectorOutputBoundary *outputBoundary, EditorContext *editorContext) :
     outputBoundary(outputBoundary),
@@ -18,7 +19,7 @@ void SetCameraDataInteractor::setData(CameraData cameraData)
 
 void SetCameraDataInteractor::writeDataToSelectedCamera(CameraData cameraData)
 {
-    Tool210::Entities::Camera camera = editorContext->getSelectedClip()->getCamera();
+    Tool210::Entities::Camera &camera = editorContext->getSelectedClip()->getCamera();
 
     camera.position = cameraData.position;
     camera.setLookAtPoint(cameraData.lookAt);
@@ -28,7 +29,7 @@ void SetCameraDataInteractor::writeDataToSelectedCamera(CameraData cameraData)
 
 CameraData SetCameraDataInteractor::readDataFromSelectedCamera()
 {
-    Tool210::Entities::Camera camera = editorContext->getSelectedClip()->getCamera();
+    Tool210::Entities::Camera &camera = editorContext->getSelectedClip()->getCamera();
     CameraData cameraData;
 
     cameraData.position = camera.position;
