@@ -42,6 +42,7 @@ void DemoJsonFileAccess::storeDemo(QString filepath, Tool210::Entities::Demo* de
         clipJsonObject.insert("name", QString::fromStdString(clip->name()));
         clipJsonObject.insert("duration", clip->duration());
         clipJsonObject.insert("scene id", getSceneIdFrom(clip->scene(), demo->sceneList()));
+        clipJsonObject.insert("camera", getCamera(clip));
         clipArray.append(clipJsonObject);
     }
     demoJsonObject.insert("clip list", clipArray);
@@ -151,5 +152,29 @@ int DemoJsonFileAccess::getSceneIdFrom(Tool210::Entities::Scene *scene, std::vec
             return static_cast<int>(i);
     }
     return -1;
+}
+
+QJsonObject DemoJsonFileAccess::getCamera(Tool210::Entities::Clip *clip)
+{
+    Tool210::Entities::Camera camera = clip->getCamera();
+    QJsonObject cameraJsonObject;
+
+    cameraJsonObject.insert("position", pointToJson(camera.getPosition()));
+    cameraJsonObject.insert("lookAt", pointToJson(camera.getLookAt()));
+    cameraJsonObject.insert("roll", camera.getRoll());
+    cameraJsonObject.insert("zoom", camera.getZoom());
+
+    return cameraJsonObject;
+}
+
+QJsonObject DemoJsonFileAccess::pointToJson(Tool210::Entities::Point point)
+{
+    QJsonObject pointJsonObject;
+
+    pointJsonObject.insert("x", point.x);
+    pointJsonObject.insert("y", point.y);
+    pointJsonObject.insert("z", point.z);
+
+    return pointJsonObject;
 }
 

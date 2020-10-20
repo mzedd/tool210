@@ -18,6 +18,9 @@ private:
 
     int getSceneIdFrom(Tool210::Entities::Scene *scene, std::vector<Tool210::Entities::Scene *> &sceneList) const;
 
+    QJsonObject getCamera(Tool210::Entities::Clip *clip);
+    QJsonObject pointToJson(Tool210::Entities::Point point);
+
     QJsonObject jsonObject;
 };
 
