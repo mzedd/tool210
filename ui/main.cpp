@@ -35,7 +35,7 @@ int main(int argc, char *argv[])
 
     AddSceneInteractor *addSceneInteractor = new AddSceneInteractor(openGLScreen);
     CameraInspectorPresenter *cameraInspectorPresenter = new CameraInspectorPresenter;
-    SetCameraDataInteractor *setCameraDataInteractor = new SetCameraDataInteractor(cameraInspectorPresenter, editorContext);
+    SetCameraDataInteractor *setCameraDataInteractor = new SetCameraDataInteractor(cameraInspectorPresenter, editorContext, openGLScreen);
 
     DemoJsonFileAccess *demoFileAccessor = new DemoJsonFileAccess;
     MainController mainController;

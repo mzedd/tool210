@@ -3,9 +3,10 @@
 #include "camera.h"
 #include "controllers/editorcontext.h"
 
-SetCameraDataInteractor::SetCameraDataInteractor(CameraInspectorOutputBoundary *outputBoundary, EditorContext *editorContext) :
+SetCameraDataInteractor::SetCameraDataInteractor(CameraInspectorOutputBoundary *outputBoundary, EditorContext *editorContext, Renderer *renderer) :
     outputBoundary(outputBoundary),
-    editorContext(editorContext)
+    editorContext(editorContext),
+    renderer(renderer)
 {
 
 }
@@ -16,6 +17,8 @@ void SetCameraDataInteractor::setData(CameraData cameraData)
 
     CameraData newCameraData = readDataFromSelectedCamera();
     outputBoundary->present(newCameraData);
+
+    renderer->render();
 }
 
 void SetCameraDataInteractor::selectedClipChanged()
