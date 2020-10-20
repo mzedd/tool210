@@ -11,7 +11,7 @@ public:
 
     PointViewModel position;
     PointViewModel lookAt;
-    PointViewModel up;
+    std::string roll;
     std::string zoom;
 };
 

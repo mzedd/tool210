@@ -44,14 +44,11 @@
       <widget class="PointView" name="lookAtWidget" native="true"/>
      </item>
      <item row="2" column="0">
-      <widget class="QLabel" name="upLabel">
+      <widget class="QLabel" name="rollLabel">
        <property name="text">
-        <string>Up</string>
+        <string>Roll</string>
        </property>
       </widget>
-     </item>
-     <item row="2" column="1">
-      <widget class="PointView" name="upWidget" native="true"/>
      </item>
      <item row="3" column="0">
       <widget class="QLabel" name="zoomLabel">
@@ -62,6 +59,9 @@
      </item>
      <item row="3" column="1">
       <widget class="QLineEdit" name="zoomLineEdit"/>
+     </item>
+     <item row="2" column="1">
+      <widget class="QLineEdit" name="rollLineEdit"/>
      </item>
     </layout>
    </item>
@@ -110,22 +110,6 @@
    </hints>
   </connection>
   <connection>
-   <sender>upWidget</sender>
-   <signal>editFinished()</signal>
-   <receiver>CameraInspectorView</receiver>
-   <slot>editingFinished()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>212</x>
-     <y>82</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>304</x>
-     <y>490</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
    <sender>lookAtWidget</sender>
    <signal>editFinished()</signal>
    <receiver>CameraInspectorView</receiver>
@@ -154,6 +138,22 @@
     <hint type="destinationlabel">
      <x>573</x>
      <y>490</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>rollLineEdit</sender>
+   <signal>editingFinished()</signal>
+   <receiver>CameraInspectorView</receiver>
+   <slot>editingFinished()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>197</x>
+     <y>82</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>252</x>
+     <y>491</y>
     </hint>
    </hints>
   </connection>

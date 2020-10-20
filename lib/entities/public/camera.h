@@ -11,23 +11,31 @@ class Camera
 public:
     Camera();
 
+    void setPosition(Point &point);
     void setLookAtPoint(Point &point);
-    void setUpVector(Point &point);
+    void setRoll(float angle);
+    void setZoom(float zoom);
 
-    Point getPosition();
-    Point getForwardVector();
-    Point getUpVector();
-    Point getRight();
-
+    Point getPosition() const;
+    Point getLookAt() const;
+    float getRoll() const;
     float getZoom() const;
 
-public:
+    Point getForwardVector();
+    Point getUpVector();
+    Point getRightVector();
+
+private:
+    void updateTransform();
+
     Point position;
     Point lookAt;
+    float roll;
+    float zoom;
+
+    Point forward;
     Point up;
     Point right;
-
-    float zoom;
 };
 
 } // namespace Entities

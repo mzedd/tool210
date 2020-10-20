@@ -38,6 +38,13 @@ bool Point::isNormalized()
     return std::fabs(getLength() - 1.0f) < std::numeric_limits<float>::epsilon();
 }
 
+Point Point::cross(const Point a, const Point b)
+{
+    return Point(a.y*b.z - a.z*b.y,
+                 a.z*b.x - a.x*b.z,
+                 a.x*b.y - a.y*b.x);
+}
+
 Point Point::operator+(Point point)
 {
     Point resultingPoint;

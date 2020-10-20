@@ -14,6 +14,8 @@ public:
     void normalize();
     bool isNormalized();
 
+    static Point cross(const Point a, const Point b);
+
     Point operator+(Point point);
     Point operator-(Point point);
 

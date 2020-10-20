@@ -129,23 +129,17 @@ void DemoJsonFileAccess::populateClipList(Tool210::Entities::Demo *demo)
                 point.x = jsonPoint["x"].toDouble();
                 point.y = jsonPoint["y"].toDouble();
                 point.z = jsonPoint["z"].toDouble();
-                clip->getCamera().position = point;
+                clip->getCamera().setPosition(point);
 
                 jsonPoint = camera["lookAt"].toObject();
                 point.x = jsonPoint["x"].toDouble();
                 point.y = jsonPoint["y"].toDouble();
                 point.z = jsonPoint["z"].toDouble();
-                clip->getCamera().lookAt = point;
+                clip->getCamera().setLookAtPoint(point);
 
-                jsonPoint = camera["up"].toObject();
-                point.x = jsonPoint["x"].toDouble();
-                point.y = jsonPoint["y"].toDouble();
-                point.z = jsonPoint["z"].toDouble();
-                clip->getCamera().up = point;
-
-                clip->getCamera().zoom = camera["zoom"].toDouble();
+                clip->getCamera().setRoll(camera["roll"].toDouble());
+                clip->getCamera().setZoom(camera["zoom"].toDouble());
             }
-
         }
     }
 }

@@ -37,7 +37,7 @@ void CameraInspectorView::editingFinished()
 
     cameraData.position = fromQVector3D(ui->positionWidget->getPoint());
     cameraData.lookAt = fromQVector3D(ui->lookAtWidget->getPoint());
-    cameraData.up = fromQVector3D(ui->upWidget->getPoint());
+    cameraData.roll = ui->rollLineEdit->text().toFloat();
     cameraData.zoom = ui->zoomLineEdit->text().toFloat();
 
     inputBoundary->setData(cameraData);
@@ -47,8 +47,8 @@ void CameraInspectorView::update()
 {
     ui->positionWidget->updateView(viewModel->position);
     ui->lookAtWidget->updateView(viewModel->lookAt);
-    ui->upWidget->updateView(viewModel->up);
 
+    ui->rollLineEdit->setText(QString::fromStdString(viewModel->roll));
     ui->zoomLineEdit->setText(QString::fromStdString(viewModel->zoom));
 
     QWidget::update();

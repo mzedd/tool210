@@ -23,7 +23,7 @@ void CameraInspectorPresenter::present(CameraData cameraData)
 {
     viewModel.position = toPointViewModel(cameraData.position);
     viewModel.lookAt = toPointViewModel(cameraData.lookAt);
-    viewModel.up = toPointViewModel(cameraData.up);
+    viewModel.roll = formatNumericValue(cameraData.roll);
     viewModel.zoom = formatNumericValue(cameraData.zoom);
 
     view->update();

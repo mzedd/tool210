@@ -71,7 +71,7 @@ void OpenGLScreen::paintGL()
 
         shaderProgram->setUniformValue("camera.position", fromPoint(camera.getPosition()));
         shaderProgram->setUniformValue("camera.forward", fromPoint(camera.getForwardVector()));
-        shaderProgram->setUniformValue("camera.right", fromPoint(camera.getRight()));
+        shaderProgram->setUniformValue("camera.right", fromPoint(camera.getRightVector()));
         shaderProgram->setUniformValue("camera.up", fromPoint(camera.getUpVector()));
         shaderProgram->setUniformValue("camera.zoom", camera.getZoom());
     }

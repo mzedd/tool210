@@ -4,32 +4,61 @@ namespace Tool210 {
 namespace Entities {
 
 Camera::Camera() :
-    zoom(0.0f)
+    position(Point()),
+    lookAt(Point(1.0f, 0.0f, 0.0f)),
+    roll(0.0f),
+    zoom(1.0f)
 {
+    updateTransform();
+}
 
+void Camera::setPosition(Point &point)
+{
+    this->position = point;
+    updateTransform();
 }
 
 void Camera::setLookAtPoint(Point &point)
 {
     this->lookAt = point;
+    updateTransform();
 }
 
-void Camera::setUpVector(Point &point)
+void Camera::setRoll(float angle)
 {
-    this->up = point;
+    this->roll = angle;
+    updateTransform();
 }
 
-Point Camera::getPosition()
+void Camera::setZoom(float zoom)
+{
+    this->zoom = zoom;
+    updateTransform();
+}
+
+Point Camera::getPosition() const
 {
     return position;
 }
 
+Point Camera::getLookAt() const
+{
+    return lookAt;
+}
+
+float Camera::getRoll() const
+{
+    return roll;
+}
+
+float Camera::getZoom() const
+{
+    return zoom;
+}
+
 Point Camera::getForwardVector()
 {
-    Point point(lookAt - position);
-    point.normalize();
-
-    return point;
+    return forward;
 }
 
 Point Camera::getUpVector()
@@ -37,17 +66,19 @@ Point Camera::getUpVector()
     return up;
 }
 
-Point Camera::getRight()
+Point Camera::getRightVector()
 {
-    Point point;
-    point.x = 1.0f;
-
-    return point;
+    return right;
 }
 
-float Camera::getZoom() const
+void Camera::updateTransform()
 {
-    return zoom;
+    forward = lookAt - position;
+    forward.normalize();
+
+    right = Point::cross(forward, Point(0.0f, 1.0f, 0.0f));
+
+    up = Point::cross(right, forward);
 }
 
 } // namespace Entities

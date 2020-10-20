@@ -10,7 +10,7 @@ public:
 
     Tool210::Entities::Point position;
     Tool210::Entities::Point lookAt;
-    Tool210::Entities::Point up;
+    float roll;
     float zoom;
 };
 
