@@ -17,6 +17,7 @@ public:
 
 private:
     PointViewModel toPointViewModel(Tool210::Entities::Point point);
+    std::string formatNumericValue(float value);
 
     View *view;
     CameraInspectorViewModel viewModel;

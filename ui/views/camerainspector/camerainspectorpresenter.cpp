@@ -1,6 +1,7 @@
 #include "camerainspectorpresenter.h"
 
 #include <string>
+#include <sstream>
 
 CameraInspectorPresenter::CameraInspectorPresenter() :
     view(nullptr)
@@ -23,7 +24,7 @@ void CameraInspectorPresenter::present(CameraData cameraData)
     viewModel.position = toPointViewModel(cameraData.position);
     viewModel.lookAt = toPointViewModel(cameraData.lookAt);
     viewModel.up = toPointViewModel(cameraData.up);
-    viewModel.zoom = std::to_string(cameraData.zoom);
+    viewModel.zoom = formatNumericValue(cameraData.zoom);
 
     view->update();
 }
@@ -32,9 +33,16 @@ PointViewModel CameraInspectorPresenter::toPointViewModel(Tool210::Entities::Poi
 {
     PointViewModel pointViewModel;
 
-    pointViewModel.xValue = std::to_string(point.x);
-    pointViewModel.yValue = std::to_string(point.y);
-    pointViewModel.zValue = std::to_string(point.z);
+    pointViewModel.xValue = formatNumericValue(point.x);
+    pointViewModel.yValue = formatNumericValue(point.y);
+    pointViewModel.zValue = formatNumericValue(point.z);
 
     return pointViewModel;
+}
+
+std::string CameraInspectorPresenter::formatNumericValue(float value)
+{
+    std::stringstream stream;
+    stream << value;
+    return  stream.str();
 }
