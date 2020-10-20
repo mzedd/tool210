@@ -15,6 +15,8 @@ public:
     Tool210::Entities::Clip *getSelectedClip();
     void setSelectedClip(Tool210::Entities::Clip *selectedClip);
 
+    bool isClipSelected();
+
 private:
     Tool210::Entities::Clip *selectedClip;
 };

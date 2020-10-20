@@ -19,23 +19,28 @@ void SetCameraDataInteractor::setData(CameraData cameraData)
 
 void SetCameraDataInteractor::writeDataToSelectedCamera(CameraData cameraData)
 {
-    Tool210::Entities::Camera &camera = editorContext->getSelectedClip()->getCamera();
+    if(editorContext->isClipSelected()) {
+        Tool210::Entities::Camera &camera = editorContext->getSelectedClip()->getCamera();
 
-    camera.position = cameraData.position;
-    camera.setLookAtPoint(cameraData.lookAt);
-    camera.setUpVector(cameraData.up);
-    camera.zoom = cameraData.zoom;
+        camera.position = cameraData.position;
+        camera.setLookAtPoint(cameraData.lookAt);
+        camera.setUpVector(cameraData.up);
+        camera.zoom = cameraData.zoom;
+    }
 }
 
 CameraData SetCameraDataInteractor::readDataFromSelectedCamera()
 {
-    Tool210::Entities::Camera &camera = editorContext->getSelectedClip()->getCamera();
     CameraData cameraData;
 
-    cameraData.position = camera.position;
-    cameraData.lookAt = camera.lookAt;
-    cameraData.up = camera.getUpVector();
-    cameraData.zoom = camera.getZoom();
+    if(editorContext->isClipSelected()) {
+        Tool210::Entities::Camera &camera = editorContext->getSelectedClip()->getCamera();
+
+        cameraData.position = camera.position;
+        cameraData.lookAt = camera.lookAt;
+        cameraData.up = camera.getUpVector();
+        cameraData.zoom = camera.getZoom();
+    }
 
     return cameraData;
 }

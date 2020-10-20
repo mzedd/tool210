@@ -15,3 +15,8 @@ void EditorContext::setSelectedClip(Tool210::Entities::Clip *selectedClip)
 {
     this->selectedClip = selectedClip;
 }
+
+bool EditorContext::isClipSelected()
+{
+    return selectedClip != nullptr;
+}
