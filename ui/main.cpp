@@ -11,6 +11,7 @@
 #include "models/scenelistmodel.h"
 #include "models/openglrenderer.h"
 #include "rendercontext.h"
+#include "controllers/editorcontext.h"
 
 #include "views/clipscreen/openglscreen.h"
 #include "views/camerainspector/camerainspectorpresenter.h"
@@ -38,6 +39,8 @@ int main(int argc, char *argv[])
 
     DemoJsonFileAccess *demoFileAccessor = new DemoJsonFileAccess;
     MainController mainController;
+
+    editorContext->setCameraDataInteractor(setCameraDataInteractor);
 
     renderContext->setRenderer(openGLScreen);
     sceneListModel->setAddScenenInteractor(addSceneInteractor);

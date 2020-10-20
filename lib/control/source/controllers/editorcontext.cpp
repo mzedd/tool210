@@ -14,6 +14,12 @@ Tool210::Entities::Clip *EditorContext::getSelectedClip()
 void EditorContext::setSelectedClip(Tool210::Entities::Clip *selectedClip)
 {
     this->selectedClip = selectedClip;
+    cameraDataInteractor->selectedClipChanged();
+}
+
+void EditorContext::setCameraDataInteractor(SetCameraDataInteractor *interactor)
+{
+    cameraDataInteractor = interactor;
 }
 
 bool EditorContext::isClipSelected()

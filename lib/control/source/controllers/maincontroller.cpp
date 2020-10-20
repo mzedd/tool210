@@ -1,6 +1,7 @@
 #include "maincontroller.h"
 
 #include <QDebug>
+#include "controllers/editorcontext.h"
 
 MainController::MainController(QObject *parent) :
     QObject(parent),

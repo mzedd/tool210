@@ -3,7 +3,8 @@
 
 #include "interactors/camerainspectorinputboundary.h"
 #include "interactors/camerainspectoroutputboundary.h"
-#include "controllers/editorcontext.h"
+
+class EditorContext;
 
 class SetCameraDataInteractor : public CameraInspectorInputBoundary
 {
@@ -11,6 +12,7 @@ public:
     SetCameraDataInteractor(CameraInspectorOutputBoundary *outputBoundary, EditorContext *editorContext);
 
     void setData(CameraData cameraData);
+    void selectedClipChanged();
 
 private:
     void writeDataToSelectedCamera(CameraData cameraData);
