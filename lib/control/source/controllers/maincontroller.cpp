@@ -99,8 +99,6 @@ void MainController::loadDemo(QString filename)
     for(Tool210::Entities::Scene *scene : demo->sceneList()) {
         addSceneInteractor->addShader(scene->id(), scene->shaderFileName());
     }
-
-
 }
 
 void MainController::storeDemo(QString filename)
@@ -112,7 +110,7 @@ void MainController::storeDemo(QString filename)
 
 void MainController::modelDataChanged()
 {
-    renderer->renderAt(renderContext->time());
+    renderer->render();
 }
 
 void MainController::currentChanged(const QModelIndex &current, const QModelIndex &/*previous*/)

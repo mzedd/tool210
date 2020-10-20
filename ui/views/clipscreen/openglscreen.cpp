@@ -97,7 +97,7 @@ void OpenGLScreen::setClipToRender(Tool210::Entities::Clip *clip)
     clipToRender = clip;
 }
 
-void OpenGLScreen::renderAt(float time)
+void OpenGLScreen::render()
 {
     update();
 }

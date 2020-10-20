@@ -19,7 +19,7 @@ public:
 
     // Renderer interface
     void setClipToRender(Tool210::Entities::Clip *clip) override;
-    void renderAt(float time) override;
+    void render() override;
     void setViewport(int width, int height) override;
     bool addShader(int id, std::string filepath) override;
     void removeShader(int id) override;
