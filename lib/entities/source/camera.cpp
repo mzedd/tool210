@@ -1,5 +1,7 @@
 #include "camera.h"
 
+#include <cmath>
+
 namespace Tool210 {
 namespace Entities {
 
@@ -76,7 +78,8 @@ void Camera::updateTransform()
     forward = lookAt - position;
     forward.normalize();
 
-    right = Point::cross(forward, Point(0.0f, 1.0f, 0.0f));
+    Point temporaryUp = Point(0.0f, cos(roll), sin(roll));
+    right = Point::cross(forward, temporaryUp);
 
     up = Point::cross(right, forward);
 }
