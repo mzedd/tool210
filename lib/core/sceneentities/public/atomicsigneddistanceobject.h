@@ -8,6 +8,7 @@ namespace SceneEntities {
 
 class AtomicSignedDistanceObject {
 public:
+    virtual std::string getFunctionCall() = 0;
     virtual std::string getCode() = 0;
 };
 

@@ -5,8 +5,11 @@ project(tool210-sceneentities LANGUAGES CXX)
 # Targets
 add_library(${PROJECT_NAME} STATIC
   # source
+  source/sphere.cpp
 
   # public
+  public/atomicsigneddistanceobject.h
+  public/sphere.h
 
 )
 
@@ -35,4 +38,4 @@ target_compile_features(${PROJECT_NAME}
 ###########################
 # Include tests
 
-#add_subdirectory(tests)
+add_subdirectory(tests)
